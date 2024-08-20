@@ -1,0 +1,80 @@
+/* TODO: Add sitewide styles */
+/* colors: #F1F8E8 - yellow, #D8EFD3, #95D2B3, #55AD9B, #C0C78C, #A6B37D, #FEFAE0, #B99470 - brown */
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica,
+    Arial, sans-serif;
+}
+
+main {
+  min-height: 75vh;
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+p {
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  height: 25px;
+  width: 200px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 2px 8px;
+  box-shadow: none;
+}
+
+textarea {
+  height: 100px;
+  width: 200px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 2px 8px;
+  box-shadow: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+form label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 15px;
+  font-style: italic;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
