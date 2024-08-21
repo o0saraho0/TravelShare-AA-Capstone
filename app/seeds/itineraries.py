@@ -24,7 +24,7 @@ def seed_itineraries():
         country="China",
         description="Experience the vibrant energy of Shanghai with this three-day itinerary. Explore the blend of modernity and tradition as you visit landmarks like the Bund, Yu Garden, and the futuristic skyline of Pudong. From historical sites to cutting-edge architecture, this itinerary showcases the best of Shanghai.",
         preview_image_url="/images/Shanghai1_01.jpg",
-        traveler_id=1,
+        traveler_id=3,
         category_id=1,
     )
     itinerary4 = Itinerary(
@@ -32,7 +32,7 @@ def seed_itineraries():
         country="Mexico",
         description="Enjoy the perfect mix of relaxation and adventure with this six-day itinerary in Tulum and Cancun. Explore ancient Mayan ruins, snorkel in crystal-clear cenotes, and unwind on the white sandy beaches. Whether you're seeking culture, nature, or just a tropical escape, this itinerary offers it all.",
         preview_image_url="/images/Mexico1_01.jpg",
-        traveler_id=1,
+        traveler_id=4,
         category_id=2,
     )
     itinerary5 = Itinerary(
@@ -40,7 +40,7 @@ def seed_itineraries():
         country="United States",
         description="Embark on an unforgettable road trip through Utah's most stunning national parks. This itinerary guides you through Zion, Bryce Canyon, Arches, Canyonlands, and Capitol Reef, offering breathtaking landscapes, scenic hikes, and unforgettable experiences in the heart of America's desert wilderness.",
         preview_image_url="/images/Utah1.jpg",
-        traveler_id=1,
+        traveler_id=5,
         category_id=3,
     )
     itinerary6 = Itinerary(
@@ -56,7 +56,7 @@ def seed_itineraries():
         country="United States",
         description="Cruise along the iconic Pacific Coast Highway with this road trip itinerary, which takes you from the scenic cliffs of Big Sur to the charming coastal towns of California. Experience the rugged coastline, breathtaking ocean views, and must-see stops like Monterey, Santa Barbara, and Malibu.",
         preview_image_url="/images/CaliforniaHW1_01.webp",
-        traveler_id=3,
+        traveler_id=1,
         category_id=3,
     )
 

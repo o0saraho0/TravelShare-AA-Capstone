@@ -17,6 +17,9 @@ function ItineraryDetail() {
           dispatch(thunkItineraryById(itineraryId)) 
         }
     }, [dispatch, itineraryId]);
+    console.log(itinerary);
+
+    if(!itinerary) return null;
 
     return (
     <main className="itinerary-detail-page">
@@ -37,9 +40,9 @@ function ItineraryDetail() {
                     <div key={schedule.id} className="schedule-item">
                         <h2>{schedule.day}</h2>
                         {schedule.activities.map(activity => (
-                            <div key={activity.id} className="inline">
+                            <div key={activity.id} className="activity-item">
                                 <div className="activity-info">
-                                    <h3>{activity.id} {activity.place}</h3>
+                                    <span className="activity-place">{activity.place}</span> 
                                     <p>{activity.description}</p>
                                 </div>
                                 <div className="activity-image">
