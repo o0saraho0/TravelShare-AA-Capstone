@@ -113,12 +113,17 @@ form label {
 
 .error {
   color: red;
-  font-size: 15px;
+  font-size: 13px;
   font-style: italic;
+  margin-top: 5px;
 }
 
 .inline {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.button-center {
+  margin: 50px auto;
 }

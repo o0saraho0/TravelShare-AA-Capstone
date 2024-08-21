@@ -9,7 +9,6 @@ class Itinerary(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     duration = db.Column(db.Integer, nullable=False)
-    country = db.Column(db.String, nullable=False)
     description = db.Column(db.Text)
     preview_image_url = db.Column(db.Text, nullable=False)
     traveler_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)

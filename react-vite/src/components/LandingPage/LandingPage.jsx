@@ -27,7 +27,7 @@ function LandingPage() {
                   <h1>Welcome back, {user.first_name}!</h1>
                     <div>
                         <h2>Your trips</h2>
-                        <button>+ Plan new trip</button>
+                        <button onClick={() => navigate("/itineraries/new")}>+ Plan new trip</button>
                     </div>
                     <div>
                         <h2>Your collections</h2>
@@ -61,10 +61,18 @@ function LandingPage() {
             <h1></h1>
         </div>: 
         <div className="landing-signed-out">
-            <h1>Get inspired and share your travel guide to inspire others</h1>
+            <h1>Discover the World</h1>
+            <h2>A Travel Guide to Inspire Your Next Adventure</h2>
+            <p>Traveling is more than just visiting new places; it&apos;s about experiencing the world in a way that enriches your soul and fills your life with unforgettable memories.</p>
+            {/* <p>Whether you&apos;re seeking the tranquility of nature, the vibrancy of cities, or the rich tapestry of cultures, the world is waiting for you to explore.</p> */}
+            <p>Let this guide inspire your next adventure, whether it&apos;s a solo journey of self-discovery, a romantic getaway, or a family trip filled with laughter and learning...</p>
 
-            <button>Start planning</button>
-            <button onClick={() => navigate("/itineraries")}>Popular destinations</button>
+            <div className="landing-signed-out-buttons">
+                <button>Start planning</button>
+                <button onClick={() => navigate("/itineraries")}>Popular destinations</button>
+            </div>
+
+            
         </div>}
     </main>
     )

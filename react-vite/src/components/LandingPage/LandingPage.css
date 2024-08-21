@@ -13,6 +13,50 @@
   z-index: -1;
 }
 
+.landing-signed-out {
+  margin: 150px;
+  width: 50%;
+}
+
+.landing-signed-out h1 {
+  font-size: 55px;
+  font-weight: 600;
+}
+
+.landing-signed-out h2 {
+  margin: 50px 0px;
+  font-size: 35px;
+  font-style: italic;
+}
+
+.landing-signed-out p {
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.landing-signed-out-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.landing-signed-out button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #55ad9b;
+  color: white;
+  width: 250px;
+}
+
+.landing-signed-out button:hover {
+  cursor: pointer;
+  background-color: #95d2b3;
+}
+
 .landing-personal {
   margin: 20px 0px;
   display: flex;
@@ -63,11 +107,11 @@
   color: white;
   font-size: 15px;
   font-weight: 500;
-  background-color: #95d2b3;
+  background-color: #55ad9b;
   width: 250px;
 }
 
 .landing-signed-in button:hover {
   cursor: pointer;
-  background-color: #55ad9b;
+  background-color: #95d2b3;
 }
