@@ -3,24 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
 import { FaLocationArrow } from "react-icons/fa6";
+import Map from "../SubComponents/Map"
 import "./ItineraryDetailPage.css";
 
 function ItineraryDetail() {
     const dispatch = useDispatch();
     const { itineraryId } = useParams();
     const itinerary = useSelector((state) => state.itineraries.itineraryById?.[itineraryId]);
-    const schedules = itinerary?.schedules;
-    // console.log(schedules);
-    
+    const schedules = itinerary?.schedules;    
 
     useEffect(() => {
         if (itineraryId) {
           dispatch(thunkItineraryById(itineraryId)) 
         }
     }, [dispatch, itineraryId]);
-    console.log(itinerary);
 
-    if(!itinerary) return null;
+    if (!itinerary) return null;
 
     return (
     <main className="itinerary-detail-page">
@@ -56,9 +54,8 @@ function ItineraryDetail() {
             </div>     
         </div>
         </div>
-        <div className="map">
-            
-        </div>
+        <Map itinerary={itinerary}/>
+        
     </main> 
     )
 }  
