@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 8453b2a95f5b
+Revision ID: 8a22c0d95b76
 Revises: 
-Create Date: 2024-08-21 08:31:37.157217
+Create Date: 2024-08-21 14:40:14.612081
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8453b2a95f5b'
+revision = '8a22c0d95b76'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -39,7 +39,6 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=False),
     sa.Column('duration', sa.Integer(), nullable=False),
-    sa.Column('country', sa.String(), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
     sa.Column('preview_image_url', sa.Text(), nullable=False),
     sa.Column('traveler_id', sa.Integer(), nullable=False),
@@ -63,7 +62,6 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('itinerary_id', sa.Integer(), nullable=False),
     sa.Column('review', sa.Text(), nullable=False),
-    sa.Column('recommendation', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['itinerary_id'], ['itineraries.id'], ),
@@ -80,6 +78,8 @@ def upgrade():
     op.create_table('activities',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('place', sa.String(), nullable=False),
+    sa.Column('longitude', sa.Float(), nullable=False),
+    sa.Column('latitude', sa.Float(), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
     sa.Column('place_image_url', sa.Text(), nullable=True),
     sa.Column('schedule_id', sa.Integer(), nullable=True),

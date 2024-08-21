@@ -27,7 +27,6 @@ class Itinerary(db.Model):
             "id": self.id,
             "title": self.title,
             "duration": self.duration,
-            "country": self.country,
             "description": self.description,
             "preview_image_url": self.preview_image_url,
             "traveler": self.traveler.to_dict(),
@@ -67,6 +66,8 @@ class Activity(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     place = db.Column(db.String, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
+    latitude = db.Column(db.Float, nullable=False)
     description = db.Column(db.Text)
     place_image_url = db.Column(db.Text)
     schedule_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("schedules.id")))
@@ -77,6 +78,8 @@ class Activity(db.Model):
         return {
             "id": self.id,
             "place": self.place,
+            "longitude": self.longitude,
+            "latitude": self.latitude,
             "description": self.description,
             "place_image_url": self.place_image_url,
             "schedule_id": self.schedule_id
