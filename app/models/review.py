@@ -10,7 +10,6 @@ class Review(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     itinerary_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('itineraries.id')), nullable=False)
     review = db.Column(db.Text, nullable=False)
-    recommendation = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp(), nullable=False)
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp(), nullable=False)
 
@@ -23,6 +22,5 @@ class Review(db.Model):
             "user": self.user.username,
             "itinerary_id": self.itinerary_id,
             "review": self.review,
-            "recommendation": self.recommendation,
             "updated_at": self.updated_at
         }

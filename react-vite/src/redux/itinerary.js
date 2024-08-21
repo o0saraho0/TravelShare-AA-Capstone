@@ -1,6 +1,7 @@
 const ALL_ITINERARIES = "itinerary/allItineraries";
 const ITINERARY_BY_ID = "itinerary/itineraryById";
 const ITINERARIES_BY_CURRENT_USER = "itinerary/itinerariesByCurrentUser";
+const CREATE_ITINERARY = "itinerary/createItinerary";
 
 const allItineraries = (itineraries) => ({
   type: ALL_ITINERARIES,
@@ -16,6 +17,11 @@ const itinerariesByCurrentUser = (itineraries, user_id) => ({
   type: ITINERARIES_BY_CURRENT_USER,
   payload: itineraries,
   user_id,
+});
+
+const createItinerary = (itinerary) => ({
+  type: CREATE_ITINERARY,
+  payload: itinerary,
 });
 
 // get itineraries owned by current user
@@ -51,6 +57,23 @@ export const thunkAllItineraries = () => async (dispatch) => {
   return data;
 };
 
+// create itinerary
+export const thunkNewItinerary = (itinerary) => async (dispatch) => {
+  const response = await fetch("/api/itineraries/new", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(itinerary),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    dispatch(createItinerary(data));
+    return data;
+  }
+  return data;
+};
+
 const initialState = {
   itineraryById: {},
 };
@@ -78,6 +101,34 @@ function itineraryReducer(state = initialState, action) {
         ...state,
         itinerariesByUser: newState,
       };
+    }
+    case CREATE_ITINERARY: {
+      const itineraryId = action.payload.id;
+      const newState = {};
+      if (state.allItineraries) {
+        const newAllItineraries = {
+          ...state.allItineraries,
+          [itineraryId]: action.payload,
+        };
+        newState["allItineraries"] = newAllItineraries;
+      }
+
+      if (state.itineraryById[itineraryId]) {
+        const newItineraryById = {
+          ...state.itineraryById,
+          [itineraryId]: action.payload,
+        };
+        newState["itineraryById"] = newItineraryById;
+      }
+
+      if (state.itinerariesByCurrentUser) {
+        const newItinerariesByCurrentUser = {
+          ...state.itinerariesByCurrentUser,
+          [itineraryId]: action.payload,
+        };
+        newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
+      }
+      return { ...state, newState };
     }
     default:
       return state;

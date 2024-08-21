@@ -22,34 +22,41 @@ function LandingPage() {
         {user? 
         <div className="landing-signed-in">
             <div className="landing-personal">
-                <h1>Welcome back, {user.first_name}</h1>
-                <div>
-                    <h2>Your trips</h2>
-                    <button>+ Plan new trip</button>
-                </div>
-                <div>
-                    <h2>Your collections</h2>
-                    <button onClick={() => navigate("/itineraries")}>+ Add new collection</button>
+                <img src="/images/travel_map.jpg" alt="" />
+                <div className="landing-personal-container">
+                  <h1>Welcome back, {user.first_name}!</h1>
+                    <div>
+                        <h2>Your trips</h2>
+                        <button>+ Plan new trip</button>
+                    </div>
+                    <div>
+                        <h2>Your collections</h2>
+                        <button onClick={() => navigate("/itineraries")}>+ Add new collection</button>
+                    </div>
                 </div>
             </div>
             <div className="landing-explore">
                 <h1>Explore</h1>
                 <h2>Popular destinations</h2>
                 <div className="grid-container">
-                    {itineraries.slice(0, 3).map((itinerary) => (
+                    {itineraries.slice(1, 4).map((itinerary) => (
                         <div key={itinerary.id} className="grid-item">
                             <Link to={`/itineraries/${itinerary.id}`}>
                             <div className="image-container"><img src={itinerary.preview_image_url} alt={itinerary.title}/></div>
                             <div><h3>{itinerary.title}</h3></div>
                             <div><p>{itinerary.description}</p></div>
                             <div className="user-profile">
-                                <div><img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} />{itinerary.traveler.username}</div>
+                                <img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} />
+                                <div>{itinerary.traveler.username}</div>
                             </div>
                             </Link>
                         </div>
                     ))}
                 </div>
-                <button onClick={() => navigate("/itineraries")}>Discover more</button>
+                <div className="explore-button">
+                    <button onClick={() => navigate("/itineraries")}>Discover more</button>
+                </div>
+                
             </div>
             <h1></h1>
         </div>: 
