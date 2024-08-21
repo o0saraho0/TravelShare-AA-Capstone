@@ -27,8 +27,8 @@ function ItinerariesList() {
                             <div className="image-container"><img src={itinerary.preview_image_url} alt={itinerary.title}/></div>
                             <div><h3>{itinerary.title}</h3></div>
                             <div><p>{itinerary.description}</p></div>
-                            <div className="inline">
-                                <div><img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} />{itinerary.traveler.username}</div>
+                            <div className="user-profile">
+                                <img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} />{itinerary.traveler.username}
                             </div>
                             </Link>
                         </div>

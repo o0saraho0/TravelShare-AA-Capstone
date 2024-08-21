@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
+import { FaLocationArrow } from "react-icons/fa6";
 import "./ItineraryDetailPage.css";
 
 function ItineraryDetail() {
@@ -42,7 +43,7 @@ function ItineraryDetail() {
                         {schedule.activities.map(activity => (
                             <div key={activity.id} className="activity-item">
                                 <div className="activity-info">
-                                    <span className="activity-place">{activity.place}</span> 
+                                    <span className="activity-place"><FaLocationArrow />{activity.place}</span> 
                                     <p>{activity.description}</p>
                                 </div>
                                 <div className="activity-image">

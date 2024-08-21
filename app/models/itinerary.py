@@ -8,6 +8,7 @@ class Itinerary(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
+    duration = db.Column(db.Integer, nullable=False)
     country = db.Column(db.String, nullable=False)
     description = db.Column(db.Text)
     preview_image_url = db.Column(db.Text, nullable=False)
@@ -26,12 +27,14 @@ class Itinerary(db.Model):
         return {
             "id": self.id,
             "title": self.title,
+            "duration": self.duration,
             "country": self.country,
             "description": self.description,
             "preview_image_url": self.preview_image_url,
             "traveler": self.traveler.to_dict(),
             "category_id": self.category_id,
-            "schedules": [el.to_dict() for el in self.schedule]
+            "schedules": [el.to_dict() for el in self.schedule],
+            "updated_at": self.updated_at
         }
     
 

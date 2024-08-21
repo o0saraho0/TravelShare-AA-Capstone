@@ -13,6 +13,49 @@
   z-index: -1;
 }
 
+.landing-personal {
+  margin: 20px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.landing-personal img {
+  width: 500px;
+  aspect-ratio: 5 / 4;
+  opacity: 0.6;
+}
+
+.landing-personal-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 40px;
+}
+
+.landing-personal-container div button {
+  margin: 10px auto;
+}
+
+.landing-explore {
+  margin: 50px;
+}
+
+.landing-explore h1 {
+  margin-bottom: 20px;
+}
+
+.landing-explore h2 {
+  margin-bottom: 10px;
+}
+
+.explore-button {
+  text-align: center;
+  margin: 50px 0px;
+}
+
 .landing-signed-in button {
   padding: 10px 20px;
   border: none;
@@ -21,7 +64,7 @@
   font-size: 15px;
   font-weight: 500;
   background-color: #95d2b3;
-  width: 200px;
+  width: 250px;
 }
 
 .landing-signed-in button:hover {
