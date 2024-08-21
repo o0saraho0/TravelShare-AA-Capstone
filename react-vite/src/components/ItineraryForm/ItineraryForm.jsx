@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { thunkNewItinerary, thunkItinerariesByCurrentUser } from "../../redux/itinerary";
+import { thunkNewItinerary } from "../../redux/itinerary";
 import "./ItineraryForm.css";
 
 function ItineraryForm() {
