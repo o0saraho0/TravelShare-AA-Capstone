@@ -31,6 +31,7 @@ class Itinerary(db.Model):
             "preview_image_url": self.preview_image_url,
             "traveler": self.traveler.to_dict(),
             "category_id": self.category_id,
+            "schedules": [el.to_dict() for el in self.schedule]
         }
     
 
@@ -52,7 +53,7 @@ class Schedule(db.Model):
             "id": self.id,
             "day": self.day,
             "itinerary_id": self.itinerary_id,
-            "activity": self.activity.to_dict()
+            "activities": [el.to_dict() for el in self.activity]
         }
     
 

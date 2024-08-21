@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: 54a8a042c7c4
+Revision ID: 90fa918a8004
 Revises: 
-Create Date: 2024-08-20 11:19:40.793427
+Create Date: 2024-08-20 20:40:54.682249
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '54a8a042c7c4'
+revision = '90fa918a8004'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,10 +23,6 @@ def upgrade():
     sa.Column('type', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
-
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -42,10 +35,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
-
     op.create_table('itineraries',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(), nullable=False),
@@ -60,10 +49,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['traveler_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE itineraries SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
-
     op.create_table('collections',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -72,10 +57,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE collections SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
-
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -88,10 +69,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
-
     op.create_table('schedules',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('day', sa.String(), nullable=False),
@@ -99,10 +76,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['itinerary_id'], ['itineraries.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE schedules SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
-
     op.create_table('activities',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('place', sa.String(), nullable=False),
@@ -112,9 +85,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['schedule_id'], ['schedules.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE activities SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
+    # ### end Alembic commands ###
 
 
 def downgrade():
