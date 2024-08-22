@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session, jsonify
+from flask import Blueprint, request, session
 from flask_login import current_user, login_required
 from ..models import db
 from ..models.itinerary import Itinerary, Schedule, Activity, Category
@@ -11,12 +11,14 @@ itineraries_routes = Blueprint("itineraries", __name__)
 
 # Get all itineraries owned by current user
 @itineraries_routes.route("/current", methods=["GET"])
+@login_required
 def itineraries_manage():
     itineraries = Itinerary.query.filter(Itinerary.traveler_id == current_user.id).all()
     return [itinerary.to_dict() for itinerary in itineraries], 200
 
 # Delete itinerary by itinerary id
 @itineraries_routes.route("/<int:itineraryId>", methods=["DELETE"])
+@login_required
 def delete_itinerary(itineraryId):
     itinerary = Itinerary.query.filter(Itinerary.id == itineraryId).one()
 
@@ -32,6 +34,7 @@ def delete_itinerary(itineraryId):
 
 # Create a new itinerary
 @itineraries_routes.route("/new", methods=["POST"])
+@login_required
 def create_itinerary():
     form = ItineraryForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -40,13 +43,22 @@ def create_itinerary():
         newItinerary = Itinerary(
             title=form.title.data,
             duration=form.duration.data,
-            country=form.country.data,
             description=form.description.data,
             preview_image_url=form.preview_image_url.data,
             category_id=form.category_id.data,
             traveler_id=current_user.id
         )
         db.session.add(newItinerary)
+        db.session.commit()
+
+        # Create schedules based on the duration
+        for day_number in range(1, newItinerary.duration + 1):
+            new_schedule = Schedule(
+                day=f"Day {day_number}",
+                itinerary_id=newItinerary.id
+            )
+            db.session.add(new_schedule)
+        
         db.session.commit()
         return newItinerary.to_dict(), 201
     else:

@@ -70,3 +70,23 @@
   aspect-ratio: 3 / 2;
   border-radius: 10px;
 }
+
+.detail-page-activity-button {
+  margin: 10px 50px;
+}
+
+.detail-page-activity-button button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #95d2b3;
+  color: white;
+  width: 150px;
+}
+
+.detail-page-activity-button button:hover {
+  cursor: pointer;
+  background-color: #55ad9b;
+}

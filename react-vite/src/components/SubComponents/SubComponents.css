@@ -1,3 +1,7 @@
+.confirm-deletion p {
+  margin-top: 40px;
+}
+
 .lds-roller,
 .lds-roller div,
 .lds-roller div:after {

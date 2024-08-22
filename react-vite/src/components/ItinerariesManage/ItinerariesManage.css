@@ -1,0 +1,37 @@
+.landing-personal-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #55ad9b;
+  width: 250px;
+}
+
+.landing-personal-container button:hover {
+  cursor: pointer;
+  background-color: #95d2b3;
+}
+
+.owner-selection {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0px 40px 0px;
+}
+
+.owner-selection button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #95d2b3;
+  width: 100px;
+}
+
+.owner-selection button:hover {
+  cursor: pointer;
+  background-color: #55ad9b;
+}

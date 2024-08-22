@@ -27,11 +27,21 @@ function LandingPage() {
                   <h1>Welcome back, {user.first_name}!</h1>
                     <div>
                         <h2>Your trips</h2>
-                        <button onClick={() => navigate("/itineraries/new")}>+ Plan new trip</button>
+                        <div>
+                            <button onClick={() => navigate("/itineraries/current")}>View your itineraries</button>
+                        </div>
+                        <div>
+                            <button onClick={() => navigate("/itineraries/new")}>+ Plan new trip</button>
+                        </div>
                     </div>
                     <div>
                         <h2>Your collections</h2>
-                        <button onClick={() => navigate("/itineraries")}>+ Add new collection</button>
+                        <div>
+                            <button onClick={() => navigate("/collections/current")}>View your collections</button>
+                        </div>
+                        <div>
+                            <button onClick={() => navigate("/itineraries")}>+ Add new collection</button>
+                        </div>
                     </div>
                 </div>
             </div>

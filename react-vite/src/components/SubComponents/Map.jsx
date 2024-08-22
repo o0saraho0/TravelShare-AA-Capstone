@@ -39,7 +39,16 @@ const Map = (itinerary) => {
   const handleMarkerClick = () => {
     console.log("Marker clicked", position);
   };
-  const centerPosition = itinerary.itinerary.schedules[0].activities[0];
+
+  let centerPosition = {
+    latitude: 51,
+    longitude: 0
+  }
+  
+  if (itinerary.schedules) {
+     centerPosition = itinerary.itinerary.schedules[0].activities[0];
+  }
+
 
   return (
     <MapContainer
@@ -53,7 +62,7 @@ const Map = (itinerary) => {
       />
       <SearchField setPosition={setPosition} />
       {itinerary.itinerary.schedules.map((schedule, index) =>
-        schedule.activities.map((activity, idx) => (
+        schedule && schedule.activities && schedule.activities.map((activity, idx) => (
           <Marker
             key={`${index}-${idx}`}
             position={[activity.latitude, activity.longitude]}

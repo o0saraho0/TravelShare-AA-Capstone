@@ -6,6 +6,7 @@ import LandingPage from '../components/LandingPage/LandingPage';
 import ItinerariesList from '../components/ItinerariesListPage';
 import ItineraryDetail from '../components/ItineraryDetailPage'
 import ItineraryForm from '../components/ItineraryForm';
+import ItinerariesManage from '../components/ItinerariesManage/ItinerariesManage';
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: "/itineraries",
         element: <ItinerariesList />
+      },
+      {
+        path: "/itineraries/current",
+        element: <ItinerariesManage />
       },
       {
         path: "/itineraries/:itineraryId",

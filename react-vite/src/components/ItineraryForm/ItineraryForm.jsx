@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { thunkNewItinerary, thunkItinerariesByCurrentUser } from "../../redux/itinerary";
+import { thunkNewItinerary } from "../../redux/itinerary";
 import "./ItineraryForm.css";
 
 function ItineraryForm() {
   const [title, setTitle] = useState("");
-  const [duration, setDuration] = useState();
+  const [duration, setDuration] = useState(0);
   const [description, setDescription] = useState("");
   const [previewImage, setPreviewImage] = useState("");
-  const [categoryId, setCategoryId] = useState();
+  const [categoryId, setCategoryId] = useState("");
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
@@ -42,24 +42,26 @@ function ItineraryForm() {
       title,
       duration,
       description,
-      previewImage,
+      preview_image_url: previewImage,
       traveler_id: user.id,
-      categoryId
+      category_id: categoryId
     };
 
     const result = await dispatch(thunkNewItinerary(new_itinerary));
+
     const itineraryId = result.id;
 
     if (result.errors) {
       setErrors(result.errors);
     } else {
-      navigate(`/products/${itineraryId}`);
+      navigate(`/itineraries/${itineraryId}`);
     }
   };
 
   return (
     <main>
         <form onSubmit={handleSubmit} className="itinerary-form">
+        <h1>Create Your Itinerary</h1>
         <div>
             <label>
             <h3>Title</h3>

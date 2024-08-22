@@ -7,6 +7,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.itinerary-form h1 {
+  margin: 20px 0px;
+}
 .itinerary-form h3 {
   margin: 20px 0px 10px 0px;
 }

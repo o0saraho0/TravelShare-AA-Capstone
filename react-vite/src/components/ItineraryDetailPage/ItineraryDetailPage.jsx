@@ -10,7 +10,8 @@ function ItineraryDetail() {
     const dispatch = useDispatch();
     const { itineraryId } = useParams();
     const itinerary = useSelector((state) => state.itineraries.itineraryById?.[itineraryId]);
-    const schedules = itinerary?.schedules;    
+    const user = useSelector((state) => state.session.user);
+    const schedules = itinerary?.schedules;
 
     useEffect(() => {
         if (itineraryId) {
@@ -35,10 +36,10 @@ function ItineraryDetail() {
                 <p>{itinerary.description}</p>
             </div>
             <div className="schedules-container">
-                {schedules.map(schedule => (
+                {schedules && schedules.map(schedule => (
                     <div key={schedule.id} className="schedule-item">
                         <h2>{schedule.day}</h2>
-                        {schedule.activities.map(activity => (
+                        {schedule.activities && schedule.activities.map(activity => (
                             <div key={activity.id} className="activity-item">
                                 <div className="activity-info">
                                     <span className="activity-place"><FaLocationArrow />{activity.place}</span> 
@@ -49,9 +50,12 @@ function ItineraryDetail() {
                                 </div>
                             </div>
                         ))}
+                        {user.id == itinerary.traveler.id && (
+                            <div className="detail-page-activity-button"><button>+ Add Activity</button></div>
+                        )}
                     </div>
                 ))}
-            </div>     
+            </div>
         </div>
         </div>
         <Map itinerary={itinerary}/>

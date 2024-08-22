@@ -2,6 +2,7 @@ const ALL_ITINERARIES = "itinerary/allItineraries";
 const ITINERARY_BY_ID = "itinerary/itineraryById";
 const ITINERARIES_BY_CURRENT_USER = "itinerary/itinerariesByCurrentUser";
 const CREATE_ITINERARY = "itinerary/createItinerary";
+const DELETE_ITINERARY = "itinerary/deleteItinerary";
 
 const allItineraries = (itineraries) => ({
   type: ALL_ITINERARIES,
@@ -22,6 +23,11 @@ const itinerariesByCurrentUser = (itineraries, user_id) => ({
 const createItinerary = (itinerary) => ({
   type: CREATE_ITINERARY,
   payload: itinerary,
+});
+
+const deleteItinerary = (itineraryId) => ({
+  type: CREATE_ITINERARY,
+  payload: itineraryId,
 });
 
 // get itineraries owned by current user
@@ -67,8 +73,23 @@ export const thunkNewItinerary = (itinerary) => async (dispatch) => {
     body: JSON.stringify(itinerary),
   });
   const data = await response.json();
+
   if (response.ok) {
     dispatch(createItinerary(data));
+    return data;
+  }
+  return data;
+};
+
+// delete itinerary
+export const thunkDeleteItinerary = (itineraryId) => async (dispatch) => {
+  const response = await fetch(`/api/itineraries/${itineraryId}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+
+  if (response.ok) {
+    dispatch(deleteItinerary(data));
     return data;
   }
   return data;
@@ -99,7 +120,7 @@ function itineraryReducer(state = initialState, action) {
       });
       return {
         ...state,
-        itinerariesByUser: newState,
+        itinerariesByCurrentUser: newState,
       };
     }
     case CREATE_ITINERARY: {
@@ -126,6 +147,34 @@ function itineraryReducer(state = initialState, action) {
           ...state.itinerariesByCurrentUser,
           [itineraryId]: action.payload,
         };
+        newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
+      }
+      return { ...state, newState };
+    }
+    case DELETE_ITINERARY: {
+      const itineraryId = action.payload.id;
+      const newState = {};
+      if (state.allItineraries) {
+        const newAllItineraries = {
+          ...state.allItineraries,
+        };
+        delete newAllItineraries[itineraryId];
+        newState["allItineraries"] = newAllItineraries;
+      }
+
+      if (state.itineraryById[itineraryId]) {
+        const newItineraryById = {
+          ...state.itineraryById,
+        };
+        delete newItineraryById[itineraryId];
+        newState["itineraryById"] = newItineraryById;
+      }
+
+      if (state.itinerariesByCurrentUser) {
+        const newItinerariesByCurrentUser = {
+          ...state.itinerariesByCurrentUser,
+        };
+        delete itinerariesByCurrentUser[itineraryId];
         newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
       }
       return { ...state, newState };
