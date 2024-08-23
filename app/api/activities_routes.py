@@ -1,9 +1,7 @@
 from flask import Blueprint, request, session
 from flask_login import current_user, login_required
 from ..models import db
-from ..models.itinerary import Itinerary, Schedule, Activity
-# from ..models.user import User
-# from sqlalchemy.exc import SQLAlchemyError
+from ..models.itinerary import Activity
 from ..forms import ActivityForm
 
 
@@ -51,3 +49,25 @@ def delete_activity(activityId):
     db.session.commit()
 
     return {"message": "Successfully deleted"}, 200
+
+
+# Edit activity by activity id
+@activities_routes.route("/<int:activityId>/edit", methods=["PUT"])
+@login_required
+def edit_activity(activityId):
+    form = ActivityForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        activity = Activity.query.get(activityId)
+        if activity:
+            activity.place=form.data["place"]
+            activity.longitude=form.data["longitude"]
+            activity.latitude=form.data["latitude"]
+            activity.description=form.data["description"]
+            activity.place_image_url=form.data["place_image_url"]
+        db.session.commit()
+        return activity.to_dict(), 200
+    else:
+        print("Form errors:", form.errors)
+        return form.errors, 400

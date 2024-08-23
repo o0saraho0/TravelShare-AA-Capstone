@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
-import { thunkNewActivity, thunkDeleteActivity } from "../../redux/activity";
+import { thunkNewActivity, thunkDeleteActivity, thunkUpdateActivity } from "../../redux/activity";
 import { FaLocationArrow } from "react-icons/fa6";
+import { FaDeleteLeft } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
+
 import Map from "../SubComponents/Map"
 import "./ActivitiesForm.css";
 
@@ -14,6 +17,9 @@ function ActivitiesForm() {
     const itinerary = useSelector((state) => state.itineraries.itineraryById?.[itineraryId]);
     const schedules = itinerary?.schedules;
     const [showActivityForm, setShowActivityForm] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [currentActivityId, setCurrentActivityId] = useState(null);
+
     const [activityData, setActivityData] = useState({
         place: "",
         longitude: "",
@@ -38,13 +44,7 @@ function ActivitiesForm() {
         setActivityData({ ...activityData, [e.target.name]: e.target.value });
     };
 
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        const newActivity = await dispatch(thunkNewActivity(activityData));
-        if (newActivity) {
-            await dispatch(thunkItineraryById(itineraryId));
-            setShowActivityForm(false);
-        }
+    const resetForm = () => {
         setActivityData({
             place: "",
             longitude: "",
@@ -54,11 +54,47 @@ function ActivitiesForm() {
             schedule_id: null,
         });
         setShowActivityForm(false);
+        setIsEditing(false);
+        setCurrentActivityId(null);
     };
 
-    const handleRemoveActivity = (activityId) => {
-        dispatch(thunkDeleteActivity(activityId));
-        dispatch(thunkItineraryById(itineraryId));
+    const handleEditActivity = (activity) => {
+        setActivityData({
+            place: activity.place,
+            longitude: activity.longitude,
+            latitude: activity.latitude,
+            description: activity.description,
+            place_image_url: activity.place_image_url,
+            schedule_id: activity.schedule_id,
+        });
+        setCurrentActivityId(activity.id);
+        setIsEditing(true);
+        setShowActivityForm(true);
+    };
+
+    const handleRemoveActivity = async (activityId) => {
+        console.log(activityId);
+        await dispatch(thunkDeleteActivity(activityId));
+        await dispatch(thunkItineraryById(itineraryId));
+    };
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+    
+        if (isEditing && currentActivityId) {
+            const updatedActivity = await dispatch(thunkUpdateActivity({...activityData, id: currentActivityId}));
+            console.log("--->", updatedActivity);
+            if (updatedActivity) {
+                await dispatch(thunkItineraryById(itineraryId));
+                resetForm();
+            }
+        } else {
+            const newActivity = await dispatch(thunkNewActivity(activityData));
+            if (newActivity) {
+                await dispatch(thunkItineraryById(itineraryId));
+                resetForm();
+            }
+        }
     };
 
     if (!itinerary) return null;
@@ -75,7 +111,8 @@ function ActivitiesForm() {
                 <div className="user-profile">
                     <img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} /><span>{itinerary.traveler.username}</span>
                 </div>
-                <div className="detail-page-button"><button onClick={() => navigate(`/itineraries/${itinerary.id}/edit`)}>Edit itinerary</button></div>
+                <div className="detail-page-button"><button onClick={() => navigate(`/itineraries/${itinerary.id}/edit`)}>
+                Edit itinerary</button></div>
             </div>
             <div className="description">
                 <p>{itinerary.description}</p>
@@ -90,8 +127,10 @@ function ActivitiesForm() {
                                     <span className="activity-place"><FaLocationArrow />{activity.place}</span> 
                                     <p>{activity.description}</p>
                                     <div className="activity-control">
-                                        <p>Edit activity</p>
-                                        <p onClick={() => handleRemoveActivity(activity.id)}>Remove activity</p>
+                                        <span onClick={() => handleEditActivity(activity)}><p>Edit activity</p><FaEdit /></span>
+                                        <span onClick={() => handleRemoveActivity(activity.id)}><p>Remove activity</p><FaDeleteLeft /></span>
+                                       
+                                        
                                     </div>
                                 </div>
                                 <div className="activity-image">

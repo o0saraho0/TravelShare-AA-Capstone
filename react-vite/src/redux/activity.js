@@ -1,7 +1,7 @@
 const ACTIVITIES_BY_SCHEDULE = "activity/activitiesBySchedule";
 const ADD_ACTIVITY = "activity/addActivity";
 const DELETE_ACTIVITY = "activity/deleteActivity";
-// const EDIT_ACTIVITY = "activity/editActivity";
+const EDIT_ACTIVITY = "activity/editActivity";
 
 const activitiesBySchedule = (activities, schedule_id) => ({
   type: ACTIVITIES_BY_SCHEDULE,
@@ -17,6 +17,11 @@ const addActivity = (activity) => ({
 const deleteActivity = (activityId) => ({
   type: DELETE_ACTIVITY,
   activityId,
+});
+
+const editActivity = (activity) => ({
+  type: EDIT_ACTIVITY,
+  payload: activity,
 });
 
 // get activities by scheduleId
@@ -63,6 +68,28 @@ export const thunkDeleteActivity = (activityId) => async (dispatch) => {
   return data;
 };
 
+// edit activity
+export const thunkUpdateActivity = (activity) => async (dispatch) => {
+  const activityId = activity.id;
+  console.log("..", activity);
+  console.log(".....", activityId);
+  const response = await fetch(`/api/activities/${activityId}/edit`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(activity),
+  });
+  console.log(response);
+
+  const data = await response.json();
+  if (response.ok) {
+    dispatch(editActivity(data));
+    return data;
+  }
+  return data;
+};
+
 const initialState = {
   activitiesBySchedule: {},
 };
@@ -78,6 +105,19 @@ function activityReducer(state = initialState, action) {
     }
     case ADD_ACTIVITY: {
       const activityId = action.payload.id;
+      const newActivitiesBySchedule = {
+        ...state.activitiesBySchedule,
+        [activityId]: action.payload,
+      };
+      return { ...state, activitiesBySchedule: newActivitiesBySchedule };
+    }
+    case DELETE_ACTIVITY: {
+      const newState = { ...state };
+      delete newState.activitiesBySchedule[action.activityId];
+      return newState;
+    }
+    case EDIT_ACTIVITY: {
+      const activityId = action.payload.id;
       const newState = {};
       if (state.activitiesBySchedule) {
         const newActivitiesBySchedule = {
@@ -87,11 +127,6 @@ function activityReducer(state = initialState, action) {
         newState["activitiesBySchedule"] = newActivitiesBySchedule;
       }
       return { ...state, newState };
-    }
-    case DELETE_ACTIVITY: {
-      const newState = { ...state };
-      delete newState.activitiesBySchedule[action.activityId];
-      return newState;
     }
     default:
       return state;

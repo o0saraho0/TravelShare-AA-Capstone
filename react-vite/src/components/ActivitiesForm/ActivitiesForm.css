@@ -1,9 +1,11 @@
 .activity-control {
   color: #55ad9b;
   font-style: italic;
+  display: flex;
+  gap: 20px;
 }
 
-.activity-control p:hover {
+.activity-control span:hover {
   color: grey;
   text-decoration: underline;
   cursor: pointer;

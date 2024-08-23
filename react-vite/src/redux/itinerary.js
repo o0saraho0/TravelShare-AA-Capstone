@@ -104,9 +104,6 @@ export const thunkDeleteItinerary = (itineraryId) => async (dispatch) => {
 // edit itinerary
 export const thunkEditItinerary =
   (itinerary, itineraryId) => async (dispatch) => {
-    console.log("in thunk before fetch", itinerary);
-    console.log("in thunk before fetch", itineraryId);
-
     const response = await fetch(`/api/itineraries/${itineraryId}/edit`, {
       method: "PUT",
       headers: {
@@ -114,9 +111,7 @@ export const thunkEditItinerary =
       },
       body: JSON.stringify(itinerary),
     });
-    console.log(response);
     const data = await response.json();
-    console.log("in thunk", data);
 
     if (response.ok) {
       dispatch(editItinerary(data));
