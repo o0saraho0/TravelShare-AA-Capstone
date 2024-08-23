@@ -8,7 +8,7 @@ function Navigation() {
     <nav className="inline">
       <div className="home-link">
         <NavLink to="/">
-        <img src="/images/Logo.png" alt="logo" />
+        <img src="/images/hello.png" alt="logo" />
         </NavLink>
       </div>
       

@@ -8,6 +8,8 @@ function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -15,7 +17,11 @@ function SignupFormModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = {};
 
+    if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Please enter a valid email address.";
+    if (username.length < 4) newErrors.username = "Username must be at least 4 characters.";
+    if (password.length < 6) newErrors.password = "Password must be at least 6 characters.";
     if (password !== confirmPassword) {
       return setErrors({
         confirmPassword:
@@ -23,9 +29,13 @@ function SignupFormModal() {
       });
     }
 
+    if (Object.keys(newErrors).length > 0) return setErrors(newErrors);
+
     const serverResponse = await dispatch(
       thunkSignup({
         email,
+        first_name,
+        last_name,
         username,
         password,
       })
@@ -40,21 +50,30 @@ function SignupFormModal() {
 
   return (
     <>
-      <h1>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
+      <h1>Create your account</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email
+          First Name
           <input
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={first_name}
+            onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+
         <label>
-          Username
+        Last Name
+        <input
+          type="text"
+          value={last_name}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+        </label>
+
+        <label>
+        Username
           <input
             type="text"
             value={username}
@@ -62,9 +81,21 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="error">{errors.username}</p>}
+
         <label>
-          Password
+        Email
+        <input
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        </label>
+        {errors.email && <p className="error">{errors.email}</p>}
+
+        <label>
+        Password
           <input
             type="password"
             value={password}
@@ -72,19 +103,24 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="error">{errors.password}</p>}
+
+
         <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
+        Confirm Password
+        <input
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+          className={errors.password ? "error" : ""}
+        />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+
+        <button type="submit">Register</button>
       </form>
+
     </>
   );
 }

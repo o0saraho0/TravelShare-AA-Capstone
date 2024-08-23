@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { thunkDeleteItinerary, thunkItinerariesByCurrentUser } from "../../redux/itinerary";
+import { thunkAllItineraries, thunkDeleteItinerary, thunkItinerariesByCurrentUser } from "../../redux/itinerary";
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteModal from "../SubComponents/ConfirmDeleteModal";
+import Loading from "../SubComponents/Loading";
 import "./ItinerariesManage.css";
 
 function ItinerariesManage() {
@@ -16,10 +17,12 @@ function ItinerariesManage() {
     const itineraries = itinerariesObj? Object.values(itinerariesObj): []
 
     useEffect(() => {
-        dispatch(thunkItinerariesByCurrentUser())
-    }, [dispatch]);
+        if (!itinerariesObj) {
+            dispatch(thunkItinerariesByCurrentUser())
+        }
+    }, [dispatch, itinerariesObj]);
 
-    if (!itineraries) return null;
+    if (!itinerariesObj) return <Loading />;
 
     const handleDeleteClick = (itineraryId) => {
         setModalContent(
@@ -31,8 +34,7 @@ function ItinerariesManage() {
     };
     
     const handleDeleteConfirm = async (itineraryId) => {
-        await dispatch(thunkDeleteItinerary(itineraryId, user.id));
-        dispatch(thunkItinerariesByCurrentUser())
+        await dispatch(thunkDeleteItinerary(itineraryId));
         closeModal();
     };
 
@@ -54,6 +56,7 @@ function ItinerariesManage() {
         </div>
         <div className="landing-explore">
             <h1>Your itineraries</h1>
+            {itineraries.length?
             <div className="grid-container">
                 {itineraries.map(itinerary => (
                     <div key={itinerary.id} id="itinerary-manage-grid-item" className="manage-item">
@@ -69,6 +72,7 @@ function ItinerariesManage() {
                     </div>
                 ))}
             </div>
+            : <div>You have not created any itineraries yet. Start planning your next adventure now!</div>}
         </div>
         
     </main>

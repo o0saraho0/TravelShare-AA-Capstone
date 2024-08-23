@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
 import { FaLocationArrow } from "react-icons/fa6";
 import Map from "../SubComponents/Map"
+import Loading from "../SubComponents/Loading";
 import "./ItineraryDetailPage.css";
 
 function ItineraryDetail() {
@@ -20,7 +21,7 @@ function ItineraryDetail() {
         }
     }, [dispatch, itineraryId]);
 
-    if (!itinerary) return null;
+    if (!itinerary) return <Loading />;
 
     return (
     <main className="itinerary-detail-page">
@@ -34,7 +35,7 @@ function ItineraryDetail() {
                 <div className="user-profile">
                     <img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} /><span>{itinerary.traveler.username}</span>
                 </div>
-                {user.id == itinerary.traveler.id? (
+                {user?.id == itinerary.traveler?.id? (
                     <div className="detail-page-button" onClick={() => navigate(`/itineraries/${itinerary.id}/edit`)}><button>Edit itinerary</button></div>
                 ): <div className="detail-page-button"><button>Add to collection</button></div>}
             </div>
@@ -62,6 +63,8 @@ function ItineraryDetail() {
                     </div>
                 ))}
             </div>
+            <div className="discover-more" onClick={() => navigate("/itineraries")}><button>Continue explore</button></div>
+
         </div>
         </div>
         <Map itinerary={itinerary}/>

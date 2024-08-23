@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { thunkItineraryById } from '../../redux/itinerary';
 import ItineraryForm from './ItineraryForm';
+import Loading from "../SubComponents/Loading";
+
 
 const EditItinerary = () => {
     const dispatch = useDispatch();
@@ -15,7 +17,7 @@ const EditItinerary = () => {
         }
     }, [dispatch, itineraryId]);
 
-    if (!itinerary) return null;
+    if (!itinerary) return <Loading />;
 
   return (
     Object.keys(itinerary).length > 1 && (

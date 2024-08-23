@@ -47,6 +47,12 @@ img {
   aspect-ratio: 3 / 2;
 }
 
+.home-link img {
+  width: 65px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
 input {
   height: 25px;
   width: 200px;
@@ -120,13 +126,17 @@ form label {
   color: red;
   font-size: 13px;
   font-style: italic;
-  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .inline {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.center-in-main {
+  margin: 40vh 45vw;
 }
 
 .button-center {

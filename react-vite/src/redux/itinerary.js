@@ -27,7 +27,7 @@ const createItinerary = (itinerary) => ({
 });
 
 const deleteItinerary = (itineraryId) => ({
-  type: CREATE_ITINERARY,
+  type: DELETE_ITINERARY,
   payload: itineraryId,
 });
 
@@ -95,7 +95,7 @@ export const thunkDeleteItinerary = (itineraryId) => async (dispatch) => {
   const data = await response.json();
 
   if (response.ok) {
-    dispatch(deleteItinerary(data));
+    dispatch(deleteItinerary(itineraryId));
     return data;
   }
   return data;
@@ -174,10 +174,10 @@ function itineraryReducer(state = initialState, action) {
         };
         newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
       }
-      return { ...state, newState };
+      return { ...state, ...newState };
     }
     case DELETE_ITINERARY: {
-      const itineraryId = action.payload.id;
+      const itineraryId = action.payload;
       const newState = {};
       if (state.allItineraries) {
         const newAllItineraries = {
@@ -199,10 +199,10 @@ function itineraryReducer(state = initialState, action) {
         const newItinerariesByCurrentUser = {
           ...state.itinerariesByCurrentUser,
         };
-        delete itinerariesByCurrentUser[itineraryId];
+        delete newItinerariesByCurrentUser[itineraryId];
         newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
       }
-      return { ...state, newState };
+      return { ...state, ...newState };
     }
     case EDIT_ITINERARY: {
       const itineraryId = action.payload.id;
@@ -239,7 +239,7 @@ function itineraryReducer(state = initialState, action) {
         };
         newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
       }
-      return { ...state, newState };
+      return { ...state, ...newState };
     }
     default:
       return state;

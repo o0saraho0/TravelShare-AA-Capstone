@@ -49,12 +49,13 @@ function LandingPage() {
                 <h1>Explore</h1>
                 <h2>Popular destinations</h2>
                 <div className="grid-container">
-                    {itineraries.slice(1, 4).map((itinerary) => (
+                    {itineraries.slice(3, 6).map((itinerary) => (
                         <div key={itinerary.id} className="grid-item">
                             <Link to={`/itineraries/${itinerary.id}`}>
                             <div className="image-container"><img src={itinerary.preview_image_url} alt={itinerary.title}/></div>
                             <div><h3>{itinerary.title}</h3></div>
-                            <div><p>{itinerary.description}</p></div>
+                            <div className="list-page-duration"><p>Duration: {itinerary.duration} days</p></div>
+                            <div className="list-page-description"><p>{itinerary.description}</p></div>
                             <div className="user-profile">
                                 <img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} />
                                 <div>{itinerary.traveler.username}</div>

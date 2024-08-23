@@ -25,8 +25,8 @@ export default function Layout() {
     <>
       <ModalProvider>
         {showNavigation? <Navigation />: 
-        <div className="home-link" style={{ position: "absolute", zIndex: 1, margin: "20px"}} onClick={() => navigate("/")}>
-        <img src="/images/Logo.png" alt="logo" />
+        <div className="home-link" style={{ position: "absolute", zIndex: 1, margin: "20px 50px"}} onClick={() => navigate("/")}>
+        <img src="/images/hello.png" alt="logo" />
         </div>}
         {isLoaded && <Outlet />}
         <Modal />
