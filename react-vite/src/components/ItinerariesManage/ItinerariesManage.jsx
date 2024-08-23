@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { thunkAllItineraries, thunkDeleteItinerary, thunkItinerariesByCurrentUser } from "../../redux/itinerary";
+import { thunkDeleteItinerary, thunkItinerariesByCurrentUser } from "../../redux/itinerary";
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteModal from "../SubComponents/ConfirmDeleteModal";
 import Loading from "../SubComponents/Loading";
