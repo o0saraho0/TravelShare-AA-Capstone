@@ -1,3 +1,71 @@
+nav {
+  padding: 20px 50px;
+  border-bottom: 0.5px lightgray solid;
+}
+
+.home-link img {
+  width: 80px;
+}
+
+.nav-categories {
+  width: 55%;
+  font-size: large;
+  font-weight: 550;
+}
+
+.nav-categories * {
+  color: #55ad9b;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+}
+
+.nav-categories *:hover {
+  background-color: #f1f8e8;
+}
+
+nav > ul > li {
+  color: #55ad9b;
+  font-size: large;
+  font-weight: 550;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+}
+
+nav ul li:hover {
+  background-color: #f1f8e8;
+  cursor: pointer;
+}
+
 .profile-dropdown {
   position: absolute;
+  top: 80px;
+  right: 45px;
+  z-index: 1;
+  background-color: white;
+  color: black;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 15px 5px;
+}
+
+.unclickable p {
+  font-size: 15px;
+  font-weight: 500;
+  font-style: italic;
+  color: grey;
+  padding: 5px 5px;
+}
+
+.clickable p {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 5px 8px;
+  border-radius: 10px;
+}
+
+.clickable p:hover {
+  background-color: #f1f8e8;
+  cursor: pointer;
 }

@@ -1,5 +1,9 @@
+.confirm-deletion h2 {
+  margin-bottom: 20px;
+}
+
 .confirm-deletion p {
-  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .lds-roller,

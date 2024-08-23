@@ -40,20 +40,14 @@ const Map = (itinerary) => {
     console.log("Marker clicked", position);
   };
 
-  let centerPosition = {
-    latitude: 51,
-    longitude: 0
-  }
-  
-  if (itinerary.schedules) {
-     centerPosition = itinerary.itinerary.schedules[0].activities[0];
-  }
+  const defaultCenter = { latitude: 37.7749, longitude: -122.4194 };
+  const centerPosition = itinerary.itinerary.schedules[0].activities[0] || defaultCenter;
 
 
   return (
     <MapContainer
       center={[centerPosition.latitude, centerPosition.longitude]}
-      zoom={13}
+      zoom={10}
       style={{ height: "100vh", width: "40%", position: "fixed", botton: 0, right: 0}}
     >
       <TileLayer

@@ -1,9 +1,9 @@
 from flask import Blueprint, request, session
 from flask_login import current_user, login_required
 from ..models import db
-from ..models.itinerary import Itinerary, Schedule, Activity, Category
-from ..models.user import User
-from sqlalchemy.exc import SQLAlchemyError
+from ..models.itinerary import Itinerary, Schedule
+# from ..models.user import User
+# from sqlalchemy.exc import SQLAlchemyError
 from ..forms import ItineraryForm
 
 
@@ -31,6 +31,25 @@ def delete_itinerary(itineraryId):
     return {"message": "Successfully deleted"}, 200
 
 # Edit itinerary by itinerary id
+@itineraries_routes.route("/<int:itineraryId>/edit", methods=["PUT"])
+@login_required
+def edit_itinerary(itineraryId):
+    form = ItineraryForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        itinerary = Itinerary.query.get(itineraryId)
+        if itinerary:
+            itinerary.title=form.data["title"]
+            itinerary.duration=form.data["duration"]
+            itinerary.description=form.data["description"]
+            itinerary.preview_image_url=form.data["preview_image_url"]
+            itinerary.category_id=form.data["category_id"]
+        db.session.commit()
+        return itinerary.to_dict(), 200
+    else:
+        print("Form errors:", form.errors)
+        return form.errors, 400
 
 # Create a new itinerary
 @itineraries_routes.route("/new", methods=["POST"])

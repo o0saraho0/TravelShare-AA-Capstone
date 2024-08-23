@@ -111,6 +111,11 @@ form label {
   border-radius: 10px;
 }
 
+.time {
+  color: gray;
+  font-style: italic;
+}
+
 .error {
   color: red;
   font-size: 13px;

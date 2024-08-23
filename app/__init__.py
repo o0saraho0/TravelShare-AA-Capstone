@@ -8,6 +8,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.itineraries_routes import itineraries_routes
+from .api.activities_routes import activities_routes
 from .api.comments_routes import comments_routes
 from .api.collections_routes import collections_routes
 
@@ -33,6 +34,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(itineraries_routes, url_prefix='/api/itineraries')
+app.register_blueprint(activities_routes, url_prefix='/api/activities')
 app.register_blueprint(comments_routes, url_prefix='/api/comments')
 app.register_blueprint(collections_routes, url_prefix='/api/collections')
 

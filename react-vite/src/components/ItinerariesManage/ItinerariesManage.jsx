@@ -56,12 +56,12 @@ function ItinerariesManage() {
             <h1>Your itineraries</h1>
             <div className="grid-container">
                 {itineraries.map(itinerary => (
-                    <div key={itinerary.id} id="itinerary-manage-grid-item">
+                    <div key={itinerary.id} id="itinerary-manage-grid-item" className="manage-item">
                         <Link to={`/itineraries/${itinerary.id}`}>
                         <div className="image-container"><img src={itinerary.preview_image_url} alt={itinerary.title}/></div>
-                        <div><h3>{itinerary.title}</h3></div>                        
                         </Link>
-
+                        <h3>{itinerary.title}</h3>
+                        <p className="time">{itinerary.updated_at.slice(0, 16)}</p>
                         <div className="owner-selection">
                             <button onClick={() => navigate(`/itineraries/${itinerary.id}/edit`)}>Edit</button>
                             <button onClick={() => handleDeleteClick(itinerary.id)}>Delete</button>

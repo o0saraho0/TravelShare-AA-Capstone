@@ -3,6 +3,7 @@ const ITINERARY_BY_ID = "itinerary/itineraryById";
 const ITINERARIES_BY_CURRENT_USER = "itinerary/itinerariesByCurrentUser";
 const CREATE_ITINERARY = "itinerary/createItinerary";
 const DELETE_ITINERARY = "itinerary/deleteItinerary";
+const EDIT_ITINERARY = "itinerary/editItinerary";
 
 const allItineraries = (itineraries) => ({
   type: ALL_ITINERARIES,
@@ -28,6 +29,11 @@ const createItinerary = (itinerary) => ({
 const deleteItinerary = (itineraryId) => ({
   type: CREATE_ITINERARY,
   payload: itineraryId,
+});
+
+const editItinerary = (itinerary) => ({
+  type: EDIT_ITINERARY,
+  payload: itinerary,
 });
 
 // get itineraries owned by current user
@@ -94,6 +100,30 @@ export const thunkDeleteItinerary = (itineraryId) => async (dispatch) => {
   }
   return data;
 };
+
+// edit itinerary
+export const thunkEditItinerary =
+  (itinerary, itineraryId) => async (dispatch) => {
+    console.log("in thunk before fetch", itinerary);
+    console.log("in thunk before fetch", itineraryId);
+
+    const response = await fetch(`/api/itineraries/${itineraryId}/edit`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(itinerary),
+    });
+    console.log(response);
+    const data = await response.json();
+    console.log("in thunk", data);
+
+    if (response.ok) {
+      dispatch(editItinerary(data));
+      return data;
+    }
+    return data;
+  };
 
 const initialState = {
   itineraryById: {},
@@ -175,6 +205,43 @@ function itineraryReducer(state = initialState, action) {
           ...state.itinerariesByCurrentUser,
         };
         delete itinerariesByCurrentUser[itineraryId];
+        newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
+      }
+      return { ...state, newState };
+    }
+    case EDIT_ITINERARY: {
+      const itineraryId = action.payload.id;
+      const newState = {};
+      if (state.allItineraries) {
+        const newAllItineraries = {
+          ...state.allItineraries,
+          [itineraryId]: {
+            ...state.allItineraries[itineraryId],
+            ...action.payload,
+          },
+        };
+        newState["allItineraries"] = newAllItineraries;
+      }
+
+      if (state.itineraryById[itineraryId]) {
+        const newItineraryById = {
+          ...state.itineraryById,
+          [itineraryId]: {
+            ...state.itineraryById[itineraryId],
+            ...action.payload,
+          },
+        };
+        newState["itineraryById"] = newItineraryById;
+      }
+
+      if (state.itinerariesByCurrentUser) {
+        const newItinerariesByCurrentUser = {
+          ...state.itinerariesByCurrentUser,
+          [itineraryId]: {
+            ...state.itinerariesByCurrentUser[itineraryId],
+            ...action.payload,
+          },
+        };
         newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
       }
       return { ...state, newState };
