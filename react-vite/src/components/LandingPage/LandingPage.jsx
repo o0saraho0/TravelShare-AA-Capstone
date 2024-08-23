@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import LoginFormModal from "../LoginFormModal";
 import { thunkAllItineraries } from "../../redux/itinerary";
 import "./LandingPage.css";
 
@@ -58,7 +60,7 @@ function LandingPage() {
                             <div className="list-page-description"><p>{itinerary.description}</p></div>
                             <div className="user-profile">
                                 <img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} />
-                                <div>{itinerary.traveler.username}</div>
+                                <div><p>{itinerary.traveler.username}</p></div>
                             </div>
                             </Link>
                         </div>
@@ -72,14 +74,19 @@ function LandingPage() {
             <h1></h1>
         </div>: 
         <div className="landing-signed-out">
-            <h1>Discover the World</h1>
+            <h1>Hello World</h1>
             <h2>A Travel Guide to Inspire Your Next Adventure</h2>
             <p>Traveling is more than just visiting new places; it&apos;s about experiencing the world in a way that enriches your soul and fills your life with unforgettable memories.</p>
             {/* <p>Whether you&apos;re seeking the tranquility of nature, the vibrancy of cities, or the rich tapestry of cultures, the world is waiting for you to explore.</p> */}
             <p>Let this guide inspire your next adventure, whether it&apos;s a solo journey of self-discovery, a romantic getaway, or a family trip filled with laughter and learning...</p>
 
             <div className="landing-signed-out-buttons">
-                <button>Start planning</button>
+                <button>
+                <OpenModalMenuItem
+                    itemText="Start planning"
+                    modalComponent={<LoginFormModal text={'Before you do that... please'} />}
+                />
+                </button>
                 <button onClick={() => navigate("/itineraries")}>Popular destinations</button>
             </div>
 

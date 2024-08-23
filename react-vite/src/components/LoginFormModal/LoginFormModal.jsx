@@ -6,7 +6,7 @@ import SignupFormModal from "../SignupFormModal/SignupFormModal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import "./LoginForm.css";
 
-function LoginFormModal() {
+function LoginFormModal({text}) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +46,7 @@ function LoginFormModal() {
 
   return (
     <>
+      {text && <div className="signed-out-popoff">{text}</div>}
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>

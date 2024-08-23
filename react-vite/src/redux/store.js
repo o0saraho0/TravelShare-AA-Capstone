@@ -8,11 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import itineraryReducer from "./itinerary";
 import activityReducer from "./activity";
+import collectionReducer from "./collection";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   itineraries: itineraryReducer,
   activities: activityReducer,
+  collections: collectionReducer,
 });
 
 let enhancer;

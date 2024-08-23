@@ -9,6 +9,7 @@ import ItinerariesManage from '../components/ItinerariesManage/ItinerariesManage
 import CreateItinerary from '../components/ItineraryForm/CreateItinerary'
 import EditItinerary from '../components/ItineraryForm/EditItinerary';
 import ActivitiesForm from '../components/ActivitiesForm'
+import CollectionsManage from '../components/CollectionManage';
 
 
 export const router = createBrowserRouter([
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/itineraries/:itineraryId/activities",
         element: <ActivitiesForm />
+      },
+      {
+        path: "/collections/current",
+        element: <CollectionsManage />
       },
       {
         path: "login",

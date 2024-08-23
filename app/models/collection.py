@@ -17,5 +17,6 @@ class Collection(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "itinerary_id": self.itinerary_id
+            "itinerary_id": self.itinerary_id,
+            "itinerary": self.itinerary.to_dict()
         }

@@ -40,11 +40,32 @@ def edit_itinerary(itineraryId):
     if form.validate_on_submit():
         itinerary = Itinerary.query.get(itineraryId)
         if itinerary:
+            original_duration = itinerary.duration
             itinerary.title=form.data["title"]
             itinerary.duration=form.data["duration"]
             itinerary.description=form.data["description"]
             itinerary.preview_image_url=form.data["preview_image_url"]
             itinerary.category_id=form.data["category_id"]
+
+            if original_duration != itinerary.duration:
+                current_schedules = Schedule.query.filter_by(itinerary_id=itinerary.id).all()
+
+                if itinerary.duration > original_duration:
+                    for day_number in range(original_duration + 1, itinerary.duration + 1):
+                        new_schedule = Schedule(
+                            day=f"Day {day_number}",
+                            itinerary_id=itinerary.id
+                        )
+                        db.session.add(new_schedule)
+
+                elif itinerary.duration < original_duration:
+                    schedules_to_delete = [
+                        schedule for schedule in current_schedules
+                        if int(schedule.day.split()[-1]) > itinerary.duration
+                    ]
+                    for schedule in schedules_to_delete:
+                        db.session.delete(schedule)
+
         db.session.commit()
         return itinerary.to_dict(), 200
     else:

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
+import { thunkAddCollection } from "../../redux/collection";
 import { FaLocationArrow } from "react-icons/fa6";
 import Map from "../SubComponents/Map"
 import Loading from "../SubComponents/Loading";
@@ -23,6 +24,10 @@ function ItineraryDetail() {
 
     if (!itinerary) return <Loading />;
 
+    const handleCollectClick = async (itineraryId) => {
+        await dispatch(thunkAddCollection(itineraryId));
+    };
+
     return (
     <main className="itinerary-detail-page">
         <div className="itinerary-content">
@@ -37,7 +42,7 @@ function ItineraryDetail() {
                 </div>
                 {user?.id == itinerary.traveler?.id? (
                     <div className="detail-page-button" onClick={() => navigate(`/itineraries/${itinerary.id}/edit`)}><button>Edit itinerary</button></div>
-                ): <div className="detail-page-button"><button>Add to collection</button></div>}
+                ): <div className="detail-page-button" onClick={() => handleCollectClick(itinerary.id)}><button>Add to collection</button></div>}
             </div>
             <div className="time">
                 <p>{itinerary.updated_at}</p>

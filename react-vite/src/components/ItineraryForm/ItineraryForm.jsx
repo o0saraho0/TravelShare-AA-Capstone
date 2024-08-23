@@ -15,6 +15,7 @@ function ItineraryForm({itinerary, formType}) {
   const [preview_image_url, setPreviewImage] = useState("");
   const [category_id, setCategoryId] = useState("");
   const [errors, setErrors] = useState({});
+  const [originalDuration, setOriginalDuration] = useState(null);
 
   useEffect(() => {
     if (itinerary) {
@@ -23,6 +24,7 @@ function ItineraryForm({itinerary, formType}) {
       setDescription(itinerary.description || '');
       setPreviewImage(itinerary.preview_image_url || '');
       setCategoryId(itinerary.category_id || '')
+      setOriginalDuration(itinerary.duration || 0)
     }
   }, [itinerary])
 
@@ -56,10 +58,9 @@ function ItineraryForm({itinerary, formType}) {
       category_id
     };
 
-    console.log("in component", itineraryData);
-
     let newItinerary;
     if (formType === "Update Your Itinerary") {
+      itineraryData.originalDuration = originalDuration;
       newItinerary = await dispatch(thunkEditItinerary(itineraryData, itinerary.id))
     } else if (formType === "Create New Itinerary") {
       newItinerary = await dispatch(thunkNewItinerary(itineraryData))
@@ -108,7 +109,6 @@ function ItineraryForm({itinerary, formType}) {
                 </div>
                 {errors.category_id && <p className="error">{errors.category_id}</p>}
             </div>
-            {formType !== "Update Your Itinerary" &&
             <div>
                 <label>
                 <h3>Duration</h3>
@@ -122,7 +122,6 @@ function ItineraryForm({itinerary, formType}) {
                 />
                 {errors.duration && <p className="error">{errors.duration}</p>}
             </div>
-            }   
         </div>
 
         <div>

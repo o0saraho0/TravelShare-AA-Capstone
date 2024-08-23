@@ -29,6 +29,7 @@ function ItinerariesManage() {
           <ConfirmDeleteModal
             onDelete={() => handleDeleteConfirm(itineraryId)}
             onClose={closeModal}
+            message={"Keep in mind that deleted itinerary can not be retrieved."}
           />
         );
     };
