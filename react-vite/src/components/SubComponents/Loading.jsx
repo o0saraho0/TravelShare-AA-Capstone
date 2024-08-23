@@ -1,19 +1,20 @@
 import "./SubComponents.css";
 
 function Loading() {
+    return (
     <main>
-        <div className="lds-roller">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+        <div className="lds-roller center-in-main">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-        <p>Loading</p>
-    </main>
+    </main>    
+    )
 }
 
 export default Loading

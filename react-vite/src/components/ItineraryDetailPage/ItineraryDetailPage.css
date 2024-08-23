@@ -86,3 +86,25 @@
   cursor: pointer;
   background-color: #55ad9b;
 }
+
+.discover-more {
+  margin: 50px auto;
+  text-align: center;
+
+}
+
+.discover-more button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #55ad9b;
+  color: white;
+  width: 250px;
+}
+
+.discover-more button:hover {
+  cursor: pointer;
+  background-color: #95d2b3;
+}

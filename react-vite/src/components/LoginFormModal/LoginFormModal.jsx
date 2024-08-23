@@ -72,7 +72,7 @@ function LoginFormModal() {
         <button type="button" onClick={handleDemo}>Demo User</button>
       </form>
       <div className="register">
-        <p>——————   New to TravelShare?   ——————</p>
+        <p>——————   New to HelloWorld?   ——————</p>
         <button className="cursor">
         <OpenModalMenuItem
           itemText="Register"

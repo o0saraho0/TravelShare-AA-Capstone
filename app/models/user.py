@@ -15,8 +15,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    profile_url = db.Column(db.String(255), default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-    )
+    profile_url = db.Column(db.String(255), default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
 
     itinerary = db.relationship("Itinerary", back_populates="traveler")
     review = db.relationship("Review", back_populates="user", cascade="all, delete-orphan")

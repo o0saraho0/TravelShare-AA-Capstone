@@ -6,7 +6,7 @@ import { thunkNewActivity, thunkDeleteActivity, thunkUpdateActivity } from "../.
 import { FaLocationArrow } from "react-icons/fa6";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
-
+import Loading from "../SubComponents/Loading";
 import Map from "../SubComponents/Map"
 import "./ActivitiesForm.css";
 
@@ -83,7 +83,6 @@ function ActivitiesForm() {
     
         if (isEditing && currentActivityId) {
             const updatedActivity = await dispatch(thunkUpdateActivity({...activityData, id: currentActivityId}));
-            console.log("--->", updatedActivity);
             if (updatedActivity) {
                 await dispatch(thunkItineraryById(itineraryId));
                 resetForm();
@@ -97,7 +96,7 @@ function ActivitiesForm() {
         }
     };
 
-    if (!itinerary) return null;
+    if (!itinerary) return <Loading />;
 
     return (
     <main className="itinerary-detail-page activity-edit-page">
@@ -184,9 +183,8 @@ function ActivitiesForm() {
                     </div>
                 ))}
             </div>
-            <div className="add-day"><button>+ Add schedule</button></div>
             </div>
-            <div className="confirm-info"><button>Submit</button></div>
+            <div className="confirm-info" onClick={() => navigate(`/itineraries/${itinerary.id}`)}><button>Submit</button></div>
         </div>
         <Map itinerary={itinerary}/>    
     </main> 

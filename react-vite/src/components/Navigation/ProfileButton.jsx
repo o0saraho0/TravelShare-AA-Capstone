@@ -61,9 +61,9 @@ function ProfileButton() {
         )}
       </div>
       {showMenu && (
-        <div className={"profile-dropdown"} ref={ulRef}>
+        <div ref={ulRef}>
           {user && (
-            <>
+            <div className="profile-dropdown">
               <div className="unclickable">
                 <p>{user.username}</p>
                 <p>{user.email}</p>
@@ -73,7 +73,7 @@ function ProfileButton() {
                 <p onClick={() => {navigate("/collections/current"); closeMenu}}>Your Collections</p>
                 <p onClick={logout}>Log Out</p>
               </div>
-            </>
+            </div>
           )}
         </div>
       )}
