@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 8a22c0d95b76
+Revision ID: 6d3f28f04d68
 Revises: 
-Create Date: 2024-08-21 14:40:14.612081
+Create Date: 2024-08-22 21:19:05.808943
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '8a22c0d95b76'
+revision = '6d3f28f04d68'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -117,7 +117,6 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE activities SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###qqqqqqqqq
-
     # ### end Alembic commands ###
 
 
