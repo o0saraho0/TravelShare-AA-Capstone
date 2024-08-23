@@ -1,0 +1,42 @@
+.landing-personal-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #55ad9b;
+  width: 250px;
+}
+
+.landing-personal-container button:hover {
+  cursor: pointer;
+  background-color: #95d2b3;
+}
+
+.manage-item *{
+  text-align: center;
+  margin-top: 5px;
+}
+
+.owner-selection {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0px 40px 0px;
+}
+
+.owner-selection button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #95d2b3;
+  width: 45%;
+}
+
+.owner-selection button:hover {
+  cursor: pointer;
+  background-color: #55ad9b;
+}

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import SignupFormModal from "../SignupFormModal/SignupFormModal";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -28,6 +30,20 @@ function LoginFormModal() {
     }
   };
 
+  const handleDemo = async () => {
+    const demoUser = {
+      email: "john.doe@example.com",
+      password: "password",
+    };
+    const serverResponse = await dispatch(thunkLogin(demoUser));
+
+    if (serverResponse) {
+      setErrors(serverResponse);
+    } else {
+      closeModal();
+    }
+  };
+
   return (
     <>
       <h1>Log In</h1>
@@ -41,7 +57,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="error">{errors.email}</p>}
         <label>
           Password
           <input
@@ -51,9 +67,20 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="error">{errors.password}</p>}
         <button type="submit">Log In</button>
+        <button type="button" onClick={handleDemo}>Demo User</button>
       </form>
+      <div className="register">
+        <p>——————   New to TravelShare?   ——————</p>
+        <button className="cursor">
+        <OpenModalMenuItem
+          itemText="Register"
+          modalComponent={<SignupFormModal />}
+        />
+        </button>
+      </div>
+      
     </>
   );
 }

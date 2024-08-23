@@ -1,0 +1,44 @@
+.activity-control {
+  color: #55ad9b;
+  font-style: italic;
+  display: flex;
+  gap: 20px;
+}
+
+.activity-control span:hover {
+  color: grey;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.activity-edit-page button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #95d2b3;
+  color: white;
+  width: 150px;
+  margin-top: 10px;
+}
+
+.activity-edit-page button:hover {
+  cursor: pointer;
+  background-color: #55ad9b;
+}
+
+.confirm-info {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.confirm-info button {
+  font-size: 15px;
+  font-weight: 500;
+  width: 250px;
+  background-color: #55ad9b;
+}
+
+.confirm-info button:hover {
+  cursor: pointer;
+  background-color: #95d2b3;
+}

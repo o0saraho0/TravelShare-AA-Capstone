@@ -7,6 +7,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.itinerary-form h1 {
+  margin: 20px 0px;
+}
 .itinerary-form h3 {
   margin: 20px 0px 10px 0px;
 }
@@ -29,18 +32,11 @@
   box-shadow: none;
 }
 
-.itinerary-form input[type="number"],
 .itinerary-form select {
   height: 25px;
-  width: 22vw;
+  width: 48vw;
   border-radius: 5px;
   border: 1px solid lightgray;
   padding: 2px 8px;
   box-shadow: none;
-}
-
-.form-same-line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3vw;
 }
