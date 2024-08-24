@@ -3,7 +3,6 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 
 function Navigation() {
-  // const navigate = useNavigate();
   return (
     <nav className="inline">
       <div className="home-link">
@@ -13,9 +12,9 @@ function Navigation() {
       </div>
       
       <div className="inline nav-categories">
-        <div>City Exploration</div>
-        <div>Nature Escapes</div>
-        <div>Road Trips</div>
+        <NavLink to="/itineraries/category/1">City Exploration</NavLink>
+        <NavLink to="/itineraries/category/2">Nature Escapes</NavLink>
+        <NavLink to="/itineraries/category/3">Road Trips</NavLink>
       </div>
       
       <ul>

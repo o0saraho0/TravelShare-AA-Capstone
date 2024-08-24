@@ -65,7 +65,9 @@ function CollectionsManage() {
                         </Link>
                         <div className="align-left">
                             <h3>{collection.itinerary.title}</h3>
-                            <p>{collection.itinerary.description}</p>
+                            <div className="list-page-description">
+                                <p>{collection.itinerary.description}</p>
+                            </div>
                             <div className="user-profile">
                                 <img className="profile-image" src={collection.itinerary.traveler.profile_url} alt={collection.itinerary.traveler_id} />
                                 <div><p>{collection.itinerary.traveler.username}</p></div>

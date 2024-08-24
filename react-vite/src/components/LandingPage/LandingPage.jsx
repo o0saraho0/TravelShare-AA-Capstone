@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import { thunkAllItineraries } from "../../redux/itinerary";
+import Loading from "../SubComponents/Loading";
+
 import "./LandingPage.css";
 
 function LandingPage() {
@@ -18,6 +20,8 @@ function LandingPage() {
           dispatch(thunkAllItineraries())
         }
     }, [dispatch, itinerariesObj]);
+
+    if (!itineraries) return <Loading />
   
     return (
     <main>

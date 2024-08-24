@@ -133,7 +133,8 @@ function ActivitiesForm() {
                                     </div>
                                 </div>
                                 <div className="activity-image">
-                                    <img src={activity.place_image_url} alt={activity.id} />
+                                    {activity.place_image_url && <img src={activity.place_image_url} alt={activity.id} />}
+                                    
                                 </div>
                             </div>
                         ))}
@@ -177,7 +178,7 @@ function ActivitiesForm() {
                                 onChange={handleInputChange}
                                 placeholder="Image URL"
                             />
-                            <button type="submit">Save Activity</button>
+                            <button type="submit">Save</button>
                         </form>
                     )}
                     </div>

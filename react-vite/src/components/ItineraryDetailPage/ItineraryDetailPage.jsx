@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
 import { thunkAddCollection } from "../../redux/collection";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import LoginFormModal from "../LoginFormModal";
 import { FaLocationArrow } from "react-icons/fa6";
 import Map from "../SubComponents/Map"
 import Loading from "../SubComponents/Loading";
@@ -25,7 +27,16 @@ function ItineraryDetail() {
     if (!itinerary) return <Loading />;
 
     const handleCollectClick = async (itineraryId) => {
-        await dispatch(thunkAddCollection(itineraryId));
+        if (!user) {
+            return (
+            <OpenModalMenuItem
+                modalComponent={<LoginFormModal text={'Before you do that... please'} />}
+            />)
+        } else {
+            await dispatch(thunkAddCollection(itineraryId));
+            navigate('/collections/current')
+        }
+        
     };
 
     return (
@@ -60,9 +71,7 @@ function ItineraryDetail() {
                                     <span className="activity-place"><FaLocationArrow />{activity.place}</span> 
                                     {activity.description && <p>{activity.description}</p>}
                                 </div>
-                                <div className="activity-image">
-                                    {activity.place_image_url && <img src={activity.place_image_url} alt={activity.id} />}
-                                </div>
+                                {activity.place_image_url && <div className="activity-image"><img src={activity.place_image_url} alt={activity.id} /></div>}
                             </div>
                         ))}
                     </div>

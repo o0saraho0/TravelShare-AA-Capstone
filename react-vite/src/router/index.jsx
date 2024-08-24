@@ -6,6 +6,7 @@ import LandingPage from '../components/LandingPage/LandingPage';
 import ItinerariesList from '../components/ItinerariesListPage';
 import ItineraryDetail from '../components/ItineraryDetailPage'
 import ItinerariesManage from '../components/ItinerariesManage/ItinerariesManage';
+import ItinerariesByCategory from '../components/ItinerariesByCategory/ItinerariesByCategory';
 import CreateItinerary from '../components/ItineraryForm/CreateItinerary'
 import EditItinerary from '../components/ItineraryForm/EditItinerary';
 import ActivitiesForm from '../components/ActivitiesForm'
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "/itineraries",
         element: <ItinerariesList />
+      },
+      {
+        path: "/itineraries/category/:categoryId",
+        element: <ItinerariesByCategory />
       },
       {
         path: "/itineraries/:itineraryId",

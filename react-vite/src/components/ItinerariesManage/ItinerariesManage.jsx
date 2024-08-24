@@ -24,6 +24,16 @@ function ItinerariesManage() {
 
     if (!itinerariesObj) return <Loading />;
 
+    const itineraryCount = itineraries.length;
+    const scheduleCount = itineraries.reduce((total, itinerary) => {
+        return total + itinerary.schedules.length;
+    }, 0);
+    const activityCount = itineraries.reduce((totalActivities, itinerary) => {
+        return totalActivities + itinerary.schedules.reduce((total, schedule) => {
+            return total + schedule.activities.length;
+        }, 0);
+    }, 0);
+
     const handleDeleteClick = (itineraryId) => {
         setModalContent(
           <ConfirmDeleteModal
@@ -45,6 +55,11 @@ function ItinerariesManage() {
             <img src="/images/travel_map.jpg" alt="world-map" />
             <div className="landing-personal-container">
                 <h1>Hello, {user.first_name}!</h1>
+                <div>
+                    <div>You have been on <span className="highlight">{itineraryCount}</span> trips</div>
+                    <div>You have traveled for a total of <span className="highlight">{scheduleCount}</span> days</div>
+                    <div>Your journeys have taken you to <span className="highlight">{activityCount}</span> places</div>
+                </div>
                 <div>
                     <h2>Your trips</h2>
                     <button onClick={() => navigate("/itineraries/new")}>+ Plan new trip</button>

@@ -1,3 +1,15 @@
+.activity-form {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  padding: 20px;
+}
+
+.activity-form button {
+  margin: 0px auto;
+}
+
 .activity-control {
   color: #55ad9b;
   font-style: italic;
