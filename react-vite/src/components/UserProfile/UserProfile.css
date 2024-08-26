@@ -1,0 +1,15 @@
+.traveler-personal-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 15px;
+  border: 0.5px solid lightgray;
+  border-radius: 10px;
+}
+
+.traveler-personal-profile img {
+  width: 250px;
+  height: 250px;
+}

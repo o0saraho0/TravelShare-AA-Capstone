@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
 import { thunkAddCollection } from "../../redux/collection";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
@@ -48,12 +48,22 @@ function ItineraryDetail() {
             </div>
             <div className="body">
             <div className="inline">
+                <Link to={`/itineraries/traveler/${itinerary.traveler.id}`}>
                 <div className="user-profile">
                     <img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} /><span>{itinerary.traveler.username}</span>
                 </div>
-                {user?.id == itinerary.traveler?.id? (
+                </Link>
+                {user? user?.id == itinerary.traveler?.id? (
                     <div className="detail-page-button" onClick={() => navigate(`/itineraries/${itinerary.id}/edit`)}><button>Edit itinerary</button></div>
-                ): <div className="detail-page-button" onClick={() => handleCollectClick(itinerary.id)}><button>Add to collection</button></div>}
+                ): <div className="detail-page-button" onClick={() => handleCollectClick(itinerary.id)}><button>Add to collection</button></div>: 
+                <div className="detail-page-button">
+                    <button>
+                    <OpenModalMenuItem
+                    itemText="Add to collection"
+                    modalComponent={<LoginFormModal text={'Before you do that... please'} />}
+                    />
+                    </button>
+                </div>}
             </div>
             <div className="time">
                 <p>{itinerary.updated_at}</p>

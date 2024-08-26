@@ -80,6 +80,7 @@
   background-color: #95d2b3;
   color: white;
   width: 150px;
+  list-style-type: none;
 }
 
 .detail-page-button button:hover {
@@ -90,7 +91,6 @@
 .discover-more {
   margin: 50px auto;
   text-align: center;
-
 }
 
 .discover-more button {

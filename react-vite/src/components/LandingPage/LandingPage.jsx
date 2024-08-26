@@ -62,9 +62,11 @@ function LandingPage() {
                             <div><h3>{itinerary.title}</h3></div>
                             <div className="list-page-duration"><p>Duration: {itinerary.duration} days</p></div>
                             <div className="list-page-description"><p>{itinerary.description}</p></div>
+                            </Link>
+                            <Link to={`/itineraries/traveler/${itinerary.traveler.id}`}>
                             <div className="user-profile">
                                 <img className="profile-image" src={itinerary.traveler.profile_url} alt={itinerary.traveler_id} />
-                                <div><p>{itinerary.traveler.username}</p></div>
+                                <span>{itinerary.traveler.username}</span>
                             </div>
                             </Link>
                         </div>
