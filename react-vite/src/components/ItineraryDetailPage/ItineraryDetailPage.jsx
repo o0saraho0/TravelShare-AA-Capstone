@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
 import { thunkAddCollection } from "../../redux/collection";
+import { thunkAllComments, thunkDeleteComment, thunkNewComment } from "../../redux/comment";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import { FaLocationArrow } from "react-icons/fa6";
+import { FaDeleteLeft } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
 import Map from "../SubComponents/Map"
 import Loading from "../SubComponents/Loading";
 import "./ItineraryDetailPage.css";
@@ -16,28 +19,36 @@ function ItineraryDetail() {
     const { itineraryId } = useParams();
     const itinerary = useSelector((state) => state.itineraries.itineraryById?.[itineraryId]);
     const user = useSelector((state) => state.session.user);
+    const commentsObj = useSelector((state) => state.comments.commentsByItinerary?.[itineraryId]);
+    const comments = commentsObj? Object.values(commentsObj): [];
     const schedules = itinerary?.schedules;
+
+    const [commentInput, setCommentInput] = useState('');
 
     useEffect(() => {
         if (itineraryId) {
-          dispatch(thunkItineraryById(itineraryId)) 
+          dispatch(thunkItineraryById(itineraryId))
+          dispatch(thunkAllComments(itineraryId))
         }
     }, [dispatch, itineraryId]);
 
     if (!itinerary) return <Loading />;
 
     const handleCollectClick = async (itineraryId) => {
-        if (!user) {
-            return (
-            <OpenModalMenuItem
-                modalComponent={<LoginFormModal text={'Before you do that... please'} />}
-            />)
-        } else {
+        if (user) {
             await dispatch(thunkAddCollection(itineraryId));
             navigate('/collections/current')
         }
-        
     };
+
+    const handleAddComment = async () => {
+        await dispatch(thunkNewComment({review: commentInput, itinerary_id: itineraryId}));
+        setCommentInput('');
+    }
+
+    const handleRemoveComment = async (commentId) => {
+        await dispatch(thunkDeleteComment(commentId, itineraryId))
+    }
 
     return (
     <main className="itinerary-detail-page">
@@ -71,6 +82,7 @@ function ItineraryDetail() {
             <div className="description">
                 <p>{itinerary.description}</p>
             </div>
+
             <div className="schedules-container">
                 {schedules && schedules.map(schedule => (
                     <div key={schedule.id} className="schedule-item">
@@ -87,6 +99,43 @@ function ItineraryDetail() {
                     </div>
                 ))}
             </div>
+
+            <div className="comments">
+                <div>
+                    {user? 
+                    <div className="post-comment">
+                        <img className="profile-image" src={user.profile_url} alt={user.id} />
+                        <input type="text" 
+                                name="comment"
+                                value={commentInput}
+                                onChange={e => setCommentInput(e.target.value)}
+                                placeholder="Ask a question or share your thoughts!" />
+                        <div className="detail-page-button post-button"><button onClick={handleAddComment}>Post</button></div>
+                    </div>: null}
+                </div>
+
+                <div>
+                    {comments? comments.map(comment => (
+                        <div key={comment.id} className="all-comments">
+                            <div>
+                                <img className="profile-image" src={comment.user.profile_url} alt={comment.user.id} />
+                            </div>
+                            <div className="comment-content">
+                                <h3>{comment.user.username}</h3>
+                                <p>{comment.review}</p>
+                                <p className="time">{comment.updated_at.slice(5, 16)}</p>
+                                {user? user.id == comment.user.id?
+                                <div className="activity-control">
+                                    <span><FaEdit /></span>
+                                    <span onClick={() => handleRemoveComment(comment.id)}><FaDeleteLeft /></span>
+                                </div>: null: null}
+                            </div>
+                            
+                        </div>
+                    )): null}
+                </div>
+            </div>
+
             <div className="discover-more" onClick={() => navigate("/itineraries")}><button>Continue explore</button></div>
 
         </div>

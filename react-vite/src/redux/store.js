@@ -9,12 +9,14 @@ import sessionReducer from "./session";
 import itineraryReducer from "./itinerary";
 import activityReducer from "./activity";
 import collectionReducer from "./collection";
+import commentReducer from "./comment";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   itineraries: itineraryReducer,
   activities: activityReducer,
   collections: collectionReducer,
+  comments: commentReducer,
 });
 
 let enhancer;

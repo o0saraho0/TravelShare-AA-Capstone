@@ -93,8 +93,8 @@ form label {
 }
 
 .profile-image {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border-radius: 100%;
 }
 
@@ -144,6 +144,10 @@ form label {
 
 .align-left * {
   text-align: start;
+}
+
+.aligh-right span {
+  text-align: right;
 }
 
 .center-in-main {

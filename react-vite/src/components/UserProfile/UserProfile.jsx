@@ -33,16 +33,16 @@ function UserProfile() {
 
     return(
     <main>
-        <div className="landing-personal">
+        <div className="traveler-personal">
             <div className="traveler-personal-profile">
                 <img className="profile-image" src={filteredItineraries[0].traveler.profile_url} alt={travelerId} />
                 <h2>{filteredItineraries[0].traveler.username}</h2>
             </div>
             <div className="landing-personal-container">
-                <div>
+                <div className="travel-stats">
                     <div>{filteredItineraries[0].traveler.first_name} has been on <span className="highlight">{itineraryCount}</span> trips</div>
                     <div>has traveled for a total of <span className="highlight">{scheduleCount}</span> days</div>
-                    <div>has been to <span className="highlight">{activityCount}</span> places</div>
+                    <div>and been to <span className="highlight">{activityCount}</span> places</div>
                 </div>
             </div>
         </div>

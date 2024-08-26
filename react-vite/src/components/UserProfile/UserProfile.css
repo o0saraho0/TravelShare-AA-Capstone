@@ -1,3 +1,11 @@
+.traveler-personal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+  gap: 50px;
+}
+
 .traveler-personal-profile {
   display: flex;
   flex-direction: column;
@@ -10,6 +18,26 @@
 }
 
 .traveler-personal-profile img {
-  width: 250px;
-  height: 250px;
+  width: 20vw;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+.travel-stats {
+  background-image: url("/images/user-profile-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 55vw;
+  height: auto;
+  aspect-ratio: 5 / 3;
+  border-radius: 10px;
+}
+
+.travel-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
 }

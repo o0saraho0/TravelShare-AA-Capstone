@@ -19,6 +19,7 @@ function ActivitiesForm() {
     const [showActivityForm, setShowActivityForm] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [currentActivityId, setCurrentActivityId] = useState(null);
+    const [errors, setErrors] = useState({});
 
     const [activityData, setActivityData] = useState({
         place: "",
@@ -56,6 +57,7 @@ function ActivitiesForm() {
         setShowActivityForm(false);
         setIsEditing(false);
         setCurrentActivityId(null);
+        setErrors({});
     };
 
     const handleEditActivity = (activity) => {
@@ -78,8 +80,21 @@ function ActivitiesForm() {
         await dispatch(thunkItineraryById(itineraryId));
     };
 
+    const validateForm = () => {
+        const newErrors = {};
+        if (!activityData.place) newErrors.place = "Place is required";
+        if (!activityData.longitude || isNaN(activityData.longitude)) newErrors.longitude = "Valid longitude is required";
+        if (!activityData.latitude || isNaN(activityData.latitude)) newErrors.latitude = "Valid latitude is required";
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+
+        if (!validateForm()) {
+            return;
+        }
     
         if (isEditing && currentActivityId) {
             const updatedActivity = await dispatch(thunkUpdateActivity({...activityData, id: currentActivityId}));
@@ -147,24 +162,24 @@ function ActivitiesForm() {
                                 value={activityData.place}
                                 onChange={handleInputChange}
                                 placeholder="Place"
-                                required
                             />
+                            {errors.place && <p className="error">{errors.place}</p>}
                             <input
                                 type="text"
                                 name="longitude"
                                 value={activityData.longitude}
                                 onChange={handleInputChange}
                                 placeholder="Longitude"
-                                required
                             />
+                            {errors.longitude && <p className="error">{errors.longitude}</p>}
                             <input
                                 type="text"
                                 name="latitude"
                                 value={activityData.latitude}
                                 onChange={handleInputChange}
                                 placeholder="Latitude"
-                                required
                             />
+                            {errors.latitude && <p className="error">{errors.latitude}</p>}
                             <textarea
                                 name="description"
                                 value={activityData.description}

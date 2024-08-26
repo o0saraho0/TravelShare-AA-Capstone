@@ -19,7 +19,7 @@ class Review(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "user": self.user,
+            "user": self.user.to_dict(),
             "itinerary_id": self.itinerary_id,
             "review": self.review,
             "updated_at": self.updated_at
