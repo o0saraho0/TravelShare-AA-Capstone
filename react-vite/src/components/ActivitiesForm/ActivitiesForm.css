@@ -3,11 +3,23 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: fit-content;
-  padding: 20px;
+  padding: 30px;
 }
 
-.activity-form button {
-  margin: 0px auto;
+.activity-form input {
+  width: 95%;
+}
+
+.activity-form textarea {
+  width: 95%;
+}
+
+.activity-form-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+  gap: 20px;
 }
 
 .activity-control {
@@ -24,17 +36,15 @@
   cursor: pointer;
 }
 
-.activity-edit-page button {
+.itinerary-content button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   background-color: #95d2b3;
   color: white;
-  width: 150px;
-  margin-top: 10px;
 }
 
-.activity-edit-page button:hover {
+.itinerary-content button:hover {
   cursor: pointer;
   background-color: #55ad9b;
 }

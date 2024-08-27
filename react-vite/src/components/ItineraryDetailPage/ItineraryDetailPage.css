@@ -93,22 +93,6 @@
   text-align: center;
 }
 
-.discover-more button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 15px;
-  font-weight: 500;
-  background-color: #55ad9b;
-  color: white;
-  width: 250px;
-}
-
-.discover-more button:hover {
-  cursor: pointer;
-  background-color: #95d2b3;
-}
-
 .comments {
   display: flex;
   flex-direction: column;
@@ -124,14 +108,12 @@
 
 .post-comment input {
   padding: 10px;
-  width: 150%;
   margin: 0px 20px;
-  width: 40vw;
+  width: 100%;
 }
 
 .post-button button {
-  width: 100%;
-  border-radius: 50px;
+  width: 100px;
 }
 
 .all-comments {

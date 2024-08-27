@@ -126,6 +126,13 @@ form label {
   font-style: italic;
 }
 
+.hint {
+  color: gray;
+  font-style: italic;
+  font-size: small;
+  margin-bottom: 10px;
+}
+
 .error {
   color: red;
   font-size: 13px;
@@ -181,4 +188,16 @@ form label {
 
 .button-center {
   margin: 50px auto;
+}
+
+#greener-button {
+  padding: 10px 15px;
+  width: 250px;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #55ad9b;
+}
+
+#greener-button:hover {
+  background-color: #95d2b3;
 }

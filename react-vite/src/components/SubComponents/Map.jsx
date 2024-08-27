@@ -1,32 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
-import "leaflet/dist/leaflet.css";
 
 const defaultMarkerIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconUrl: "/images/marker-icon-blue.png",
+  shadowUrl: "/images/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
 
-// const searchMarkerIcon = new L.Icon({
-//   iconUrl:
-//     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-//   shadowUrl:
-//     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-//   iconSize: [25, 41],
-//   iconAnchor: [12, 41],
-//   popupAnchor: [1, -34],
-//   shadowSize: [41, 41],
-// });
+const searchMarkerIcon = new L.Icon({
+  iconUrl: "/images/marker-icon-orange.png",
+  shadowUrl: "/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 function SearchField({ setPosition }) {
   const map = useMap();
@@ -39,13 +34,14 @@ function SearchField({ setPosition }) {
       style: "bar",
       autoClose: true,
       keepResult: true,
+      showMarker: false,
     });
 
     map.addControl(searchControl);
 
     map.on("geosearch/showlocation", (result) => {
       const { x, y } = result.location;
-      setPosition([y, x]);
+      setPosition({ latitude: y, longitude: x, label: result.location.label });
       map.setView([y, x], 13);
     });
 
@@ -57,16 +53,25 @@ function SearchField({ setPosition }) {
   return null;
 }
 
-const Map = (itinerary) => {
-  const [position, setPosition] = useState(null);
+const Map = ({ itinerary, showSearchField, updateAcitivity }) => {
+  const [searchPosition, setSearchPosition] = useState(null);
+  const defaultCenter = { latitude: 37.7749, longitude: -122.4194 };
+  const centerPosition = itinerary.schedules[0].activities[0] || defaultCenter;
+
+  const searchMarkerRef = useRef(null);
 
   const handleMarkerClick = () => {
-    console.log("Marker clicked", position);
+    if (searchPosition) {
+      updateAcitivity(searchPosition);
+    }
+    setSearchPosition(null);
   };
 
-  const defaultCenter = { latitude: 37.7749, longitude: -122.4194 };
-  const centerPosition =
-    itinerary.itinerary.schedules[0].activities[0] || defaultCenter;
+  useEffect(() => {
+    if (searchMarkerRef.current) {
+      searchMarkerRef.current.openPopup();
+    }
+  }, [searchPosition]);
 
   return (
     <MapContainer
@@ -84,8 +89,7 @@ const Map = (itinerary) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <SearchField setPosition={setPosition} />
-      {itinerary.itinerary.schedules.map(
+      {itinerary.schedules.map(
         (schedule, index) =>
           schedule &&
           schedule.activities &&
@@ -98,15 +102,17 @@ const Map = (itinerary) => {
             >
               <Popup>
                 <div>
-                  <img
-                    src={activity.place_image_url}
-                    alt={activity.id}
-                    style={{
-                      width: "300px",
-                      height: "auto",
-                      aspectRatio: "4 / 3",
-                    }}
-                  />
+                  {activity.place_image_url && (
+                    <img
+                      src={activity.place_image_url}
+                      alt={activity.id}
+                      style={{
+                        width: "300px",
+                        height: "auto",
+                        aspectRatio: "3 / 2",
+                      }}
+                    />
+                  )}
                 </div>
                 <div>
                   {activity.place} ({schedule.day})
@@ -114,6 +120,27 @@ const Map = (itinerary) => {
               </Popup>
             </Marker>
           ))
+      )}
+      {showSearchField && <SearchField setPosition={setSearchPosition} />}
+      {searchPosition && (
+        <Marker
+          position={[searchPosition.latitude, searchPosition.longitude]}
+          icon={searchMarkerIcon}
+          ref={searchMarkerRef}
+        >
+          <Popup>
+            <h3>Search result:</h3> <br />
+            <h4>Label:</h4> {searchPosition.label} <br />
+            <br />
+            Latitude: {searchPosition.latitude} <br />
+            Longitude: {searchPosition.longitude} <br /> <br />
+            <div className="itinerary-content">
+              <button type="button" onClick={handleMarkerClick}>
+                + Add to activity
+              </button>
+            </div>
+          </Popup>
+        </Marker>
       )}
     </MapContainer>
   );
