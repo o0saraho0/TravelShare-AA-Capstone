@@ -49,3 +49,23 @@ def add_comment(itineraryId):
     else:
         print("Form errors:", form.errors)
         return form.errors, 400
+    
+
+@comments_routes.route("/<int:commentId>/edit", methods=['PUT'])
+@login_required
+def edit_comment(commentId):
+    form = ReviewForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        comment = Review.query.filter(Review.id == commentId).first()
+
+        if not current_user.id == comment.user_id:
+            return { "message": "Unauthorized." }, 401
+        
+        comment.review = form.data["review"]
+        db.session.commit()
+        return comment.to_dict()
+    else:
+        print("Form errors:", form.errors)
+        return form.errors, 400

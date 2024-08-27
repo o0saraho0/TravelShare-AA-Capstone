@@ -1,0 +1,13 @@
+.comment-modal {
+  width: 30vw;
+  height: 35vh;
+}
+
+.comment-modal * {
+  margin-bottom: 20px;
+}
+
+.comment-modal form textarea {
+  width: 28vw;
+  height: 20vh;
+}

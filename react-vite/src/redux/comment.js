@@ -1,7 +1,7 @@
 const COMMENTS_BY_ITINERARY = "comment/commentByItinerary";
 const CREATE_COMMENT = "comment/createComment";
 const DELETE_COMMENT = "comment/deleteComment";
-// const EDIT_COMMENT = "comment/editComment";
+const EDIT_COMMENT = "comment/editComment";
 
 const commentByItinerary = (itineraryId) => ({
   type: COMMENTS_BY_ITINERARY,
@@ -18,10 +18,10 @@ const deleteComment = (commentId, itineraryId) => ({
   payload: { commentId, itineraryId },
 });
 
-// const editComment = (comment) => ({
-//   type: EDIT_COMMENT,
-//   payload: comment,
-// });
+const editComment = (comment) => ({
+  type: EDIT_COMMENT,
+  payload: comment,
+});
 
 // get comments by itinerary id
 export const thunkAllComments = (itineraryId) => async (dispatch) => {
@@ -70,24 +70,23 @@ export const thunkDeleteComment =
     return data;
   };
 
-// // edit itinerary
-// export const thunkEditItinerary =
-//   (itinerary, itineraryId) => async (dispatch) => {
-//     const response = await fetch(`/api/itineraries/${itineraryId}/edit`, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(itinerary),
-//     });
-//     const data = await response.json();
+// edit comment
+export const thunkEditComment = (comment) => async (dispatch) => {
+  const response = await fetch(`/api/comments/${comment.id}/edit`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+  const data = await response.json();
 
-//     if (response.ok) {
-//       dispatch(editItinerary(data));
-//       return data;
-//     }
-//     return data;
-//   };
+  if (response.ok) {
+    dispatch(editComment(data));
+    return data;
+  }
+  return data;
+};
 
 const initialState = {};
 
@@ -120,6 +119,18 @@ function commentReducer(state = initialState, action) {
         const updatedComments = { ...newState[itineraryId] };
         delete updatedComments[commentId];
         newState[itineraryId] = updatedComments;
+      }
+      return {
+        ...state,
+        commentsByItinerary: newState,
+      };
+    }
+    case EDIT_COMMENT: {
+      const updatedComment = action.payload;
+      const itineraryId = updatedComment.itinerary_id;
+      const newState = { ...state.commentsByItinerary };
+      if (newState[itineraryId] && newState[itineraryId][updatedComment.id]) {
+        newState[itineraryId][updatedComment.id] = updatedComment;
       }
       return {
         ...state,
