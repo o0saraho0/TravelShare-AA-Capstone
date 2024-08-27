@@ -82,27 +82,28 @@ function UserProfile() {
       <div className="landing-explore">
         <h1>Posted itineraries</h1>
         <div className="grid-container">
-          {filteredItineraries.map((itinerary) => (
-            <div key={itinerary.id} className="grid-item">
-              <Link to={`/itineraries/${itinerary.id}`}>
-                <div className="image-container">
-                  <img
-                    src={itinerary.preview_image_url}
-                    alt={itinerary.title}
-                  />
-                </div>
-                <div>
-                  <h3>{itinerary.title}</h3>
-                </div>
-                <div className="list-page-duration">
-                  <p>Duration: {itinerary.duration} days</p>
-                </div>
-                <div className="list-page-description">
-                  <p>{itinerary.description}</p>
-                </div>
-              </Link>
-            </div>
-          ))}
+          {filteredItineraries.length &&
+            filteredItineraries.map((itinerary) => (
+              <div key={itinerary.id} className="grid-item">
+                <Link to={`/itineraries/${itinerary.id}`}>
+                  <div className="image-container">
+                    <img
+                      src={itinerary.preview_image_url}
+                      alt={itinerary.title}
+                    />
+                  </div>
+                  <div>
+                    <h3>{itinerary.title}</h3>
+                  </div>
+                  <div className="list-page-duration">
+                    <p>Duration: {itinerary.duration} days</p>
+                  </div>
+                  <div className="list-page-description">
+                    <p>{itinerary.description}</p>
+                  </div>
+                </Link>
+              </div>
+            ))}
         </div>
       </div>
     </main>

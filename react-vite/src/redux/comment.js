@@ -128,13 +128,15 @@ function commentReducer(state = initialState, action) {
     case EDIT_COMMENT: {
       const updatedComment = action.payload;
       const itineraryId = updatedComment.itinerary_id;
-      const newState = { ...state.commentsByItinerary };
-      if (newState[itineraryId] && newState[itineraryId][updatedComment.id]) {
-        newState[itineraryId][updatedComment.id] = updatedComment;
-      }
       return {
         ...state,
-        commentsByItinerary: newState,
+        commentsByItinerary: {
+          ...state.commentsByItinerary,
+          [itineraryId]: {
+            ...state.commentsByItinerary[itineraryId],
+            [updatedComment.id]: updatedComment,
+          },
+        },
       };
     }
     default:
