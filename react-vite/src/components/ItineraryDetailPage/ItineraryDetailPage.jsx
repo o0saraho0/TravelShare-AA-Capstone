@@ -175,17 +175,13 @@ function ItineraryDetail() {
               {comments
                 ? comments.map((comment) => (
                     <div key={comment.id} className="all-comments">
-                      <Link
-                        to={`/itineraries/traveler/${itinerary.traveler.id}`}
-                      >
-                        <div>
-                          <img
-                            className="profile-image"
-                            src={comment.user.profile_url}
-                            alt={comment.user.id}
-                          />
-                        </div>
-                      </Link>
+                      <div>
+                        <img
+                          className="profile-image"
+                          src={comment.user.profile_url}
+                          alt={comment.user.id}
+                        />
+                      </div>
                       <div className="comment-content">
                         <h3>{comment.user.username}</h3>
                         <p>{comment.review}</p>
