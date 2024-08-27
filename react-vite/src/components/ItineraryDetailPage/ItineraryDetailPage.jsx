@@ -162,8 +162,8 @@ function ItineraryDetail() {
             <div>
               {user ? (
                 <div>
-                  <div className="post-comment">
-                    <div className="inline">
+                  <div className="inline">
+                    <div className="post-comment inline">
                       <img
                         className="profile-image"
                         src={user.profile_url}
@@ -245,7 +245,7 @@ function ItineraryDetail() {
             className="discover-more"
             onClick={() => navigate("/itineraries")}
           >
-            <button>Continue explore</button>
+            <button id="greener-button">Continue explore</button>
           </div>
         </div>
       </div>
