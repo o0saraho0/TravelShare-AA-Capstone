@@ -117,15 +117,16 @@
 
 .post-comment {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .post-comment input {
-  width: 100%;
   padding: 10px;
+  width: 150%;
+  margin: 0px 20px;
+  width: 40vw;
 }
 
 .post-button button {
@@ -146,4 +147,3 @@
   flex-wrap: nowrap;
   gap: 5px;
 }
-

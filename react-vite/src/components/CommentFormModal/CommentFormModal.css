@@ -3,8 +3,12 @@
   height: 35vh;
 }
 
-.comment-modal * {
+.comment-modal h2 {
   margin-bottom: 20px;
+}
+
+.comment-modal button {
+  margin-top: 20px;
 }
 
 .comment-modal form textarea {

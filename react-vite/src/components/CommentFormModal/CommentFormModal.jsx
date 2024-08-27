@@ -24,6 +24,13 @@ function CommentFormModal({ itineraryId, commentId }) {
     e.preventDefault();
     setErrors({});
 
+    if (review.length < 10) {
+      setErrors({
+        review: "Please write at least 10 characters to share your thoughts.",
+      });
+      return;
+    }
+
     const updatedComment = {
       id: commentId,
       review,
@@ -44,7 +51,7 @@ function CommentFormModal({ itineraryId, commentId }) {
           value={review}
           onChange={(e) => setReview(e.target.value)}
         />
-        {errors.review && <p className="error-message">{errors.review}</p>}
+        {errors.review && <p className="error">{errors.review}</p>}
         <button type="submit">Update</button>
       </form>
     </div>
