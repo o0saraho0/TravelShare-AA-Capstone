@@ -112,6 +112,9 @@ function ActivitiesForm() {
   const validateForm = () => {
     const newErrors = {};
     if (!activityData.place) newErrors.place = "Place is required";
+    if (activityData.place.length < 5 || activityData.place.length > 100)
+      newErrors.place =
+        "Please enter a place name that is between 5 and 100 characters.";
     if (!activityData.longitude || isNaN(activityData.longitude))
       newErrors.longitude = "Valid longitude is required";
     if (!activityData.latitude || isNaN(activityData.latitude))

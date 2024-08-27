@@ -22,6 +22,11 @@
   gap: 20px;
 }
 
+.activity-form-buttons button {
+  width: 100px;
+  text-align: center;
+}
+
 .activity-control {
   color: #55ad9b;
   font-style: italic;

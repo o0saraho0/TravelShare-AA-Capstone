@@ -57,6 +57,14 @@ img {
   aspect-ratio: 1 / 1;
 }
 
+.one-line-title h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 input {
   height: 25px;
   width: 200px;
