@@ -34,6 +34,7 @@ function ItineraryDetail() {
   const schedules = itinerary?.schedules;
 
   const [commentInput, setCommentInput] = useState("");
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (itineraryId) {
@@ -52,6 +53,15 @@ function ItineraryDetail() {
   };
 
   const handleAddComment = async () => {
+    setErrors({});
+
+    if (commentInput.length < 10) {
+      setErrors({
+        comment: "Please write at least 10 characters to share your thoughts.",
+      });
+      return;
+    }
+
     await dispatch(
       thunkNewComment({ review: commentInput, itinerary_id: itineraryId })
     );
@@ -151,21 +161,35 @@ function ItineraryDetail() {
           <div className="comments">
             <div>
               {user ? (
-                <div className="post-comment">
-                  <img
-                    className="profile-image"
-                    src={user.profile_url}
-                    alt={user.id}
-                  />
-                  <input
-                    type="text"
-                    name="comment"
-                    value={commentInput}
-                    onChange={(e) => setCommentInput(e.target.value)}
-                    placeholder="Ask a question or share your thoughts!"
-                  />
-                  <div className="detail-page-button post-button">
-                    <button onClick={handleAddComment}>Post</button>
+                <div>
+                  <div className="post-comment">
+                    <div className="inline">
+                      <img
+                        className="profile-image"
+                        src={user.profile_url}
+                        alt={user.id}
+                      />
+                      <input
+                        type="text"
+                        name="comment"
+                        value={commentInput}
+                        onChange={(e) => setCommentInput(e.target.value)}
+                        placeholder="Ask a question or share your thoughts!"
+                      />
+                    </div>
+                    <div className="detail-page-button post-button">
+                      <button onClick={handleAddComment}>Post</button>
+                    </div>
+                  </div>
+                  <div>
+                    {errors.comment && (
+                      <p
+                        className="error"
+                        style={{ marginLeft: "55px", marginTop: "6px" }}
+                      >
+                        {errors.comment}
+                      </p>
+                    )}
                   </div>
                 </div>
               ) : null}

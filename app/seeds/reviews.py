@@ -14,7 +14,7 @@ def seed_reviews():
         review="I recently followed this itinerary, and it was an absolutely fantastic experience from start to finish. This itinerary perfectly balances relaxation and adventure, making it an ideal getaway for anyone looking to explore the beauty and culture of this region."
     )
     review3 = Review(
-        user_id=1,
+        user_id=5,
         itinerary_id=6,
         review="It was an unforgettable experience that I highly recommend to anyone who loves nature and scenic beauty. Despite being a short trip of only two days, it was packed with stunning views and unique opportunities to witness California's landscapes come alive with vibrant colors."
     )
