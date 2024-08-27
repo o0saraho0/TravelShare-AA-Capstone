@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { thunkItineraryById } from "../../redux/itinerary";
-import { thunkAddCollection } from "../../redux/collection";
+import {
+  thunkAddCollection,
+  thunkAllCollections,
+} from "../../redux/collection";
 import {
   thunkAllComments,
   thunkDeleteComment,
@@ -11,6 +14,8 @@ import {
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import CommentFormModal from "../CommentFormModal";
+import { useModal } from "../../context/Modal";
+import ConfirmDeleteModal from "../SubComponents/ConfirmDeleteModal";
 import { FaLocationArrow } from "react-icons/fa6";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
@@ -26,6 +31,9 @@ function ItineraryDetail() {
     (state) => state.itineraries.itineraryById?.[itineraryId]
   );
   const user = useSelector((state) => state.session.user);
+  const collectionsObj = useSelector((state) => state.collections[user?.id]);
+  const collections = collectionsObj ? Object.values(collectionsObj) : [];
+
   const commentsObj = useSelector(
     (state) => state.comments.commentsByItinerary?.[itineraryId]
   );
@@ -33,6 +41,7 @@ function ItineraryDetail() {
 
   const schedules = itinerary?.schedules;
 
+  const { setModalContent, closeModal } = useModal();
   const [commentInput, setCommentInput] = useState("");
   const [errors, setErrors] = useState({});
 
@@ -41,9 +50,14 @@ function ItineraryDetail() {
       dispatch(thunkItineraryById(itineraryId));
       dispatch(thunkAllComments(itineraryId));
     }
-  }, [dispatch, itineraryId]);
+    if (user) {
+      dispatch(thunkAllCollections(user.id));
+    }
+  }, [dispatch, itineraryId, user]);
 
-  if (!itinerary) return <Loading />;
+  const isItineraryInCollection = collections?.some(
+    (collection) => collection.itinerary_id === parseInt(itineraryId)
+  );
 
   const handleCollectClick = async (itineraryId) => {
     if (user) {
@@ -54,14 +68,12 @@ function ItineraryDetail() {
 
   const handleAddComment = async () => {
     setErrors({});
-
     if (commentInput.length < 10) {
       setErrors({
         comment: "Please write at least 10 characters to share your thoughts.",
       });
       return;
     }
-
     await dispatch(
       thunkNewComment({ review: commentInput, itinerary_id: itineraryId })
     );
@@ -69,8 +81,21 @@ function ItineraryDetail() {
   };
 
   const handleRemoveComment = async (commentId) => {
-    await dispatch(thunkDeleteComment(commentId, itineraryId));
+    setModalContent(
+      <ConfirmDeleteModal
+        onDelete={() => handleRemoveConfirm(commentId)}
+        onClose={closeModal}
+        message={"Keep in mind that deleted comment can not be retrieved."}
+      />
+    );
   };
+
+  const handleRemoveConfirm = async (commentId) => {
+    await dispatch(thunkDeleteComment(commentId, itineraryId));
+    closeModal();
+  };
+
+  if (!itinerary) return <Loading />;
 
   return (
     <main className="itinerary-detail-page">
@@ -99,14 +124,14 @@ function ItineraryDetail() {
                 >
                   <button>Edit itinerary</button>
                 </div>
-              ) : (
+              ) : !isItineraryInCollection ? (
                 <div
                   className="detail-page-button"
                   onClick={() => handleCollectClick(itinerary.id)}
                 >
                   <button>Add to collection</button>
                 </div>
-              )
+              ) : null
             ) : (
               <div className="detail-page-button">
                 <button>
