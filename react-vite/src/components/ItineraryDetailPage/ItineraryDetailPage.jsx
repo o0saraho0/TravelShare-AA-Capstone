@@ -61,8 +61,13 @@ function ItineraryDetail() {
 
   const handleCollectClick = async (itineraryId) => {
     if (user) {
-      await dispatch(thunkAddCollection(itineraryId));
-      navigate("/collections/current");
+      dispatch(thunkAddCollection(itineraryId)).then(() => {
+        const popUpCollected = document.getElementById("collected");
+        popUpCollected.style.display = "block";
+        setTimeout(() => {
+          popUpCollected.style.display = "none";
+        }, 3000);
+      });
     }
   };
 
@@ -222,46 +227,50 @@ function ItineraryDetail() {
 
             <div>
               {comments
-                ? comments.map((comment) => (
-                    <div key={comment.id} className="all-comments">
-                      <div>
-                        <img
-                          className="profile-image"
-                          src={comment.user.profile_url}
-                          alt={comment.user.id}
-                        />
-                      </div>
-                      <div className="comment-content">
-                        <h3>{comment.user.username}</h3>
-                        <p>{comment.review}</p>
-                        <p className="time">
-                          {comment.updated_at.slice(5, 16)}
-                        </p>
-                        {user ? (
-                          user.id == comment.user.id ? (
-                            <div className="activity-control">
-                              <span>
-                                <OpenModalMenuItem
-                                  itemText={<FaEdit />}
-                                  modalComponent={
-                                    <CommentFormModal
-                                      itineraryId={itineraryId}
-                                      commentId={comment.id}
-                                    />
+                ? comments
+                    .sort((a, b) => b.id - a.id)
+                    .map((comment) => (
+                      <div key={comment.id} className="all-comments">
+                        <div>
+                          <img
+                            className="profile-image"
+                            src={comment.user.profile_url}
+                            alt={comment.user.id}
+                          />
+                        </div>
+                        <div className="comment-content">
+                          <h3>{comment.user.username}</h3>
+                          <p>{comment.review}</p>
+                          <p className="time">
+                            {comment.updated_at.slice(5, 16)}
+                          </p>
+                          {user ? (
+                            user.id == comment.user.id ? (
+                              <div className="activity-control">
+                                <span>
+                                  <OpenModalMenuItem
+                                    itemText={<FaEdit />}
+                                    modalComponent={
+                                      <CommentFormModal
+                                        itineraryId={itineraryId}
+                                        commentId={comment.id}
+                                      />
+                                    }
+                                  />
+                                </span>
+                                <span
+                                  onClick={() =>
+                                    handleRemoveComment(comment.id)
                                   }
-                                />
-                              </span>
-                              <span
-                                onClick={() => handleRemoveComment(comment.id)}
-                              >
-                                <FaDeleteLeft />
-                              </span>
-                            </div>
-                          ) : null
-                        ) : null}
+                                >
+                                  <FaDeleteLeft />
+                                </span>
+                              </div>
+                            ) : null
+                          ) : null}
+                        </div>
                       </div>
-                    </div>
-                  ))
+                    ))
                 : null}
             </div>
           </div>

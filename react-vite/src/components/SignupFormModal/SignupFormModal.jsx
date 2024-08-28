@@ -20,10 +20,12 @@ function SignupFormModal() {
     setErrors({});
     const newErrors = {};
 
+    if (!first_name) newErrors.first_name = "please provide your first name.";
+    if (!last_name) newErrors.last_name = "please provide your last name.";
     if (!/\S+@\S+\.\S+/.test(email))
       newErrors.email = "Please enter a valid email address.";
-    if (username.length < 4)
-      newErrors.username = "Username must be at least 4 characters.";
+    if (username.length < 4 || username.length > 20)
+      newErrors.username = "Username must be between 4 - 20 characters.";
     if (password.length < 6)
       newErrors.password = "Password must be at least 6 characters.";
     if (password !== confirmPassword)
@@ -58,9 +60,9 @@ function SignupFormModal() {
             type="text"
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
-            required
           />
         </label>
+        {errors.first_name && <p className="error">{errors.first_name}</p>}
 
         <label>
           Last Name
@@ -68,9 +70,9 @@ function SignupFormModal() {
             type="text"
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
-            required
           />
         </label>
+        {errors.last_name && <p className="error">{errors.last_name}</p>}
 
         <label>
           Username
@@ -78,7 +80,6 @@ function SignupFormModal() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
           />
         </label>
         {errors.username && <p className="error">{errors.username}</p>}
@@ -89,7 +90,6 @@ function SignupFormModal() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
         </label>
         {errors.email && <p className="error">{errors.email}</p>}
@@ -100,7 +100,6 @@ function SignupFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
         </label>
         {errors.password && <p className="error">{errors.password}</p>}
@@ -111,7 +110,6 @@ function SignupFormModal() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
             className={errors.password ? "error" : ""}
           />
         </label>
