@@ -1,6 +1,7 @@
 from app.models import db, Schedule, environment, SCHEMA
 from sqlalchemy.sql import text
 
+
 def seed_schedules():
     schedule1 = Schedule(
         day="Day 1",
@@ -122,8 +123,51 @@ def seed_schedules():
         day="Day 5",
         itinerary_id=7
     )
-    
-    
+    schedule31 = Schedule(
+        day="Day 1",
+        itinerary_id=8
+    )
+    schedule32 = Schedule(
+        day="Day 2",
+        itinerary_id=8
+    )
+    schedule33 = Schedule(
+        day="Day 3",
+        itinerary_id=8
+    )
+    schedule34 = Schedule(
+        day="Day 4",
+        itinerary_id=8
+    )
+    schedule35 = Schedule(
+        day="Day 5",
+        itinerary_id=8
+    )
+    schedule36 = Schedule(
+        day="Day 1",
+        itinerary_id=9
+    )
+    schedule37 = Schedule(
+        day="Day 2",
+        itinerary_id=9
+    )
+    schedule38 = Schedule(
+        day="Day 3",
+        itinerary_id=9
+    )
+    schedule39 = Schedule(
+        day="Day 4",
+        itinerary_id=9
+    )
+    schedule40 = Schedule(
+        day="Day 1",
+        itinerary_id=10
+    )
+    schedule41 = Schedule(
+        day="Day 2",
+        itinerary_id=10
+    )
+
     db.session.add(schedule1)
     db.session.add(schedule2)
     db.session.add(schedule3)
@@ -154,13 +198,25 @@ def seed_schedules():
     db.session.add(schedule28)
     db.session.add(schedule29)
     db.session.add(schedule30)
+    db.session.add(schedule31)
+    db.session.add(schedule32)
+    db.session.add(schedule33)
+    db.session.add(schedule34)
+    db.session.add(schedule35)
+    db.session.add(schedule36)
+    db.session.add(schedule37)
+    db.session.add(schedule38)
+    db.session.add(schedule39)
+    db.session.add(schedule40)
+    db.session.add(schedule41)
     db.session.commit()
 
 
 def undo_schedules():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.schedules RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.schedules RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM schedules"))
-        
+
     db.session.commit()

@@ -59,7 +59,30 @@ def seed_itineraries():
         traveler_id=1,
         category_id=3,
     )
-
+    itinerary8 = Itinerary(
+        title="Hawaii Family Vacation",
+        duration=5,
+        description="Enjoy a memorable family vacation in Hawaii with a blend of adventure, relaxation, and cultural experiences. From hiking the iconic Diamond Head to exploring the beautiful beaches and historic sites like Pearl Harbor, this itinerary offers something for everyone.",
+        preview_image_url="/images/Hawaii.jpg",
+        traveler_id=6,
+        category_id=2,
+    )
+    itinerary9 = Itinerary(
+        title="Pittsburgh Cultural and Scenic Trip",
+        duration=4,
+        description="Explore the cultural, historical, and scenic highlights of Pittsburgh. From iconic landmarks like the Duquesne Incline and the Cathedral of Learning to delicious local cuisine and memorable activities, this itinerary offers a comprehensive Pittsburgh experience.",
+        preview_image_url="/images/Pittsburgh4_01.jpg",
+        traveler_id=7,
+        category_id=1,
+    )
+    itinerary10 = Itinerary(
+        title="Sequoia and Kings Canyon National Parks Trip",
+        duration=2,
+        description="Discover the majestic beauty of Sequoia and Kings Canyon National Parks over two days. Explore the towering giant sequoias, breathtaking vistas, and serene meadows that make these parks a must-visit destination for nature lovers.",
+        preview_image_url="/images/Tree1_02.jpg",
+        traveler_id=8,
+        category_id=2,
+    )
 
     db.session.add(itinerary1)
     db.session.add(itinerary2)
@@ -68,13 +91,17 @@ def seed_itineraries():
     db.session.add(itinerary5)
     db.session.add(itinerary6)
     db.session.add(itinerary7)
+    db.session.add(itinerary8)
+    db.session.add(itinerary9)
+    db.session.add(itinerary10)
     db.session.commit()
 
 
 def undo_itineraries():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.itineraries RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.itineraries RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM itineraries"))
-        
+
     db.session.commit()
