@@ -44,8 +44,7 @@ function ItineraryForm({ itinerary, formType }) {
         "Description must be at least 10 characters long. Please provide more details on your itinerary.";
     if (!category_id) errorObj.category_id = "Category is required.";
     if (formType === "Create New Itinerary" && !preview_image_url)
-      errorObj.preview_image_url =
-        "A valid URL is required for the preview image.";
+      errorObj.preview_image_url = "An URL is required for the preview image.";
     return errorObj;
   };
 
