@@ -32,6 +32,9 @@ function CollectionsManage() {
       <ConfirmDeleteModal
         onDelete={() => handleDeleteConfirm(collectionId)}
         onClose={closeModal}
+        message={
+          "Sorry to know you want to delete it. You can always add it back later."
+        }
       />
     );
   };
