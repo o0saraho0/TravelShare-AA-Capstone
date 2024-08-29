@@ -23,7 +23,7 @@ function LandingPage() {
     }
   }, [dispatch, itinerariesObj]);
 
-  if (!itineraries) return <Loading />;
+  if (!itinerariesObj) return <Loading />;
 
   return (
     <main>
