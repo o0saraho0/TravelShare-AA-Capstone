@@ -18,19 +18,20 @@ export default function Layout() {
     dispatch(thunkAuthenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  const pathsWithoutNavigation = [
+  const pathsWithoutNavigationAndFooter = [
     `/itineraries/${itineraryId}`,
     `/itineraries/${itineraryId}/activities`,
+    `itineraries/new`,
   ];
 
-  const showNavigation = !pathsWithoutNavigation.some((path) =>
-    location.pathname.includes(path)
+  const showNavigationAndFooter = !pathsWithoutNavigationAndFooter.some(
+    (path) => location.pathname.includes(path)
   );
 
   return (
     <>
       <ModalProvider>
-        {showNavigation ? (
+        {showNavigationAndFooter ? (
           <Navigation />
         ) : (
           <div
@@ -43,7 +44,7 @@ export default function Layout() {
         )}
         {isLoaded && <Outlet />}
         <Modal />
-        <Footer />
+        {showNavigationAndFooter ? <Footer /> : null}
       </ModalProvider>
     </>
   );

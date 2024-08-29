@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkNewItinerary, thunkEditItinerary } from "../../redux/itinerary";
+import { thunkUploadImage, thunkEditImage } from "../../redux/image";
 import "./ItineraryForm.css";
 
 function ItineraryForm({ itinerary, formType }) {
@@ -12,9 +13,11 @@ function ItineraryForm({ itinerary, formType }) {
   const [title, setTitle] = useState("");
   const [duration, setDuration] = useState(0);
   const [description, setDescription] = useState("");
-  const [preview_image_url, setPreviewImage] = useState("");
+  const [preview_image_url, setPreviewImage] = useState(null);
+  const [previewImageSrc, setPreviewImageSrc] = useState(null);
   const [category_id, setCategoryId] = useState("");
   const [errors, setErrors] = useState({});
+  const [imageLoading, setImageLoading] = useState(false);
   const [originalDuration, setOriginalDuration] = useState(null);
 
   useEffect(() => {
@@ -22,7 +25,8 @@ function ItineraryForm({ itinerary, formType }) {
       setTitle(itinerary.title || "");
       setDuration(itinerary.duration || 0);
       setDescription(itinerary.description || "");
-      setPreviewImage(itinerary.preview_image_url || "");
+      setPreviewImage(itinerary.preview_image_url || null);
+      setPreviewImageSrc(itinerary.preview_image_url || null);
       setCategoryId(itinerary.category_id || "");
       setOriginalDuration(itinerary.duration || 0);
     }
@@ -30,6 +34,7 @@ function ItineraryForm({ itinerary, formType }) {
 
   const validateForm = () => {
     const errorObj = {};
+    const ALLOWED_EXTENSIONS = new Set(["pdf", "png", "jpg", "jpeg", "gif"]);
 
     if (!title) errorObj.title = "Title is required.";
     if (title.length < 5 || title.length > 100)
@@ -43,9 +48,51 @@ function ItineraryForm({ itinerary, formType }) {
       errorObj.description =
         "Description must be at least 10 characters long. Please provide more details on your itinerary.";
     if (!category_id) errorObj.category_id = "Category is required.";
-    if (formType === "Create New Itinerary" && !preview_image_url)
-      errorObj.preview_image_url = "An URL is required for the preview image.";
+
+    if (formType === "Create New Itinerary" && !preview_image_url) {
+      errorObj.preview_image_url = "Preview image is required.";
+    } else if (preview_image_url instanceof File) {
+      const fileExtension = preview_image_url.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+      if (!ALLOWED_EXTENSIONS.has(fileExtension)) {
+        errorObj.preview_image_url =
+          "Unsupported file type. Please upload a file in one of the following formats: pdf, png, jpg, jpeg, gif.";
+      }
+    }
     return errorObj;
+  };
+
+  const handleImageUpload = async () => {
+    if (preview_image_url instanceof File) {
+      setImageLoading(true);
+      const formData = new FormData();
+      formData.append("preview_image_url", preview_image_url);
+
+      let imageResponse;
+      if (formType === "Update Your Itinerary") {
+        imageResponse = await dispatch(thunkEditImage(formData, itinerary.id));
+      } else {
+        imageResponse = await dispatch(thunkUploadImage(formData));
+      }
+
+      setImageLoading(false);
+
+      if (imageResponse && imageResponse.preview_image_url) {
+        return imageResponse.preview_image_url;
+      } else {
+        setErrors({ preview_image_url: "Failed to upload image." });
+        return null;
+      }
+    }
+    return preview_image_url;
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setPreviewImage(file);
+    setPreviewImageSrc(URL.createObjectURL(file));
   };
 
   const handleSubmit = async (e) => {
@@ -57,13 +104,16 @@ function ItineraryForm({ itinerary, formType }) {
     }
     setErrors({});
 
+    const imageUrl = await handleImageUpload();
+    if (!imageUrl) return;
+
     const itineraryData = {
       title,
       duration,
       description,
-      preview_image_url,
-      traveler_id: user.id,
+      preview_image_url: imageUrl,
       category_id,
+      traveler_id: user.id,
     };
 
     let newItinerary;
@@ -85,7 +135,11 @@ function ItineraryForm({ itinerary, formType }) {
 
   return (
     <main>
-      <form onSubmit={handleSubmit} className="itinerary-form">
+      <form
+        onSubmit={handleSubmit}
+        className="itinerary-form"
+        encType="multipart/form-data"
+      >
         <h1>{formType}</h1>
         <div>
           <label>
@@ -160,22 +214,31 @@ function ItineraryForm({ itinerary, formType }) {
             <h3>Preview Image</h3>
           </label>
           <p>
-            Add a URL for an image that represents your itinerary. This image
-            will be used as a preview or cover image and should visually capture
-            the essence of the trip.
+            Add an image that represents your itinerary. This image will be used
+            as a preview and cover image of your itinerary.
           </p>
-          <input
-            name={preview_image_url}
-            value={preview_image_url}
-            onChange={(e) => setPreviewImage(e.target.value)}
-          ></input>
-          {errors.preview_image_url && (
-            <p className="error">{errors.preview_image_url}</p>
-          )}
+          <div className="image-upload-container">
+            <input
+              type="file"
+              accept="image/*"
+              name="preview_image_url"
+              onChange={handleImageChange}
+            />
+            {previewImageSrc && (
+              <div className="image-preview">
+                <img src={previewImageSrc} alt="preview" />
+              </div>
+            )}
+            {errors.preview_image_url && (
+              <p className="error">{errors.preview_image_url}</p>
+            )}
+          </div>
         </div>
 
         <div className="landing-signed-in button-center">
-          <button type="submit">Next</button>
+          <button type="submit" disabled={imageLoading}>
+            {imageLoading ? "Uploading image..." : "Continue to activities"}
+          </button>
         </div>
       </form>
     </main>

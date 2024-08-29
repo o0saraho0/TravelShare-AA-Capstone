@@ -7,6 +7,10 @@ import {
   thunkDeleteActivity,
   thunkUpdateActivity,
 } from "../../redux/activity";
+import {
+  thunkUploadActivityImage,
+  thunkEditActivityImage,
+} from "../../redux/image";
 import { FaLocationArrow } from "react-icons/fa6";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
@@ -29,6 +33,7 @@ function ActivitiesForm() {
   const [showActivityForm, setShowActivityForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentActivityId, setCurrentActivityId] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
   const [activityData, setActivityData] = useState({
@@ -36,7 +41,7 @@ function ActivitiesForm() {
     longitude: "",
     latitude: "",
     description: "",
-    place_image_url: "",
+    place_image_url: null,
     schedule_id: null,
   });
 
@@ -52,7 +57,39 @@ function ActivitiesForm() {
   };
 
   const handleInputChange = (e) => {
-    setActivityData({ ...activityData, [e.target.name]: e.target.value });
+    const { name, value, files } = e.target;
+    if (name === "place_image_url" && files.length > 0) {
+      setActivityData({ ...activityData, [name]: files[0] });
+    } else {
+      setActivityData({ ...activityData, [name]: value });
+    }
+  };
+
+  const handleImageUpload = async () => {
+    if (activityData.place_image_url instanceof File) {
+      setImageLoading(true);
+      const formData = new FormData();
+      formData.append("place_image_url", activityData.place_image_url);
+
+      let imageResponse;
+      if (isEditing && currentActivityId) {
+        imageResponse = await dispatch(
+          thunkEditActivityImage(formData, currentActivityId)
+        );
+      } else {
+        imageResponse = await dispatch(thunkUploadActivityImage(formData));
+      }
+
+      setImageLoading(false);
+
+      if (imageResponse && imageResponse.place_image_url) {
+        return imageResponse.place_image_url;
+      } else {
+        setErrors({ place_image_url: "Failed to upload image." });
+        return null;
+      }
+    }
+    return null;
   };
 
   const updateActivity = (searchPosition) => {
@@ -70,7 +107,7 @@ function ActivitiesForm() {
       longitude: "",
       latitude: "",
       description: "",
-      place_image_url: "",
+      place_image_url: null,
       schedule_id: null,
     });
     setShowActivityForm(false);
@@ -111,6 +148,7 @@ function ActivitiesForm() {
 
   const validateForm = () => {
     const newErrors = {};
+    const ALLOWED_EXTENSIONS = new Set(["pdf", "png", "jpg", "jpeg", "gif"]);
     if (!activityData.place) newErrors.place = "Place is required";
     if (activityData.place.length < 5 || activityData.place.length > 100)
       newErrors.place =
@@ -119,6 +157,16 @@ function ActivitiesForm() {
       newErrors.longitude = "Valid longitude is required";
     if (!activityData.latitude || isNaN(activityData.latitude))
       newErrors.latitude = "Valid latitude is required";
+    if (activityData.place_image_url instanceof File) {
+      const fileExtension = activityData.place_image_url.name
+        .split(".")
+        .pop()
+        .toLowerCase();
+      if (!ALLOWED_EXTENSIONS.has(fileExtension)) {
+        newErrors.place_image_url =
+          "Only pdf, png, jpg, jpeg, gif are supported.";
+      }
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -130,16 +178,23 @@ function ActivitiesForm() {
       return;
     }
 
+    const imageUrl = await handleImageUpload();
+
+    const updatedActivityData = {
+      ...activityData,
+      place_image_url: imageUrl || activityData.place_image_url,
+    };
+
     if (isEditing && currentActivityId) {
       const updatedActivity = await dispatch(
-        thunkUpdateActivity({ ...activityData, id: currentActivityId })
+        thunkUpdateActivity({ ...updatedActivityData, id: currentActivityId })
       );
       if (updatedActivity) {
         await dispatch(thunkItineraryById(itineraryId));
         resetForm();
       }
     } else {
-      const newActivity = await dispatch(thunkNewActivity(activityData));
+      const newActivity = await dispatch(thunkNewActivity(updatedActivityData));
       if (newActivity) {
         await dispatch(thunkItineraryById(itineraryId));
         resetForm();
@@ -229,12 +284,14 @@ function ActivitiesForm() {
                       <form
                         onSubmit={handleFormSubmit}
                         className="activity-form"
+                        encType="multipart/form-data"
                       >
                         <div>
                           <p className="hint">
-                            You can use the map search box to find a location{" "}
+                            You can use the map search box to find a location
                             <br />
-                            and then confirm to add to your activity
+                            and confirm to add to your activity
+                            <br />
                           </p>
                         </div>
                         <input
@@ -267,6 +324,10 @@ function ActivitiesForm() {
                         {errors.latitude && (
                           <p className="error">{errors.latitude}</p>
                         )}
+                        <p className="hint">
+                          <br />
+                          description and image are optional
+                        </p>
                         <textarea
                           name="description"
                           value={activityData.description}
@@ -274,14 +335,19 @@ function ActivitiesForm() {
                           placeholder="Description"
                         />
                         <input
-                          type="text"
+                          type="file"
+                          accept="image/*"
                           name="place_image_url"
-                          value={activityData.place_image_url}
                           onChange={handleInputChange}
-                          placeholder="Image URL"
                         />
+                        {errors.place_image_url && (
+                          <p className="error">{errors.place_image_url}</p>
+                        )}
+
                         <div className="activity-form-buttons">
-                          <button type="submit">Save</button>
+                          <button type="submit">
+                            {imageLoading ? "Uploading" : "Save"}
+                          </button>
                           <button type="button" onClick={handleCancelClick}>
                             Cancel
                           </button>

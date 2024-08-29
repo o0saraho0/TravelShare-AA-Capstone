@@ -16,6 +16,10 @@
 
 .manage-item * {
   text-align: center;
+}
+
+.manage-item h3,
+.manage-item p {
   margin-top: 5px;
 }
 
