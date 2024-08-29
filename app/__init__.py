@@ -11,6 +11,7 @@ from .api.itineraries_routes import itineraries_routes
 from .api.activities_routes import activities_routes
 from .api.comments_routes import comments_routes
 from .api.collections_routes import collections_routes
+from .api.images_routes import images_routes
 
 from .seeds import seed_commands
 from .config import Config
@@ -37,6 +38,8 @@ app.register_blueprint(itineraries_routes, url_prefix='/api/itineraries')
 app.register_blueprint(activities_routes, url_prefix='/api/activities')
 app.register_blueprint(comments_routes, url_prefix='/api/comments')
 app.register_blueprint(collections_routes, url_prefix='/api/collections')
+app.register_blueprint(images_routes, url_prefix='/api/images')
+
 
 db.init_app(app)
 Migrate(app, db)
@@ -77,9 +80,9 @@ def api_help():
     Returns all API routes and their doc strings
     """
     acceptable_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-    route_list = { rule.rule: [[ method for method in rule.methods if method in acceptable_methods ],
-                    app.view_functions[rule.endpoint].__doc__ ]
-                    for rule in app.url_map.iter_rules() if rule.endpoint != 'static' }
+    route_list = {rule.rule: [[method for method in rule.methods if method in acceptable_methods],
+                              app.view_functions[rule.endpoint].__doc__]
+                  for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
     return route_list
 
 

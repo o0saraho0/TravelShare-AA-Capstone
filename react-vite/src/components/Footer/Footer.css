@@ -21,7 +21,7 @@ footer {
 }
 
 .sarah-pic img {
-  height: 60px;
+  height: 80px;
   width: auto;
   aspect-ratio: 1 / 1;
   border-radius: 50px;
@@ -43,9 +43,18 @@ footer {
 }
 
 .sarah-contact a {
-  font-size: larger;
+  font-size: x-large;
+  color: #55ad9b;
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
 .sarah-contact a:hover {
+  transform: scale(1.2);
+}
+
+.app-intro p a {
+  font-style: italic;
+  font-weight: 500;
   color: #55ad9b;
 }

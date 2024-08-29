@@ -102,6 +102,7 @@ form label {
   align-items: center;
   gap: 6px;
   color: grey;
+  margin-top: 10px;
 }
 
 .profile-image {
@@ -121,12 +122,25 @@ form label {
   max-width: auto;
 }
 
-.grid-item * {
+.grid-item h3,
+.grid-item p {
   margin-top: 10px;
 }
 
-.image-container img {
+.image-container {
+  overflow: hidden;
   border-radius: 10px;
+  width: 100%;
+}
+
+.image-container img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.image-container img:hover {
+  transform: scale(1.1);
 }
 
 .time {

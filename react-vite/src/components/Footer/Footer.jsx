@@ -26,7 +26,8 @@ function Footer() {
         </div>
         <div className="app-intro">
           <p>
-            HelloWorld is a travel planning application inspired by Wanderlog
+            HelloWorld is a travel planning application inspired by{" "}
+            <a href="https://wanderlog.com/home">Wanderlog</a>
           </p>
           <p>
             Developed by Sarah as her App Academy coding bootcamp capstone

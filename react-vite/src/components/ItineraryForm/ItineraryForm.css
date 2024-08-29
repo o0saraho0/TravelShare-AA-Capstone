@@ -40,3 +40,19 @@
   padding: 2px 8px;
   box-shadow: none;
 }
+
+.preview-image-section {
+  margin-bottom: 20px;
+}
+
+.image-preview {
+  margin-top: 10px;
+}
+
+.image-preview img {
+  max-width: 50%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

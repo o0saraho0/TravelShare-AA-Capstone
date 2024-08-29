@@ -10,6 +10,7 @@ import itineraryReducer from "./itinerary";
 import activityReducer from "./activity";
 import collectionReducer from "./collection";
 import commentReducer from "./comment";
+import imageReducer from "./image";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   activities: activityReducer,
   collections: collectionReducer,
   comments: commentReducer,
+  images: imageReducer,
 });
 
 let enhancer;

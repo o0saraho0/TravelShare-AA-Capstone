@@ -34,9 +34,9 @@ function ProfileButton() {
 
   const closeMenu = () => setShowMenu(false);
 
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    dispatch(thunkLogout());
+    await dispatch(thunkLogout());
     closeMenu();
     navigate("/");
   };
@@ -69,8 +69,22 @@ function ProfileButton() {
                 <p>{user.email}</p>
               </div>
               <div className="clickable">
-                <p onClick={() => {navigate("/itineraries/current"); closeMenu}}>Manage Itineraries</p>
-                <p onClick={() => {navigate("/collections/current"); closeMenu}}>Your Collections</p>
+                <p
+                  onClick={() => {
+                    navigate("/itineraries/current");
+                    closeMenu;
+                  }}
+                >
+                  Manage Itineraries
+                </p>
+                <p
+                  onClick={() => {
+                    navigate("/collections/current");
+                    closeMenu;
+                  }}
+                >
+                  Your Collections
+                </p>
                 <p onClick={logout}>Log Out</p>
               </div>
             </div>
