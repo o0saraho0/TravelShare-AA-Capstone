@@ -6,7 +6,7 @@ import SignupFormModal from "../SignupFormModal/SignupFormModal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import "./LoginForm.css";
 
-function LoginFormModal({text}) {
+function LoginFormModal({ text }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +32,7 @@ function LoginFormModal({text}) {
 
   const handleDemo = async () => {
     const demoUser = {
-      email: "john.doe@example.com",
+      email: "sarah.jiang@example.com",
       password: "password",
     };
     const serverResponse = await dispatch(thunkLogin(demoUser));
@@ -70,18 +70,19 @@ function LoginFormModal({text}) {
         </label>
         {errors.password && <p className="error">{errors.password}</p>}
         <button type="submit">Log In</button>
-        <button type="button" onClick={handleDemo}>Demo User</button>
+        <button type="button" onClick={handleDemo}>
+          Demo User
+        </button>
       </form>
       <div className="register">
-        <p>——————   New to HelloWorld?   ——————</p>
+        <p>—————— New to HelloWorld? ——————</p>
         <button className="cursor">
-        <OpenModalMenuItem
-          itemText="Register"
-          modalComponent={<SignupFormModal />}
-        />
+          <OpenModalMenuItem
+            itemText="Register"
+            modalComponent={<SignupFormModal />}
+          />
         </button>
       </div>
-      
     </>
   );
 }

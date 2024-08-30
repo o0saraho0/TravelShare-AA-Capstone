@@ -249,7 +249,9 @@ function ActivitiesForm() {
                             <FaLocationArrow />
                             {activity.place}
                           </span>
-                          <p>{activity.description}</p>
+                          <div className="activity-description">
+                            <p>{activity.description}</p>
+                          </div>
                           <div className="activity-control">
                             <span onClick={() => handleEditActivity(activity)}>
                               <p>Edit activity</p>

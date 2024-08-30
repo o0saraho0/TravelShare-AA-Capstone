@@ -56,7 +56,7 @@ def seed_itineraries():
         duration=6,
         description="Cruise along the iconic Pacific Coast Highway with this road trip itinerary, which takes you from the scenic cliffs of Big Sur to the charming coastal towns of California. Experience the rugged coastline, breathtaking ocean views, and must-see stops like Monterey, Santa Barbara, and Malibu.",
         preview_image_url="/images/CaliforniaHW1_01.webp",
-        traveler_id=1,
+        traveler_id=6,
         category_id=3,
     )
     itinerary8 = Itinerary(
@@ -64,7 +64,7 @@ def seed_itineraries():
         duration=5,
         description="Enjoy a memorable family vacation in Hawaii with a blend of adventure, relaxation, and cultural experiences. From hiking the iconic Diamond Head to exploring the beautiful beaches and historic sites like Pearl Harbor, this itinerary offers something for everyone.",
         preview_image_url="/images/Hawaii.jpg",
-        traveler_id=6,
+        traveler_id=1,
         category_id=2,
     )
     itinerary9 = Itinerary(
@@ -72,7 +72,7 @@ def seed_itineraries():
         duration=4,
         description="Explore the cultural, historical, and scenic highlights of Pittsburgh. From iconic landmarks like the Duquesne Incline and the Cathedral of Learning to delicious local cuisine and memorable activities, this itinerary offers a comprehensive Pittsburgh experience.",
         preview_image_url="/images/Pittsburgh4_01.jpg",
-        traveler_id=7,
+        traveler_id=1,
         category_id=1,
     )
     itinerary10 = Itinerary(
@@ -82,6 +82,86 @@ def seed_itineraries():
         preview_image_url="/images/Tree1_02.jpg",
         traveler_id=8,
         category_id=2,
+    )
+    itinerary11 = Itinerary(
+        title="Get Lost in Los Angeles",
+        duration=2,
+        description="The city of stars and angels, with enough activities you'll never run out of things to do. Enjoy this itinerary of amazing activities you don't want to miss out on!",
+        preview_image_url="/images/LA1_02.jpg",
+        traveler_id=2,
+        category_id=1,
+    )
+    itinerary12 = Itinerary(
+        title="New York! New York!",
+        duration=2,
+        description="Experience the electrifying energy of New York City over two unforgettable days. Begin with a stroll through Central Park, where you can relax by the lake, visit the zoo, or enjoy a picnic on the great lawn. Explore the iconic landmarks of Times Square, the Empire State Building, and Rockefeller Center. Discover the rich history at the Statue of Liberty and Ellis Island, then immerse yourself in the cultural offerings of the Metropolitan Museum of Art and the American Museum of Natural History. End your days with a Broadway show and dining at some of NYC's finest restaurants.",
+        preview_image_url="/images/NY1_02.jpg",
+        traveler_id=5,
+        category_id=1,
+    )
+    itinerary13 = Itinerary(
+        title="A Weekend in Boston",
+        duration=2,
+        description="Step back in time as you explore the historic charm of Boston, a city rich with American history and cultural heritage. Walk along the Freedom Trail, visiting key landmarks such as Paul Revere's House, the Old North Church, and the Boston Tea Party Ships and Museum. Take in the beauty of the Boston Public Garden, enjoy a boat ride on the famous Swan Boats, and explore the bustling neighborhoods of Beacon Hill and the North End. Don't miss the chance to visit prestigious universities like Harvard and MIT, and end your day with a relaxing evening on the waterfront.",
+        preview_image_url="/images/Boston1_02.jpg",
+        traveler_id=5,
+        category_id=1,
+    )
+    itinerary14 = Itinerary(
+        title="Yosemite Bliss: Nature's Playground",
+        duration=2,
+        description="Discover the awe-inspiring beauty of Yosemite National Park over a two-day exploration. Witness the grandeur of Yosemite Valley, home to famous landmarks such as El Capitan, Half Dome, and Bridalveil Fall. Hike through picturesque trails leading to majestic waterfalls, including the towering Yosemite Falls. Visit the tranquil Mariposa Grove, where you'll find ancient giant sequoias standing tall for centuries. Take in panoramic views from Glacier Point, and enjoy stargazing under the pristine night sky. Whether you're hiking, photographing, or simply relaxing, Yosemite offers a nature experience like no other.",
+        preview_image_url="/images/Yosemite1_03.jpg",
+        traveler_id=1,
+        category_id=2,
+    )
+    itinerary15 = Itinerary(
+        title="Jazz & Jambalaya: New Orleans Experience",
+        duration=2,
+        description="Immerse yourself in the vibrant culture of New Orleans, where music, food, and history come together in perfect harmony. Experience the soulful sounds of jazz at iconic venues on Frenchmen Street, and take a riverboat cruise along the Mississippi River. Visit the historic Garden District with its grand mansions and take a guided tour of the hauntingly beautiful cemeteries.",
+        preview_image_url="/images/NO1_01.jpg",
+        traveler_id=8,
+        category_id=1,
+    )
+    itinerary16 = Itinerary(
+        title="Tropical Getaway: 48 Hours in Key West",
+        duration=2,
+        description="Escape to the sun-soaked paradise of Key West, a tropical island renowned for its laid-back atmosphere, vibrant nightlife, and stunning natural beauty. Spend your days exploring the colorful coral reefs while snorkeling or diving, or take a relaxing boat tour to spot dolphins and sea turtles. Stroll down the famous Duval Street, lined with charming shops, lively bars, and historic landmarks like the Ernest Hemingway Home and Museum.",
+        preview_image_url="/images/KeyWest1_03.jpg",
+        traveler_id=7,
+        category_id=2,
+    )
+    itinerary17 = Itinerary(
+        title="Joshua Tree & Death Valley",
+        duration=3,
+        description="Venture into the captivating desert landscapes of Joshua Tree and Death Valley, where unique natural wonders await. In Joshua Tree, marvel at the twisted, otherworldly Joshua trees, massive boulders, and stunning rock formations. Take a hike through Hidden Valley and enjoy panoramic views from Keys View. Continue your journey to Death Valley, the hottest place on Earth, where you'll find dramatic sand dunes, salt flats, and the mesmerizing Artist's Palette. Visit Badwater Basin, the lowest point in North America, and experience the surreal beauty of this arid wonderland.",
+        preview_image_url="/images/JoshuaTree1_03.webp",
+        traveler_id=2,
+        category_id=3,
+    )
+    itinerary18 = Itinerary(
+        title="Lake Tahoe Retreat: Mountains & Clear Waters",
+        duration=2,
+        description="Escape to the serene beauty of Lake Tahoe, where crystal-clear waters and majestic mountains create the perfect backdrop for relaxation and adventure. Spend your days kayaking, paddleboarding, or simply lounging on the sandy beaches. In the winter, enjoy skiing and snowboarding at world-class resorts. Indulge in lakeside dining with fresh, locally-sourced cuisine and unwind with a sunset cruise on the tranquil waters of Lake Tahoe.",
+        preview_image_url="/images/Tahoe1_01.webp",
+        traveler_id=7,
+        category_id=2,
+    )
+    itinerary19 = Itinerary(
+        title="Urban Adventures - Toronto",
+        duration=2,
+        description="Explore the diverse and lively city of Toronto over a two-day adventure, where the city's vibrant atmosphere and cultural richness await you at every corner. Stroll through bustling urban streets lined with towering skyscrapers, iconic landmarks, and historic buildings that tell the story of the city's past.",
+        preview_image_url="/images/Toronto1_01.webp",
+        traveler_id=4,
+        category_id=1,
+    )
+    itinerary20 = Itinerary(
+        title="Shenzhen - City of Innovation",
+        duration=2,
+        description="Immerse yourself in the vibrant atmosphere of Shenzhen, a city known for its rapid development and innovative spirit. Over the course of two days, explore bustling districts filled with modern architecture, cutting-edge technology, and cultural attractions. Enjoy the fusion of traditional Chinese culture with the latest trends in fashion, art, and entertainment. Relax in beautiful parks and gardens, offering a peaceful escape from the city's energetic pace.",
+        preview_image_url="/images/Shenzhen1_01.jpg",
+        traveler_id=3,
+        category_id=1,
     )
 
     db.session.add(itinerary1)
@@ -94,6 +174,16 @@ def seed_itineraries():
     db.session.add(itinerary8)
     db.session.add(itinerary9)
     db.session.add(itinerary10)
+    db.session.add(itinerary11)
+    db.session.add(itinerary12)
+    db.session.add(itinerary13)
+    db.session.add(itinerary14)
+    db.session.add(itinerary15)
+    db.session.add(itinerary16)
+    db.session.add(itinerary17)
+    db.session.add(itinerary18)
+    db.session.add(itinerary19)
+    db.session.add(itinerary20)
     db.session.commit()
 
 

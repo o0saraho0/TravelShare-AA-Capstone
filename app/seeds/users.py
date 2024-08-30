@@ -5,70 +5,69 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     user1 = User(
-        username="JohnD",
-        first_name='John',
-        last_name='Doe',
-        email="john.doe@example.com",
+        username="o0saraho0",
+        first_name='Sarah',
+        last_name='Jiang',
+        email="sarah.jiang@example.com",
         password="password",
-        profile_url="/images/profile1.jpg",
+        profile_url="/images/profile_Sarah.JPG",
     )
     user2 = User(
-        username="JaneS",
-        first_name='Jane',
-        last_name='Smith',
-        email="jane.smith@example.com",
+        username="Rosebud",
+        first_name='Rose',
+        last_name='Montoya',
+        email="rose.montoya@example.com",
         password="password",
-        profile_url="/images/profile2.jpg",
+        profile_url="/images/profile_Rose.jpeg",
     )
     user3 = User(
-        username="AliceJ",
-        first_name='Alice',
-        last_name='Johnson',
-        email="alice.johnson@example.com",
+        username="Shanda",
+        first_name='Shanda',
+        last_name='Wang',
+        email="shanda.wang@example.com",
         password="password",
-        profile_url="/images/profile3.jpg",
+        profile_url="/images/profile_Shanda.webp",
     )
     user4 = User(
-        username="EmilyD",
-        first_name='Emily',
-        last_name='Davis',
-        email="emily.davis@example.com",
+        username="Hayden",
+        first_name='Hayden',
+        last_name='Galyean',
+        email="hayden.galyean@example.com",
         password="password",
-        profile_url="/images/profile4.jpg",
+        profile_url="/images/profile_Hayden.jpeg",
     )
     user5 = User(
-        username="SarahW",
-        first_name='Sarah',
-        last_name='Wilson',
-        email="sarah.wilson@example.com",
+        username="Laiba",
+        first_name='Laiba',
+        last_name='Afzal',
+        email="laiba.afzal@example.com",
         password="password",
-        profile_url="/images/profile5.jpg",
+        profile_url="/images/profile_Laiba.jpeg",
     )
     user6 = User(
-        username="RobertB",
-        first_name='Robert',
-        last_name='Brown',
-        email="robert.brown@example.com",
+        username="Mengxuan",
+        first_name='Mengxuan',
+        last_name='Liang',
+        email="mengxuan.liang@example.com",
         password="password",
-        profile_url="/images/profile6.jpg",
+        profile_url="/images/profile_Mengxuan.png",
     )
     user7 = User(
-        username="MichaelM",
-        first_name='Michael',
-        last_name='Miller',
-        email="michael.miller@example.com",
+        username="Caryn",
+        first_name='Caryn',
+        last_name='Wang',
+        email="caryn.wang@example.com",
         password="password",
-        profile_url="/images/profile7.jpg",
+        profile_url="/images/profile_Caryn.webp",
     )
     user8 = User(
-        username="LauraA",
-        first_name='Laura',
-        last_name='Anderson',
-        email="laura.anderson@example.com",
+        username="Alan",
+        first_name='Alan',
+        last_name='Chang',
+        email="alan.chang@example.com",
         password="password",
-        profile_url="/images/profile8.jpg",
+        profile_url="/images/profile_Alan.jpeg",
     )
-
 
     db.session.add(user1)
     db.session.add(user2)
@@ -89,8 +88,9 @@ def seed_users():
 # it will reset the primary keys for you as well.
 def undo_users():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
+
     db.session.commit()

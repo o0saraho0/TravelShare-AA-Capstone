@@ -11,7 +11,7 @@ function Footer() {
         <div className="footer-content">
           <div className="sarah-content inline">
             <div className="sarah-pic">
-              <img src="/images/Sarah.JPG" alt="Sarah" />
+              <img src="/images/profile_Sarah.JPG" alt="Sarah" />
             </div>
             <div className="sarah-info">
               <p>Sarah Jiang</p>
