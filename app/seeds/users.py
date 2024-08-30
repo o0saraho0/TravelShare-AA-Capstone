@@ -66,7 +66,7 @@ def seed_users():
         last_name='Chang',
         email="alan.chang@example.com",
         password="password",
-        profile_url="/images/profile_Alan.jpeg",
+        profile_url="/images/profile_Alan.webp",
     )
 
     db.session.add(user1)

@@ -4,6 +4,7 @@ const ITINERARIES_BY_CURRENT_USER = "itinerary/itinerariesByCurrentUser";
 const CREATE_ITINERARY = "itinerary/createItinerary";
 const DELETE_ITINERARY = "itinerary/deleteItinerary";
 const EDIT_ITINERARY = "itinerary/editItinerary";
+const CLEAR_ITINERARIES = "itinerary/clearItineraries";
 
 const allItineraries = (itineraries) => ({
   type: ALL_ITINERARIES,
@@ -34,6 +35,11 @@ const deleteItinerary = (itineraryId) => ({
 const editItinerary = (itinerary) => ({
   type: EDIT_ITINERARY,
   payload: itinerary,
+});
+
+export const clearItineraries = () => ({
+  type: CLEAR_ITINERARIES,
+  payload: {},
 });
 
 // get itineraries owned by current user
@@ -242,6 +248,11 @@ function itineraryReducer(state = initialState, action) {
         newState["itinerariesByCurrentUser"] = newItinerariesByCurrentUser;
       }
       return { ...state, ...newState };
+    }
+    case CLEAR_ITINERARIES: {
+      const newState = { ...state };
+      delete newState.itinerariesByCurrentUser;
+      return newState;
     }
     default:
       return state;

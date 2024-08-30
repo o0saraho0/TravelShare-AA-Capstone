@@ -37,6 +37,7 @@ function ProfileButton() {
   const logout = async (e) => {
     e.preventDefault();
     await dispatch(thunkLogout());
+
     closeMenu();
     navigate("/");
   };
@@ -73,7 +74,7 @@ function ProfileButton() {
                   <p
                     onClick={() => {
                       navigate("/itineraries/current");
-                      closeMenu;
+                      closeMenu();
                     }}
                   >
                     Manage Itineraries
@@ -81,7 +82,7 @@ function ProfileButton() {
                   <p
                     onClick={() => {
                       navigate("/collections/current");
-                      closeMenu;
+                      closeMenu();
                     }}
                   >
                     Your Collections

@@ -86,7 +86,7 @@ def seed_itineraries():
     itinerary11 = Itinerary(
         title="Get Lost in Los Angeles",
         duration=2,
-        description="The city of stars and angels, with enough activities you'll never run out of things to do. Enjoy this itinerary of amazing activities you don't want to miss out on!",
+        description="The city of stars and angels, Los Angeles is a vibrant metropolis where dreams come true and creativity thrives. With its iconic landmarks, diverse neighborhoods, and world-renowned entertainment, LA offers a plethora of activities that ensure you’ll never run out of things to do. Whether you’re strolling along the Hollywood Walk of Fame, catching a breathtaking sunset at Santa Monica Pier, exploring the eclectic boutiques of Venice Beach, or indulging in world-class cuisine in Downtown LA, there’s something for everyone. Get ready for an unforgettable adventure in the heart of Los Angeles!",
         preview_image_url="/images/LA1_02.jpg",
         traveler_id=2,
         category_id=1,
