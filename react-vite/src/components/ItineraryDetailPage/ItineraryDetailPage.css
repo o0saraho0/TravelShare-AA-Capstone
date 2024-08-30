@@ -139,3 +139,48 @@
   max-width: 100%;
   white-space: pre-wrap;
 }
+
+@media (max-width: 768px) {
+  .itinerary-detail-page {
+    display: block;
+  }
+
+  .map-container {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .itinerary-content {
+    width: 100%;
+  }
+
+  .schedule-item {
+    margin: 0px 20px;
+  }
+
+  .activity-item {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .activity-info {
+    text-align: left;
+    gap: 0px;
+  }
+
+  .activity-place {
+    margin-bottom: 0px;
+  }
+
+  .activity-image img {
+    width: 80vw;
+  }
+
+  .header h1,
+  .description {
+    margin-right: 30px;
+  }
+}

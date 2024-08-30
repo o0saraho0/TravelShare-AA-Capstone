@@ -15,7 +15,7 @@
 
 .landing-signed-out {
   margin: 0px 100px;
-  width: 50%;
+  width: 55%;
 }
 
 .landing-signed-out h1 {
@@ -25,7 +25,7 @@
 }
 
 .landing-signed-out h2 {
-  margin: 50px 0px;
+  margin: 30px 0px;
   font-size: 30px;
   font-style: italic;
 }
@@ -37,10 +37,9 @@
 
 .landing-signed-out-buttons {
   display: flex;
-  flex-wrap: wrap;
   gap: 50px;
-  margin-top: 50px;
   list-style-type: none;
+  margin: 30px 0px 100px 0px;
 }
 
 .landing-signed-out button {
@@ -116,4 +115,19 @@
 .landing-signed-in button:hover {
   cursor: pointer;
   background-color: #95d2b3;
+}
+
+@media (max-width: 768px) {
+  .landing-signed-out {
+    margin: 0px 100px;
+    width: 70%;
+  }
+
+  .landing-signed-out-buttons button {
+    margin-bottom: 50px;
+  }
+
+  .landing-personal {
+    gap: 30px;
+  }
 }

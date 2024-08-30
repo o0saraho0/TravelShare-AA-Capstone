@@ -42,56 +42,58 @@ function ProfileButton() {
   };
 
   return (
-    <>
-      <div onClick={toggleMenu}>
-        {user ? (
-          <>
-            <img
-              src={user.profile_url}
-              alt="Profile_URL"
-              className="profile-image"
+    <div className="profile-wrapper">
+      <div className="parent-container">
+        <div onClick={toggleMenu}>
+          {user ? (
+            <>
+              <img
+                src={user.profile_url}
+                alt="Profile_URL"
+                className="profile-image"
+              />
+            </>
+          ) : (
+            <OpenModalMenuItem
+              itemText="Sign in"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
             />
-          </>
-        ) : (
-          <OpenModalMenuItem
-            itemText="Sign in"
-            onItemClick={closeMenu}
-            modalComponent={<LoginFormModal />}
-          />
-        )}
-      </div>
-      {showMenu && (
-        <div ref={ulRef}>
-          {user && (
-            <div className="profile-dropdown">
-              <div className="unclickable">
-                <p>{user.username}</p>
-                <p>{user.email}</p>
-              </div>
-              <div className="clickable">
-                <p
-                  onClick={() => {
-                    navigate("/itineraries/current");
-                    closeMenu;
-                  }}
-                >
-                  Manage Itineraries
-                </p>
-                <p
-                  onClick={() => {
-                    navigate("/collections/current");
-                    closeMenu;
-                  }}
-                >
-                  Your Collections
-                </p>
-                <p onClick={logout}>Log Out</p>
-              </div>
-            </div>
           )}
         </div>
-      )}
-    </>
+        {showMenu && (
+          <div ref={ulRef} className="profile-dropdown">
+            {user && (
+              <div>
+                <div className="unclickable">
+                  <p>{user.username}</p>
+                  <p>{user.email}</p>
+                </div>
+                <div className="clickable">
+                  <p
+                    onClick={() => {
+                      navigate("/itineraries/current");
+                      closeMenu;
+                    }}
+                  >
+                    Manage Itineraries
+                  </p>
+                  <p
+                    onClick={() => {
+                      navigate("/collections/current");
+                      closeMenu;
+                    }}
+                  >
+                    Your Collections
+                  </p>
+                  <p onClick={logout}>Log Out</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
