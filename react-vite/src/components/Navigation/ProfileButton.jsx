@@ -62,9 +62,9 @@ function ProfileButton() {
           )}
         </div>
         {showMenu && (
-          <div ref={ulRef} className="profile-dropdown">
-            {user && (
-              <div>
+          <div>
+            {user ? (
+              <div ref={ulRef} className="profile-dropdown">
                 <div className="unclickable">
                   <p>{user.username}</p>
                   <p>{user.email}</p>
@@ -89,7 +89,7 @@ function ProfileButton() {
                   <p onClick={logout}>Log Out</p>
                 </div>
               </div>
-            )}
+            ) : null}
           </div>
         )}
       </div>

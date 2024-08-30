@@ -171,7 +171,9 @@ function ItineraryDetail() {
                             {activity.place}
                           </span>
                           {activity.description && (
-                            <p>{activity.description}</p>
+                            <div className="activity-description">
+                              <p>{activity.description}</p>
+                            </div>
                           )}
                         </div>
                         {activity.place_image_url && (

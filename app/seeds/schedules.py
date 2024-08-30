@@ -167,6 +167,90 @@ def seed_schedules():
         day="Day 2",
         itinerary_id=10
     )
+    schedule42 = Schedule(
+        day="Day 1",
+        itinerary_id=11
+    )
+    schedule43 = Schedule(
+        day="Day 2",
+        itinerary_id=11
+    )
+    schedule44 = Schedule(
+        day="Day 1",
+        itinerary_id=12
+    )
+    schedule45 = Schedule(
+        day="Day 2",
+        itinerary_id=12
+    )
+    schedule46 = Schedule(
+        day="Day 1",
+        itinerary_id=13
+    )
+    schedule47 = Schedule(
+        day="Day 2",
+        itinerary_id=13
+    )
+    schedule48 = Schedule(
+        day="Day 1",
+        itinerary_id=14
+    )
+    schedule49 = Schedule(
+        day="Day 2",
+        itinerary_id=14
+    )
+    schedule50 = Schedule(
+        day="Day 1",
+        itinerary_id=15
+    )
+    schedule51 = Schedule(
+        day="Day 2",
+        itinerary_id=15
+    )
+    schedule52 = Schedule(
+        day="Day 1",
+        itinerary_id=16
+    )
+    schedule53 = Schedule(
+        day="Day 2",
+        itinerary_id=16
+    )
+    schedule54 = Schedule(
+        day="Day 1",
+        itinerary_id=17
+    )
+    schedule55 = Schedule(
+        day="Day 2",
+        itinerary_id=17
+    )
+    schedule56 = Schedule(
+        day="Day 3",
+        itinerary_id=17
+    )
+    schedule57 = Schedule(
+        day="Day 1",
+        itinerary_id=18
+    )
+    schedule58 = Schedule(
+        day="Day 2",
+        itinerary_id=18
+    )
+    schedule59 = Schedule(
+        day="Day 1",
+        itinerary_id=19
+    )
+    schedule60 = Schedule(
+        day="Day 2",
+        itinerary_id=19
+    )
+    schedule61 = Schedule(
+        day="Day 1",
+        itinerary_id=20
+    )
+    schedule62 = Schedule(
+        day="Day 2",
+        itinerary_id=20
+    )
 
     db.session.add(schedule1)
     db.session.add(schedule2)
@@ -209,6 +293,27 @@ def seed_schedules():
     db.session.add(schedule39)
     db.session.add(schedule40)
     db.session.add(schedule41)
+    db.session.add(schedule42)
+    db.session.add(schedule43)
+    db.session.add(schedule44)
+    db.session.add(schedule45)
+    db.session.add(schedule46)
+    db.session.add(schedule47)
+    db.session.add(schedule48)
+    db.session.add(schedule49)
+    db.session.add(schedule50)
+    db.session.add(schedule51)
+    db.session.add(schedule52)
+    db.session.add(schedule53)
+    db.session.add(schedule54)
+    db.session.add(schedule55)
+    db.session.add(schedule56)
+    db.session.add(schedule57)
+    db.session.add(schedule58)
+    db.session.add(schedule59)
+    db.session.add(schedule60)
+    db.session.add(schedule61)
+    db.session.add(schedule62)
     db.session.commit()
 
 

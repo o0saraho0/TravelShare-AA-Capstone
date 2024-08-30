@@ -12,6 +12,19 @@ nav {
   width: 80px;
 }
 
+.home-link img:hover {
+  animation: rotate-animation 0.5s linear;
+}
+
+@keyframes rotate-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .nav-categories {
   width: 55%;
   font-size: large;
