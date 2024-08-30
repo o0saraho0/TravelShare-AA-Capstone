@@ -12,6 +12,7 @@ import CreateItinerary from "../components/ItineraryForm/CreateItinerary";
 import EditItinerary from "../components/ItineraryForm/EditItinerary";
 import ActivitiesForm from "../components/ActivitiesForm";
 import CollectionsManage from "../components/CollectionManage";
+import NotFoundPage from "../components/SubComponents/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: "/collections/current",
         element: <CollectionsManage />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
       // {
       //   path: "login",

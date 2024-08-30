@@ -110,7 +110,6 @@ function SignupFormModal() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className={errors.password ? "error" : ""}
           />
         </label>
         {errors.confirmPassword && (
