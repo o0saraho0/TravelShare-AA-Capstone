@@ -188,8 +188,15 @@ form label {
   text-align: right;
 }
 
-.center-in-main {
+/* .center-in-main {
   margin: 40vh 45vw;
+} */
+
+.center-in-main {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .text-in-empty-screen {
