@@ -283,7 +283,9 @@ function ItineraryDetail() {
           </div>
         </div>
       </div>
-      <Map itinerary={itinerary} />
+      <div className="map-container">
+        <Map itinerary={itinerary} />
+      </div>
     </main>
   );
 }

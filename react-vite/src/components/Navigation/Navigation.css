@@ -3,6 +3,11 @@ nav {
   border-bottom: 0.5px lightgray solid;
 }
 
+.nav-max {
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
 .home-link img {
   width: 80px;
 }
@@ -24,11 +29,11 @@ nav {
   background-color: #f1f8e8;
 }
 
-nav > ul > li {
+nav ul li {
   color: #55ad9b;
   font-size: large;
   font-weight: 550;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: none;
   border-radius: 50px;
 }
@@ -38,10 +43,21 @@ nav ul li:hover {
   cursor: pointer;
 }
 
+.profile-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.parent-container {
+  position: relative;
+  display: inline-block;
+}
+
 .profile-dropdown {
   position: absolute;
-  top: 80px;
-  right: 45px;
+  top: 100%;
+  right: -20%;
   z-index: 1;
   background-color: white;
   color: black;
@@ -68,4 +84,10 @@ nav ul li:hover {
 .clickable p:hover {
   background-color: #f1f8e8;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-categories {
+    display: none;
+  }
 }

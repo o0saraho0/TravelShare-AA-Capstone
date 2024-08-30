@@ -56,3 +56,13 @@
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 768px) {
+  .itinerary-form {
+    width: 65%;
+  }
+
+  .image-preview img {
+    max-width: 78%;
+  }
+}
