@@ -6,7 +6,7 @@ import SignupFormModal from "../SignupFormModal/SignupFormModal";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import "./LoginForm.css";
 
-function LoginFormModal({ text }) {
+function LoginFormModal({ text, closeMenu }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,6 +27,7 @@ function LoginFormModal({ text }) {
       setErrors(serverResponse);
     } else {
       closeModal();
+      if (closeMenu) closeMenu();
     }
   };
 
@@ -41,6 +42,7 @@ function LoginFormModal({ text }) {
       setErrors(serverResponse);
     } else {
       closeModal();
+      if (closeMenu) closeMenu();
     }
   };
 
@@ -79,7 +81,7 @@ function LoginFormModal({ text }) {
         <button className="cursor">
           <OpenModalMenuItem
             itemText="Register"
-            modalComponent={<SignupFormModal />}
+            modalComponent={<SignupFormModal closeMenu={closeMenu} />}
           />
         </button>
       </div>

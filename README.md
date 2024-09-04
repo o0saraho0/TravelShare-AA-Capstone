@@ -845,3 +845,13 @@ Logged-in users can add itineraries to their collection
   "review": ["This field is required."]
 }
 ```
+
+## Future Implementation Goals
+
+- Notifications
+- AI assistance for activity recommendation
+
+## Connect
+
+- [LinkedIn](www.linkedin.com/in/sarah-yue-jiang)
+- [GitHub](https://github.com/o0saraho0)

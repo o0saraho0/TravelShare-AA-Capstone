@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
 import "./SignupForm.css";
 
-function SignupFormModal() {
+function SignupFormModal({ closeMenu }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -20,8 +20,8 @@ function SignupFormModal() {
     setErrors({});
     const newErrors = {};
 
-    if (!first_name) newErrors.first_name = "please provide your first name.";
-    if (!last_name) newErrors.last_name = "please provide your last name.";
+    if (!first_name) newErrors.first_name = "Please provide your first name.";
+    if (!last_name) newErrors.last_name = "Please provide your last name.";
     if (!/\S+@\S+\.\S+/.test(email))
       newErrors.email = "Please enter a valid email address.";
     if (username.length < 4 || username.length > 20)
@@ -47,6 +47,7 @@ function SignupFormModal() {
       setErrors(serverResponse);
     } else {
       closeModal();
+      if (closeMenu) closeMenu();
     }
   };
 
