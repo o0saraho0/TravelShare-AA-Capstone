@@ -77,7 +77,6 @@ export const thunkAllItineraries = () => async (dispatch) => {
 
 // create itinerary
 export const thunkNewItinerary = (itinerary) => async (dispatch) => {
-  console.log("thunk", itinerary);
   const response = await fetch("/api/itineraries/new", {
     method: "POST",
     headers: {
@@ -85,7 +84,6 @@ export const thunkNewItinerary = (itinerary) => async (dispatch) => {
     },
     body: JSON.stringify(itinerary),
   });
-  console.log(response);
   const data = await response.json();
 
   if (response.ok) {

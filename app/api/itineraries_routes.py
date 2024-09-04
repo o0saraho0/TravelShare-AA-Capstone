@@ -86,8 +86,7 @@ def edit_itinerary(itineraryId):
 @itineraries_routes.route("/new", methods=["POST"])
 @login_required
 def create_itinerary():
-    data = request.json  # Directly access JSON data
-    print("Received JSON data:", data)  # Debugging line
+    data = request.json
 
     form = ItineraryForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -101,7 +100,6 @@ def create_itinerary():
             category_id=form.category_id.data,
             traveler_id=current_user.id
         )
-        print(newItinerary)
         db.session.add(newItinerary)
         db.session.commit()
 

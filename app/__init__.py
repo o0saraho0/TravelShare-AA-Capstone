@@ -12,6 +12,7 @@ from .api.activities_routes import activities_routes
 from .api.comments_routes import comments_routes
 from .api.collections_routes import collections_routes
 from .api.images_routes import images_routes
+from .api.ai_routes import ai_routes
 
 from .seeds import seed_commands
 from .config import Config
@@ -39,6 +40,7 @@ app.register_blueprint(activities_routes, url_prefix='/api/activities')
 app.register_blueprint(comments_routes, url_prefix='/api/comments')
 app.register_blueprint(collections_routes, url_prefix='/api/collections')
 app.register_blueprint(images_routes, url_prefix='/api/images')
+app.register_blueprint(ai_routes, url_prefix='/api/ai')
 
 
 db.init_app(app)

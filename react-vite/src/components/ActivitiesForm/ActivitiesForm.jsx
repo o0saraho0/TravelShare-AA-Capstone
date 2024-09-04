@@ -17,6 +17,7 @@ import { FaEdit } from "react-icons/fa";
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteModal from "../SubComponents/ConfirmDeleteModal";
 import Loading from "../SubComponents/Loading";
+import AIAssistant from "../SubComponents/AIRecommendation";
 import Map from "../SubComponents/Map";
 import "./ActivitiesForm.css";
 
@@ -240,6 +241,7 @@ function ActivitiesForm() {
           <div className="description">
             <p>{itinerary.description}</p>
           </div>
+          <AIAssistant />
           <div className="schedules-container">
             {schedules &&
               schedules.map((schedule) => (
