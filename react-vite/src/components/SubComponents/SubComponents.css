@@ -1,3 +1,79 @@
+.ai-container h2 {
+  background-color: #768af5;
+  background-image: linear-gradient(
+    43deg,
+    #768af5 0%,
+    #ef7be7 46%,
+    #e2b667 100%
+  );
+  color: white;
+  font-weight: 500;
+  width: fit-content;
+  padding: 5px 30px;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.ai-container {
+  width: 100%;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.chat-bubble {
+  padding: 10px 20px;
+  width: fit-content;
+  max-width: 80%;
+  margin: 5px;
+}
+
+.user-message {
+  background-color: #0084ff;
+  color: white;
+  border-radius: 10px 10px 0px 10px;
+  text-align: end;
+  align-self: end;
+}
+
+.bot-message {
+  background-color: rgb(247, 245, 245);
+  color: black;
+  border-radius: 10px 10px 10px 0px;
+  text-align: start;
+  align-self: start;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 5px;
+}
+
+.chat-input input {
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 5px 8px;
+  box-shadow: none;
+}
+
+.chat-input button {
+  background-color: #768af5;
+  background-image: linear-gradient(
+    43deg,
+    #768af5 0%,
+    #ef7be7 46%,
+    #e2b667 100%
+  );
+  color: white;
+  font-weight: 500;
+}
+
 .confirm-deletion h2 {
   margin-bottom: 20px;
 }

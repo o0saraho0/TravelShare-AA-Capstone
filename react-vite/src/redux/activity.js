@@ -71,8 +71,6 @@ export const thunkDeleteActivity = (activityId) => async (dispatch) => {
 // edit activity
 export const thunkUpdateActivity = (activity) => async (dispatch) => {
   const activityId = activity.id;
-  console.log("..", activity);
-  console.log(".....", activityId);
   const response = await fetch(`/api/activities/${activityId}/edit`, {
     method: "PUT",
     headers: {
@@ -80,7 +78,6 @@ export const thunkUpdateActivity = (activity) => async (dispatch) => {
     },
     body: JSON.stringify(activity),
   });
-  console.log(response);
 
   const data = await response.json();
   if (response.ok) {
