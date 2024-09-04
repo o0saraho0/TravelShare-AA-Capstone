@@ -155,8 +155,12 @@ function ActivitiesForm() {
         "Please enter a place name that is between 5 and 100 characters.";
     if (!activityData.longitude || isNaN(activityData.longitude))
       newErrors.longitude = "Valid longitude is required";
+    if (activityData.longitude < -180 || activityData.longitude > 180)
+      newErrors.longitude = "Longitude needs to be within -180 to 180 degrees";
     if (!activityData.latitude || isNaN(activityData.latitude))
       newErrors.latitude = "Valid latitude is required";
+    if (activityData.latitude < -90 || activityData.latitude > 90)
+      newErrors.latitude = "Latitude needs to be within -90 to 90 degrees";
     if (activityData.place_image_url instanceof File) {
       const fileExtension = activityData.place_image_url.name
         .split(".")
@@ -275,11 +279,10 @@ function ActivitiesForm() {
                         </div>
                       </div>
                     ))}
-                  <div
-                    onClick={() => handleAddActivityClick(schedule.id)}
-                    className="add-day-activity"
-                  >
-                    <button>+ Add activity</button>
+                  <div className="add-day-activity">
+                    <button onClick={() => handleAddActivityClick(schedule.id)}>
+                      + Add activity
+                    </button>
                   </div>
                   {showActivityForm &&
                     activityData.schedule_id === schedule.id && (
