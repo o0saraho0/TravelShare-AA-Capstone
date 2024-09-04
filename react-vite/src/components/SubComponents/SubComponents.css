@@ -30,6 +30,14 @@
   margin: 5px;
 }
 
+.chat-bubble p {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  white-space: pre-wrap;
+}
+
 .user-message {
   background-color: #0084ff;
   color: white;
@@ -60,6 +68,11 @@
   border: 1px solid lightgray;
   padding: 5px 8px;
   box-shadow: none;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  white-space: pre-wrap;
 }
 
 .chat-input button {
