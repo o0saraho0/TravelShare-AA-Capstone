@@ -16,10 +16,18 @@ HelloWorld is built using Flask for the backend and React for the frontend. It o
 
 ## Screenshots
 
+- **Landing Page Signed Out**
+  ![Landing Page Signed Out](./react-vite/public/images/landing-signed-out.jpg)
+- **Landing Page Signed In**
+  ![Landing Page Signed In](./react-vite/public/images/landing-signed-in.jpg)
 - **Itinerary List**
-  ![Itinerary List](./react-vite/public/images/itinerary-list.png)
+  ![Itinerary List](./react-vite/public/images/itinerary-list.jpg)
 - **Itinarary Detail**
-  ![Itinerary Detail](./react-vite/public/images/itinerary-detail.png)
+  ![Itinerary Detail](./react-vite/public/images/itinerary-detail.jpg)
+- **Itinarary Create**
+  ![Itinerary Create](./react-vite/public/images/itinerary-create.jpg)
+- **Activity Create**
+  ![Activity Create](./react-vite/public/images/activity-create.jpg)
 
 ## Technologies Used
 
@@ -37,9 +45,11 @@ HelloWorld is built using Flask for the backend and React for the frontend. It o
 - ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-FF5533?style=for-the-badge&logo=python&logoColor=white)
 - ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 
-### 3. Hosting:
+### 3. Others:
 
 - ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+- ![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+- ![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white)
 
 ## Index
 
