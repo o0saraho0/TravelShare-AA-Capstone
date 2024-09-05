@@ -19,6 +19,7 @@ import ConfirmDeleteModal from "../SubComponents/ConfirmDeleteModal";
 import { FaLocationArrow } from "react-icons/fa6";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import Map from "../SubComponents/Map";
 import Loading from "../SubComponents/Loading";
 import "./ItineraryDetailPage.css";
@@ -100,13 +101,28 @@ function ItineraryDetail() {
     closeModal();
   };
 
+  const handleDisplayImage = (imageUrl) => {
+    setModalContent(
+      <div className="image-display">
+        <img src={imageUrl} alt="activity-image" />
+        <div onClick={() => closeModal()} className="close-display">
+          <IoIosCloseCircleOutline />
+        </div>
+      </div>
+    );
+  };
+
   if (!itinerary) return <Loading />;
 
   return (
     <main className="itinerary-detail-page">
       <div className="itinerary-content">
         <div className="header">
-          <img src={itinerary.preview_image_url} alt={itinerary.title} />
+          <img
+            src={itinerary.preview_image_url}
+            alt={itinerary.title}
+            onClick={() => handleDisplayImage(itinerary.preview_image_url)}
+          />
           <h1>{itinerary.title}</h1>
         </div>
         <div className="body">
@@ -181,6 +197,9 @@ function ItineraryDetail() {
                             <img
                               src={activity.place_image_url}
                               alt={activity.id}
+                              onClick={() =>
+                                handleDisplayImage(activity.place_image_url)
+                              }
                             />
                           </div>
                         )}
