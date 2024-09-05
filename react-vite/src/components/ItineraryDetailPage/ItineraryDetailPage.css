@@ -12,6 +12,10 @@
   opacity: 0.7;
 }
 
+.header img:hover {
+  cursor: zoom-in;
+}
+
 .header h1 {
   position: relative;
   top: -40px;
@@ -83,6 +87,24 @@
   height: auto;
   aspect-ratio: 3 / 2;
   border-radius: 10px;
+}
+
+.activity-image img:hover {
+  cursor: zoom-in;
+}
+
+.image-display img {
+  width: 55vw;
+  border-radius: 10px;
+}
+
+.close-display {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 35px;
+  color: #55ad9b;
 }
 
 .detail-page-button button {

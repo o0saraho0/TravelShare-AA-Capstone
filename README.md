@@ -859,7 +859,7 @@ Logged-in users can add itineraries to their collection
 ## Future Implementation Goals
 
 - Notifications
-- AI assistance for activity recommendation
+- Search and Filter
 
 ## Connect
 
