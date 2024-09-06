@@ -249,121 +249,127 @@ function ActivitiesForm() {
                 <div key={schedule.id} className="schedule-item">
                   <h2>{schedule.day}</h2>
                   {schedule.activities &&
-                    schedule.activities.map((activity) => (
-                      <div key={activity.id} className="activity-item">
-                        <div className="activity-info">
-                          <span className="activity-place">
-                            <FaLocationArrow />
-                            {activity.place}
-                          </span>
-                          <div className="activity-description">
-                            <p>{activity.description}</p>
-                          </div>
-                          <div className="activity-control">
-                            <span onClick={() => handleEditActivity(activity)}>
-                              <p>Edit activity</p>
-                              <FaEdit />
+                    schedule.activities
+                      .sort((a, b) => a.id - b.id)
+                      .map((activity) => (
+                        <div key={activity.id} className="activity-item">
+                          <div className="activity-info">
+                            <span className="activity-place">
+                              <FaLocationArrow />
+                              {activity.place}
                             </span>
-                            <span
-                              onClick={() => handleRemoveActivity(activity.id)}
-                            >
-                              <p>Remove activity</p>
-                              <FaDeleteLeft />
-                            </span>
-                          </div>
+                            <div className="activity-description">
+                              <p>{activity.description}</p>
+                            </div>
+                            <div className="activity-control">
+                              <span
+                                onClick={() => handleEditActivity(activity)}
+                              >
+                                <p>Edit activity</p>
+                                <FaEdit />
+                              </span>
+                              <span
+                                onClick={() =>
+                                  handleRemoveActivity(activity.id)
+                                }
+                              >
+                                <p>Remove activity</p>
+                                <FaDeleteLeft />
+                              </span>
+                            </div>
 
-                          {isEditing && currentActivityId === activity.id && (
-                            <form
-                              onSubmit={handleFormSubmit}
-                              className="activity-form"
-                              encType="multipart/form-data"
-                            >
-                              <div>
+                            {isEditing && currentActivityId === activity.id && (
+                              <form
+                                onSubmit={handleFormSubmit}
+                                className="activity-form"
+                                encType="multipart/form-data"
+                              >
+                                <div>
+                                  <p className="hint">
+                                    You can use the map search box to find a new
+                                    location
+                                    <br />
+                                    and confirm to update your activity
+                                    <br />
+                                  </p>
+                                </div>
+                                <input
+                                  type="text"
+                                  name="place"
+                                  value={activityData.place}
+                                  onChange={handleInputChange}
+                                  placeholder="Place"
+                                />
+                                {errors.place && (
+                                  <p className="error">{errors.place}</p>
+                                )}
+                                <input
+                                  type="text"
+                                  name="longitude"
+                                  value={activityData.longitude}
+                                  onChange={handleInputChange}
+                                  placeholder="Longitude"
+                                />
+                                {errors.longitude && (
+                                  <p className="error">{errors.longitude}</p>
+                                )}
+                                <input
+                                  type="text"
+                                  name="latitude"
+                                  value={activityData.latitude}
+                                  onChange={handleInputChange}
+                                  placeholder="Latitude"
+                                />
+                                {errors.latitude && (
+                                  <p className="error">{errors.latitude}</p>
+                                )}
                                 <p className="hint">
-                                  You can use the map search box to find a new
-                                  location
                                   <br />
-                                  and confirm to update your activity
-                                  <br />
+                                  description and image are optional
                                 </p>
-                              </div>
-                              <input
-                                type="text"
-                                name="place"
-                                value={activityData.place}
-                                onChange={handleInputChange}
-                                placeholder="Place"
-                              />
-                              {errors.place && (
-                                <p className="error">{errors.place}</p>
-                              )}
-                              <input
-                                type="text"
-                                name="longitude"
-                                value={activityData.longitude}
-                                onChange={handleInputChange}
-                                placeholder="Longitude"
-                              />
-                              {errors.longitude && (
-                                <p className="error">{errors.longitude}</p>
-                              )}
-                              <input
-                                type="text"
-                                name="latitude"
-                                value={activityData.latitude}
-                                onChange={handleInputChange}
-                                placeholder="Latitude"
-                              />
-                              {errors.latitude && (
-                                <p className="error">{errors.latitude}</p>
-                              )}
-                              <p className="hint">
-                                <br />
-                                description and image are optional
-                              </p>
-                              <textarea
-                                name="description"
-                                value={activityData.description}
-                                onChange={handleInputChange}
-                                placeholder="Description"
-                              />
-                              <input
-                                type="file"
-                                accept="image/*"
-                                name="place_image_url"
-                                onChange={handleInputChange}
-                              />
-                              {errors.place_image_url && (
-                                <p className="error">
-                                  {errors.place_image_url}
-                                </p>
-                              )}
+                                <textarea
+                                  name="description"
+                                  value={activityData.description}
+                                  onChange={handleInputChange}
+                                  placeholder="Description"
+                                />
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  name="place_image_url"
+                                  onChange={handleInputChange}
+                                />
+                                {errors.place_image_url && (
+                                  <p className="error">
+                                    {errors.place_image_url}
+                                  </p>
+                                )}
 
-                              <div className="activity-form-buttons">
-                                <button type="submit">
-                                  {imageLoading ? "Uploading" : "Save"}
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={handleCancelClick}
-                                >
-                                  Cancel
-                                </button>
-                              </div>
-                            </form>
-                          )}
-                        </div>
+                                <div className="activity-form-buttons">
+                                  <button type="submit">
+                                    {imageLoading ? "Uploading" : "Save"}
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={handleCancelClick}
+                                  >
+                                    Cancel
+                                  </button>
+                                </div>
+                              </form>
+                            )}
+                          </div>
 
-                        <div className="activity-image-edit">
-                          {activity.place_image_url && (
-                            <img
-                              src={activity.place_image_url}
-                              alt={activity.id}
-                            />
-                          )}
+                          <div className="activity-image-edit">
+                            {activity.place_image_url && (
+                              <img
+                                src={activity.place_image_url}
+                                alt={activity.id}
+                              />
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
 
                   <div className="add-day-activity">
                     <button onClick={() => handleAddActivityClick(schedule.id)}>
