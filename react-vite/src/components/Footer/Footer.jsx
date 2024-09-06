@@ -11,7 +11,9 @@ function Footer() {
         <div className="footer-content">
           <div className="sarah-content inline">
             <div className="sarah-pic">
-              <img src="/images/profile_Sarah.JPG" alt="Sarah" />
+              <a href="https://portfolio-sarah-jiang.netlify.app/">
+                <img src="/images/profile_Sarah.JPG" alt="Sarah" />
+              </a>
             </div>
             <div className="sarah-info">
               <p>Sarah Jiang</p>
@@ -19,7 +21,7 @@ function Footer() {
                 <a href="https://github.com/o0saraho0">
                   <FaGithub />
                 </a>
-                <a href="https://www.linkedin.com/in/yue-jiang-ab016278">
+                <a href="https://www.linkedin.com/in/sarah-yue-jiang">
                   <FaLinkedin />
                 </a>
               </div>
