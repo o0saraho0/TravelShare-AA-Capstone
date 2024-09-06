@@ -119,12 +119,16 @@
 
 @media (max-width: 768px) {
   .landing-signed-out {
-    margin: 0px 100px;
-    width: 70%;
+    margin: 0px 50px;
+    width: 80%;
+  }
+
+  .landing-signed-out h2 {
+    margin: 20px 0px;
   }
 
   .landing-signed-out-buttons button {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
   .landing-personal {

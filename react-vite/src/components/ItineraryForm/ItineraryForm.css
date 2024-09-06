@@ -63,6 +63,15 @@
   }
 
   .image-preview img {
-    max-width: 78%;
+    max-width: 100%;
+  }
+
+  .itinerary-form input,
+  .itinerary-form textarea {
+    width: 60vw;
+  }
+
+  .itinerary-form select {
+    width: 62vw;
   }
 }

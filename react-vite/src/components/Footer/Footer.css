@@ -70,17 +70,21 @@ footer {
 
 @media (max-width: 768px) {
   footer {
-    height: 19vh;
+    height: 15vh;
   }
 
-  .footer-content {
+  .footer-max {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    text-align: center;
+    gap: 5px;
+    text-align: left;
   }
 
   .footer-max h3 {
     margin-left: 0px;
+  }
+
+  .footer-content {
+    gap: 40px;
   }
 }
