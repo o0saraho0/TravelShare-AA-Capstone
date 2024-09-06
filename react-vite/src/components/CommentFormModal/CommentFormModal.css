@@ -15,3 +15,15 @@
   width: 28vw;
   height: 20vh;
 }
+
+@media (max-width: 768px) {
+  .comment-modal {
+    width: 50vw;
+    height: 35vh;
+  }
+
+  .comment-modal form textarea {
+    width: 47vw;
+    height: 20vh;
+  }
+}

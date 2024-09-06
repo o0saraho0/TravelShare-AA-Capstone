@@ -101,7 +101,7 @@ nav ul li:hover {
 }
 
 @media (max-width: 768px) {
-  .nav-categories {
+  nav .nav-categories {
     display: none;
   }
 }

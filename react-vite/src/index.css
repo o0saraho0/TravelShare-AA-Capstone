@@ -240,6 +240,7 @@ form label {
   color: white;
   background-color: #b99470;
   width: 25vw;
+  min-width: 250px;
   height: 2.5em;
   position: sticky;
   bottom: 1em;
