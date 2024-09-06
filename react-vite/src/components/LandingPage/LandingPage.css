@@ -123,8 +123,18 @@
     width: 80%;
   }
 
+  .landing-signed-out h1 {
+    font-size: 40px;
+    padding-top: 50px;
+  }
+
   .landing-signed-out h2 {
     margin: 20px 0px;
+    font-size: 25px;
+  }
+
+  .landing-signed-out p {
+    font-size: 18px;
   }
 
   .landing-signed-out-buttons button {
