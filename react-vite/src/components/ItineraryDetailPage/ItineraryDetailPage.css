@@ -176,10 +176,22 @@
     display: flex;
     flex-direction: column;
   }
+
+  .map-container {
+    display: none;
+  }
+
   .header img {
     width: 100%;
     height: auto;
     aspect-ratio: 2 / 1;
+  }
+
+  .header h1 {
+    text-align: left;
+    width: fit-content;
+    padding: 0px 5px 10px 20px;
+
   }
 
   .itinerary-content .body {
@@ -193,7 +205,7 @@
   }
 
   .activity-image img {
-    width: 90vw;
+    width: 77vw;
     margin-bottom: 15px;
   }
 
