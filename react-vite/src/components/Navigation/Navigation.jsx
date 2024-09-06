@@ -13,6 +13,7 @@ function Navigation() {
         </div>
 
         <div className="inline nav-categories">
+          <NavLink to="/itineraries">All Itineraries</NavLink>
           <NavLink to="/itineraries/category/1">City Exploration</NavLink>
           <NavLink to="/itineraries/category/2">Nature Escapes</NavLink>
           <NavLink to="/itineraries/category/3">Road Trips</NavLink>
