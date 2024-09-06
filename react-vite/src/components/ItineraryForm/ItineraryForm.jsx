@@ -146,9 +146,10 @@ function ItineraryForm({ itinerary, formType }) {
             <h3>Title</h3>
           </label>
           <p>
-            Enter the title of your itinerary. This should be a brief,
-            descriptive name that encapsulates the theme or main destination of
-            the trip.
+            Enter a descriptive name that highlights the key destination or
+            theme of your trip. A clear title with relevant keywords will
+            improve search visibility and help travelers quickly understand the
+            trip&apos;s focus.
           </p>
           <input
             type="text"
@@ -163,6 +164,10 @@ function ItineraryForm({ itinerary, formType }) {
             <label>
               <h3>Category</h3>
             </label>
+            <p>
+              Select the most appropriate category that best describes the style
+              of your trip.
+            </p>
             <div className="select-container">
               <select
                 name="category_id"
@@ -183,6 +188,10 @@ function ItineraryForm({ itinerary, formType }) {
             <label>
               <h3>Duration</h3>
             </label>
+            <p>
+              Specify the total number of days for the trip, helping travelers
+              understand the commitment.
+            </p>
             <input
               type="number"
               min="1"
@@ -199,8 +208,10 @@ function ItineraryForm({ itinerary, formType }) {
             <h3>Description</h3>
           </label>
           <p>
-            Describe the main attractions, the pace of the trip, and any unique
-            experiences travelers will enjoy.
+            Provide a detailed summary of the main attractions and any unique
+            experiences travelers will enjoy. Mention notable sites, activities,
+            and any special highlights to attract interest and optimize search
+            results.
           </p>
           <textarea
             value={description}

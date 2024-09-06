@@ -71,6 +71,7 @@ footer {
 @media (max-width: 768px) {
   footer {
     height: fit-content;
+    padding: 15px;
   }
 
   .footer-max {
@@ -85,6 +86,6 @@ footer {
   }
 
   .footer-content {
-    gap: 40px;
+    gap: 30px;
   }
 }

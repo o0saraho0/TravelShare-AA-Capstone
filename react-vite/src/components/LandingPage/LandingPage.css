@@ -119,8 +119,8 @@
 
 @media (max-width: 768px) {
   .landing-signed-out {
-    margin: 0px 50px;
-    width: 80%;
+    margin: 0px 30px;
+    width: 85%;
   }
 
   .landing-signed-out h1 {

@@ -31,8 +31,8 @@ function ActivitiesForm() {
   const schedules = itinerary?.schedules;
 
   const { setModalContent, closeModal } = useModal();
-  const [showActivityForm, setShowActivityForm] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false); // Manage add activity form
+  const [isEditing, setIsEditing] = useState(false); // Manage editing state
   const [currentActivityId, setCurrentActivityId] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -53,7 +53,8 @@ function ActivitiesForm() {
   }, [dispatch, itineraryId]);
 
   const handleAddActivityClick = (scheduleId) => {
-    setShowActivityForm(true);
+    setShowAddForm(true); // Show the add form
+    setIsEditing(false); // Make sure we are not editing
     setActivityData({ ...activityData, schedule_id: scheduleId });
   };
 
@@ -111,8 +112,8 @@ function ActivitiesForm() {
       place_image_url: null,
       schedule_id: null,
     });
-    setShowActivityForm(false);
-    setIsEditing(false);
+    setShowAddForm(false); // Close the add form
+    setIsEditing(false); // Stop editing
     setCurrentActivityId(null);
     setErrors({});
   };
@@ -127,8 +128,8 @@ function ActivitiesForm() {
       schedule_id: activity.schedule_id,
     });
     setCurrentActivityId(activity.id);
-    setIsEditing(true);
-    setShowActivityForm(true);
+    setIsEditing(true); // Set to editing mode
+    setShowAddForm(false); // Hide the add form
   };
 
   const handleRemoveActivity = async (activityId) => {
@@ -270,8 +271,90 @@ function ActivitiesForm() {
                               <FaDeleteLeft />
                             </span>
                           </div>
+
+                          {isEditing && currentActivityId === activity.id && (
+                            <form
+                              onSubmit={handleFormSubmit}
+                              className="activity-form"
+                              encType="multipart/form-data"
+                            >
+                              <div>
+                                <p className="hint">
+                                  You can use the map search box to find a new
+                                  location
+                                  <br />
+                                  and confirm to update your activity
+                                  <br />
+                                </p>
+                              </div>
+                              <input
+                                type="text"
+                                name="place"
+                                value={activityData.place}
+                                onChange={handleInputChange}
+                                placeholder="Place"
+                              />
+                              {errors.place && (
+                                <p className="error">{errors.place}</p>
+                              )}
+                              <input
+                                type="text"
+                                name="longitude"
+                                value={activityData.longitude}
+                                onChange={handleInputChange}
+                                placeholder="Longitude"
+                              />
+                              {errors.longitude && (
+                                <p className="error">{errors.longitude}</p>
+                              )}
+                              <input
+                                type="text"
+                                name="latitude"
+                                value={activityData.latitude}
+                                onChange={handleInputChange}
+                                placeholder="Latitude"
+                              />
+                              {errors.latitude && (
+                                <p className="error">{errors.latitude}</p>
+                              )}
+                              <p className="hint">
+                                <br />
+                                description and image are optional
+                              </p>
+                              <textarea
+                                name="description"
+                                value={activityData.description}
+                                onChange={handleInputChange}
+                                placeholder="Description"
+                              />
+                              <input
+                                type="file"
+                                accept="image/*"
+                                name="place_image_url"
+                                onChange={handleInputChange}
+                              />
+                              {errors.place_image_url && (
+                                <p className="error">
+                                  {errors.place_image_url}
+                                </p>
+                              )}
+
+                              <div className="activity-form-buttons">
+                                <button type="submit">
+                                  {imageLoading ? "Uploading" : "Save"}
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={handleCancelClick}
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </form>
+                          )}
                         </div>
-                        <div className="activity-image">
+
+                        <div className="activity-image-edit">
                           {activity.place_image_url && (
                             <img
                               src={activity.place_image_url}
@@ -281,86 +364,84 @@ function ActivitiesForm() {
                         </div>
                       </div>
                     ))}
+
                   <div className="add-day-activity">
                     <button onClick={() => handleAddActivityClick(schedule.id)}>
                       + Add activity
                     </button>
                   </div>
-                  {showActivityForm &&
-                    activityData.schedule_id === schedule.id && (
-                      <form
-                        onSubmit={handleFormSubmit}
-                        className="activity-form"
-                        encType="multipart/form-data"
-                      >
-                        <div>
-                          <p className="hint">
-                            You can use the map search box to find a location
-                            <br />
-                            and confirm to add to your activity
-                            <br />
-                          </p>
-                        </div>
-                        <input
-                          type="text"
-                          name="place"
-                          value={activityData.place}
-                          onChange={handleInputChange}
-                          placeholder="Place"
-                        />
-                        {errors.place && (
-                          <p className="error">{errors.place}</p>
-                        )}
-                        <input
-                          type="text"
-                          name="longitude"
-                          value={activityData.longitude}
-                          onChange={handleInputChange}
-                          placeholder="Longitude"
-                        />
-                        {errors.longitude && (
-                          <p className="error">{errors.longitude}</p>
-                        )}
-                        <input
-                          type="text"
-                          name="latitude"
-                          value={activityData.latitude}
-                          onChange={handleInputChange}
-                          placeholder="Latitude"
-                        />
-                        {errors.latitude && (
-                          <p className="error">{errors.latitude}</p>
-                        )}
+                  {showAddForm && activityData.schedule_id === schedule.id && (
+                    <form
+                      onSubmit={handleFormSubmit}
+                      className="activity-form"
+                      encType="multipart/form-data"
+                    >
+                      <div>
                         <p className="hint">
+                          You can use the map search box to find a location
                           <br />
-                          description and image are optional
+                          and confirm to add to your activity
+                          <br />
                         </p>
-                        <textarea
-                          name="description"
-                          value={activityData.description}
-                          onChange={handleInputChange}
-                          placeholder="Description"
-                        />
-                        <input
-                          type="file"
-                          accept="image/*"
-                          name="place_image_url"
-                          onChange={handleInputChange}
-                        />
-                        {errors.place_image_url && (
-                          <p className="error">{errors.place_image_url}</p>
-                        )}
+                      </div>
+                      <input
+                        type="text"
+                        name="place"
+                        value={activityData.place}
+                        onChange={handleInputChange}
+                        placeholder="Place"
+                      />
+                      {errors.place && <p className="error">{errors.place}</p>}
+                      <input
+                        type="text"
+                        name="longitude"
+                        value={activityData.longitude}
+                        onChange={handleInputChange}
+                        placeholder="Longitude"
+                      />
+                      {errors.longitude && (
+                        <p className="error">{errors.longitude}</p>
+                      )}
+                      <input
+                        type="text"
+                        name="latitude"
+                        value={activityData.latitude}
+                        onChange={handleInputChange}
+                        placeholder="Latitude"
+                      />
+                      {errors.latitude && (
+                        <p className="error">{errors.latitude}</p>
+                      )}
+                      <p className="hint">
+                        <br />
+                        description and image are optional
+                      </p>
+                      <textarea
+                        name="description"
+                        value={activityData.description}
+                        onChange={handleInputChange}
+                        placeholder="Description"
+                      />
+                      <input
+                        type="file"
+                        accept="image/*"
+                        name="place_image_url"
+                        onChange={handleInputChange}
+                      />
+                      {errors.place_image_url && (
+                        <p className="error">{errors.place_image_url}</p>
+                      )}
 
-                        <div className="activity-form-buttons">
-                          <button type="submit">
-                            {imageLoading ? "Uploading" : "Save"}
-                          </button>
-                          <button type="button" onClick={handleCancelClick}>
-                            Cancel
-                          </button>
-                        </div>
-                      </form>
-                    )}
+                      <div className="activity-form-buttons">
+                        <button type="submit">
+                          {imageLoading ? "Uploading" : "Save"}
+                        </button>
+                        <button type="button" onClick={handleCancelClick}>
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  )}
                 </div>
               ))}
           </div>
@@ -374,7 +455,7 @@ function ActivitiesForm() {
       </div>
       <Map
         itinerary={itinerary}
-        showSearchField={showActivityForm}
+        showSearchField={showAddForm || isEditing}
         updateAcitivity={updateActivity}
       />
     </main>

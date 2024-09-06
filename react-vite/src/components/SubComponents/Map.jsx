@@ -53,18 +53,19 @@ function SearchField({ setPosition }) {
   return null;
 }
 
-const Map = ({ itinerary, showSearchField, updateAcitivity }) => {
+const Map = ({ itinerary, showSearchField, isEditing, updateAcitivity }) => {
   const [searchPosition, setSearchPosition] = useState(null);
   const defaultCenter = { latitude: 37.7749, longitude: -122.4194 };
-  const centerPosition = itinerary.schedules[0].activities[0] || defaultCenter;
+  const centerPosition =
+    itinerary.schedules?.[0]?.activities?.[0] || defaultCenter;
 
   const searchMarkerRef = useRef(null);
 
-  const handleMarkerClick = () => {
+  const handleSearchMarkerClick = () => {
     if (searchPosition) {
-      updateAcitivity(searchPosition);
+      updateAcitivity(searchPosition); // This updates the activity with the new search position
     }
-    setSearchPosition(null);
+    setSearchPosition(null); // Clear search marker after adding
   };
 
   useEffect(() => {
@@ -81,7 +82,7 @@ const Map = ({ itinerary, showSearchField, updateAcitivity }) => {
         height: "100vh",
         width: "40%",
         position: "fixed",
-        botton: 0,
+        bottom: 0,
         right: 0,
       }}
     >
@@ -89,39 +90,43 @@ const Map = ({ itinerary, showSearchField, updateAcitivity }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      {itinerary.schedules.map(
-        (schedule, index) =>
-          schedule &&
-          schedule.activities &&
-          schedule.activities.map((activity, idx) => (
-            <Marker
-              key={`${index}-${idx}`}
-              position={[activity.latitude, activity.longitude]}
-              icon={defaultMarkerIcon}
-              eventHandlers={{ click: () => handleMarkerClick(activity) }}
-            >
-              <Popup>
-                <div>
-                  {activity.place_image_url && (
-                    <img
-                      src={activity.place_image_url}
-                      alt={activity.id}
-                      style={{
-                        width: "300px",
-                        height: "auto",
-                        aspectRatio: "3 / 2",
-                      }}
-                    />
-                  )}
-                </div>
-                <div>
-                  {activity.place} ({schedule.day})
-                </div>
-              </Popup>
-            </Marker>
-          ))
+
+      {/* Render existing activities' markers */}
+      {itinerary.schedules?.map((schedule, index) =>
+        schedule?.activities?.map((activity, idx) => (
+          <Marker
+            key={`${index}-${idx}`}
+            position={[activity.latitude, activity.longitude]}
+            icon={defaultMarkerIcon}
+          >
+            <Popup>
+              <div>
+                {activity.place_image_url && (
+                  <img
+                    src={activity.place_image_url}
+                    alt={activity.id}
+                    style={{
+                      width: "300px",
+                      height: "auto",
+                      aspectRatio: "3 / 2",
+                    }}
+                  />
+                )}
+              </div>
+              <div>
+                {activity.place} ({schedule.day})
+              </div>
+            </Popup>
+          </Marker>
+        ))
       )}
-      {showSearchField && <SearchField setPosition={setSearchPosition} />}
+
+      {/* Show search field if search is enabled */}
+      {(showSearchField || isEditing) && (
+        <SearchField setPosition={setSearchPosition} />
+      )}
+
+      {/* Render search marker if available */}
       {searchPosition && (
         <Marker
           position={[searchPosition.latitude, searchPosition.longitude]}
@@ -135,8 +140,8 @@ const Map = ({ itinerary, showSearchField, updateAcitivity }) => {
             Latitude: {searchPosition.latitude} <br />
             Longitude: {searchPosition.longitude} <br /> <br />
             <div className="itinerary-content">
-              <button type="button" onClick={handleMarkerClick}>
-                + Add to activity
+              <button type="button" onClick={handleSearchMarkerClick}>
+                {isEditing ? "Update activity" : "+ Add to activity"}
               </button>
             </div>
           </Popup>
