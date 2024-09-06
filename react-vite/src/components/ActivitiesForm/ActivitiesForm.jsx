@@ -280,10 +280,10 @@ function ActivitiesForm() {
                             >
                               <div>
                                 <p className="hint">
-                                  You can use the map search box to find a
+                                  You can use the map search box to find a new
                                   location
                                   <br />
-                                  and confirm to add to your activity
+                                  and confirm to update your activity
                                   <br />
                                 </p>
                               </div>
