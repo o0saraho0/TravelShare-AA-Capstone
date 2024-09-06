@@ -182,10 +182,14 @@
 
   .header h1 {
     margin-right: 30px;
+    font-size: 25px;
+    position: relative;
+    left: 0px;
+    padding: 0px 5px 10px 10px;
   }
 
-  .body {
-    margin-right: 20px;
+  .itinerary-content .body {
+    margin: 0px 50px 50px 15px;
   }
 
   .activity-item {
@@ -201,5 +205,13 @@
 
   .detail-page-button button {
     width: fit-content;
+    font-size: 12px;
+  }
+
+  .all-comments {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin: 20px 0px;
   }
 }
