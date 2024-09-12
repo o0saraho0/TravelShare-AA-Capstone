@@ -47,7 +47,7 @@ function CollectionsManage() {
   return (
     <main>
       <div className="landing-personal">
-        <img src="/images/travel_map.jpg" alt="world-map" />
+        <img src="/images/travel2.gif" alt="world-map" />
         <div className="landing-personal-container">
           <h1>Hello, {user.first_name}!</h1>
           <div>

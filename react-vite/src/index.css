@@ -188,10 +188,6 @@ form label {
   text-align: right;
 }
 
-/* .center-in-main {
-  margin: 40vh 45vw;
-} */
-
 .center-in-main {
   position: fixed;
   top: 50%;

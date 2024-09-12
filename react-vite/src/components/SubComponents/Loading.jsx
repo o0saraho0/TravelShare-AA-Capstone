@@ -1,20 +1,35 @@
 import "./SubComponents.css";
+import { PacmanLoader } from "react-spinners";
 
 function Loading() {
-    return (
+  // return (
+  // <main>
+  //     <div className="lds-roller center-in-main">
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //         <div></div>
+  //     </div>
+  // </main>
+  // )
+
+  return (
     <main>
-        <div className="lds-roller center-in-main">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </main>    
-    )
+      <div className="center-in-main">
+        <PacmanLoader
+          color="#95d2b3"
+          loading
+          margin={0}
+          size={45}
+          speedMultiplier={1}
+        />
+      </div>
+    </main>
+  );
 }
 
-export default Loading
+export default Loading;
