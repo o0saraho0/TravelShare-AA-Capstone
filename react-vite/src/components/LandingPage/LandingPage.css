@@ -68,9 +68,10 @@
 }
 
 .landing-personal img {
-  width: 500px;
+  width: 600px;
   aspect-ratio: 5 / 4;
   opacity: 0.6;
+  border-radius: 10px;
 }
 
 .landing-personal-container {

@@ -30,7 +30,8 @@ function LandingPage() {
       {user ? (
         <div className="landing-signed-in">
           <div className="landing-personal">
-            <img src="/images/travel_map.jpg" alt="" />
+            {/* <img src="/images/travel_map.jpg" alt="travel" /> */}
+            <img src="/images/travel.gif" alt="travel" />
             <div className="landing-personal-container">
               <h1>Welcome back, {user.first_name}!</h1>
               <div>
