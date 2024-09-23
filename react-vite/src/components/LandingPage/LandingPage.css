@@ -97,9 +97,31 @@
   margin-bottom: 10px;
 }
 
+.slider {
+  display: flex;
+}
+
+.slider .grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.landing-signed-in .slider button {
+  width: fit-content;
+  background-color: white;
+  color: #95d2b3;
+  font-size: larger;
+}
+
+.landing-signed-in .slider button:hover {
+  background-color: white;
+  color: #55ad9b;
+}
+
 .explore-button {
   text-align: center;
-  margin: 50px 0px;
+  margin: 0px auto;
 }
 
 .landing-signed-in button {
@@ -116,6 +138,14 @@
 .landing-signed-in button:hover {
   cursor: pointer;
   background-color: #95d2b3;
+}
+
+@media (max-width: 1024px) {
+  .slider .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -144,5 +174,11 @@
 
   .landing-personal {
     gap: 30px;
+  }
+
+  .slider .grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
   }
 }

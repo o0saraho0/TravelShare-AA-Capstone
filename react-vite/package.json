@@ -11,20 +11,21 @@
   },
   "dependencies": {
     "@react-leaflet/core": "^2.1.0",
-    "leaflet": "^1.9.4",
-    "leaflet-geosearch": "^4.0.0",
-    "react-leaflet": "^4.2.1",
-    "leaflet-color-markers": "^0.1.0",
     "install": "^0.13.0",
-    "npm": "^10.8.2",
     "js-cookie": "^3.0.5",
+    "leaflet": "^1.9.4",
+    "leaflet-color-markers": "^0.1.0",
+    "leaflet-geosearch": "^4.0.0",
+    "npm": "^10.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
+    "react-leaflet": "^4.2.1",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.15.0",
     "redux": "^4.2.1",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
