@@ -19,6 +19,7 @@ function ItinerariesList() {
   const [searchInput, setSearchInput] = useState("");
   const [filteredItineraries, setFilteredItineraries] = useState(itineraries);
   const [durationFilter, setDurationFilter] = useState("");
+  const [itemsToShow, setItemsToShow] = useState(9);
 
   useEffect(() => {
     if (!itinerariesObj) {
@@ -59,6 +60,7 @@ function ItinerariesList() {
       });
     }
     setFilteredItineraries(filtered);
+    setItemsToShow(9);
   };
 
   // Search and filter function triggered when search input or duration changes
@@ -74,6 +76,11 @@ function ItinerariesList() {
   // Search input handler
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
+  };
+
+  // Handle Load More functionality
+  const handleLoadMore = () => {
+    setItemsToShow((prevItems) => prevItems + 9); // Show 9 more itineraries
   };
 
   if (!itinerariesObj) return <Loading />;
@@ -117,7 +124,7 @@ function ItinerariesList() {
         <h2>Popular destinations</h2>
         <div className="grid-container">
           {filteredItineraries.length ? (
-            filteredItineraries.map((itinerary) => (
+            filteredItineraries.slice(0, itemsToShow).map((itinerary) => (
               <div key={itinerary.id} className="grid-item">
                 <Link to={`/itineraries/${itinerary.id}`}>
                   <div className="image-container">
@@ -155,6 +162,12 @@ function ItinerariesList() {
             </div>
           )}
         </div>
+
+        {itemsToShow < filteredItineraries.length && (
+          <div className="load-more-button">
+            <button onClick={handleLoadMore}>Load More</button>
+          </div>
+        )}
       </div>
     </main>
   );
