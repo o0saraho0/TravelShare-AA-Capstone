@@ -57,6 +57,27 @@
   font-style: italic;
 }
 
+.load-more-button {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more-button button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #55ad9b;
+  width: 250px;
+}
+
+.load-more-button button:hover {
+  cursor: pointer;
+  background-color: #95d2b3;
+}
+
 @media (max-width: 768px) {
   .search-bar {
     width: 100%;
