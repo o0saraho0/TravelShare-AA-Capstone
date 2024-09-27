@@ -45,6 +45,15 @@ function ItineraryDetail() {
   const { setModalContent, closeModal } = useModal();
   const [commentInput, setCommentInput] = useState("");
   const [errors, setErrors] = useState({});
+  const [hoveredActivity, setHoveredActivity] = useState(null);
+
+  const handleMouseEnter = (activity) => {
+    setHoveredActivity(activity);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredActivity(null);
+  };
 
   useEffect(() => {
     if (itineraryId) {
@@ -180,7 +189,12 @@ function ItineraryDetail() {
                   <h2>{schedule.day}</h2>
                   {schedule.activities &&
                     schedule.activities.map((activity) => (
-                      <div key={activity.id} className="activity-item">
+                      <div
+                        key={activity.id}
+                        className="activity-item"
+                        onMouseEnter={() => handleMouseEnter(activity)}
+                        onMouseLeave={handleMouseLeave}
+                      >
                         <div className="activity-info">
                           <span className="activity-place">
                             <FaLocationArrow />
@@ -305,7 +319,7 @@ function ItineraryDetail() {
         </div>
       </div>
       <div className="map-container">
-        <Map itinerary={itinerary} />
+        <Map itinerary={itinerary} hoveredActivity={hoveredActivity} />
       </div>
     </main>
   );

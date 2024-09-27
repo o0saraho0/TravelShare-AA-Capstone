@@ -462,7 +462,7 @@ function ActivitiesForm() {
       <Map
         itinerary={itinerary}
         showSearchField={showAddForm || isEditing}
-        updateAcitivity={updateActivity}
+        updateActivity={updateActivity}
       />
     </main>
   );

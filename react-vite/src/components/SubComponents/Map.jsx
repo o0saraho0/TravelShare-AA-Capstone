@@ -53,19 +53,71 @@ function SearchField({ setPosition }) {
   return null;
 }
 
-const Map = ({ itinerary, showSearchField, isEditing, updateAcitivity }) => {
+function MapViewController({ hoveredActivity, markersRef, itinerary }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (
+      hoveredActivity &&
+      markersRef.current &&
+      markersRef.current[hoveredActivity.id]
+    ) {
+      const marker = markersRef.current[hoveredActivity.id];
+      marker.openPopup();
+      map.setView([hoveredActivity.latitude, hoveredActivity.longitude], 13);
+    }
+  }, [hoveredActivity, markersRef, map]);
+
+  // Fit the map to show all markers
+  useEffect(() => {
+    if (itinerary.schedules) {
+      const bounds = L.latLngBounds(); // Create an empty bounds object
+
+      itinerary.schedules.forEach((schedule) => {
+        schedule.activities.forEach((activity) => {
+          if (activity.latitude && activity.longitude) {
+            bounds.extend([activity.latitude, activity.longitude]); // Extend the bounds to include this activity
+          }
+        });
+      });
+
+      if (bounds.isValid()) {
+        map.fitBounds(bounds); // Fit the map to the bounds containing all markers
+      }
+    }
+  }, [itinerary, map]);
+
+  return null;
+}
+
+const Map = ({
+  itinerary,
+  showSearchField,
+  isEditing,
+  updateActivity,
+  hoveredActivity,
+}) => {
   const [searchPosition, setSearchPosition] = useState(null);
   const defaultCenter = { latitude: 37.7749, longitude: -122.4194 };
+
   const centerPosition =
-    itinerary.schedules?.[0]?.activities?.[0] || defaultCenter;
+    hoveredActivity ||
+    itinerary.schedules?.[0]?.activities?.[0] ||
+    defaultCenter;
 
   const searchMarkerRef = useRef(null);
+  const markersRef = useRef({}); // Ref to store markers
 
   const handleSearchMarkerClick = () => {
     if (searchPosition) {
-      updateAcitivity(searchPosition); // This updates the activity with the new search position
+      // Update the activity using the passed `updateActivity` function
+      const placeName = searchPosition.label.split(",")[0];
+      updateActivity({
+        ...searchPosition,
+        place: placeName, // Add the extracted place name to the searchPosition object
+      });
+      setSearchPosition(null); // Clear the search position after adding it to the activity
     }
-    setSearchPosition(null); // Clear search marker after adding
   };
 
   useEffect(() => {
@@ -98,6 +150,11 @@ const Map = ({ itinerary, showSearchField, isEditing, updateAcitivity }) => {
             key={`${index}-${idx}`}
             position={[activity.latitude, activity.longitude]}
             icon={defaultMarkerIcon}
+            ref={(el) => {
+              if (el) {
+                markersRef.current[activity.id] = el; // Store reference to each marker
+              }
+            }}
           >
             <Popup>
               <div>
@@ -147,6 +204,13 @@ const Map = ({ itinerary, showSearchField, isEditing, updateAcitivity }) => {
           </Popup>
         </Marker>
       )}
+
+      {/* Use MapViewController to update map center on hover */}
+      <MapViewController
+        hoveredActivity={hoveredActivity}
+        markersRef={markersRef}
+        itinerary={itinerary} // Pass itinerary to fitBounds
+      />
     </MapContainer>
   );
 };
