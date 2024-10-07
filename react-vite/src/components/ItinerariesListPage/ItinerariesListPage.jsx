@@ -121,7 +121,6 @@ function ItinerariesList() {
           </div>
         </div>
 
-        <h2>Popular destinations</h2>
         <div className="grid-container">
           {filteredItineraries.length ? (
             filteredItineraries.slice(0, itemsToShow).map((itinerary) => (
