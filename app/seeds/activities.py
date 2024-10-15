@@ -1213,6 +1213,59 @@ def seed_activities():
         place_image_url="/images/Shenzhen2_02.jpg",
         schedule_id=62
     )
+    activity152 = Activity(
+        place="Senso-ji Temple (Asakusa)",
+        longitude=139.7967,
+        latitude=35.7148,
+        description="Tokyo’s oldest temple, Senso-ji, in the Asakusa district, is a perfect place to explore Japan’s deep cultural roots. Walk through the Nakamise shopping street to enjoy traditional snacks and buy souvenirs.",
+        place_image_url="/images/Tokyo1_01.jpg",
+        schedule_id=63
+    )
+
+    activity153 = Activity(
+        place="Tokyo Skytree",
+        longitude=139.8107,
+        latitude=35.7100,
+        description="Enjoy panoramic views of Tokyo from the iconic Tokyo Skytree. The observation deck offers breathtaking views of the city's sprawling landscape, including Mt. Fuji on clear days.",
+        place_image_url="/images/Tokyo1_02.jpg",
+        schedule_id=63
+    )
+
+    activity154 = Activity(
+        place="Meiji Shrine",
+        longitude=139.6993,
+        latitude=35.6764,
+        description="A tranquil Shinto shrine dedicated to Emperor Meiji and Empress Shoken, located in a serene forested area in the heart of Tokyo. Escape the city’s bustle and experience traditional rituals.",
+        place_image_url="/images/Tokyo2_01.jpg",
+        schedule_id=64
+    )
+
+    activity155 = Activity(
+        place="Harajuku and Takeshita Street",
+        longitude=139.7040,
+        latitude=35.6705,
+        description="Explore the quirky and colorful fashion hub of Tokyo. Takeshita Street is a must-visit for those interested in Tokyo's unique fashion scene and youth culture.",
+        place_image_url="/images/Tokyo2_02.jpg",
+        schedule_id=64
+    )
+
+    activity156 = Activity(
+        place="Shibuya Crossing",
+        longitude=139.7016,
+        latitude=35.6580,
+        description="Walk across the world-famous Shibuya Crossing, often dubbed the busiest pedestrian crossing in the world. This iconic Tokyo landmark offers a taste of the city's fast-paced energy.",
+        place_image_url="/images/Tokyo2_03.jpg",
+        schedule_id=64
+    )
+
+    activity157 = Activity(
+        place="Akihabara",
+        longitude=139.7720,
+        latitude=35.6992,
+        description="Dive into Tokyo's tech and anime culture in Akihabara, known for its electronics stores and otaku culture. Explore the vibrant streets filled with shops offering gadgets, manga, and gaming experiences.",
+        place_image_url="/images/Tokyo3_01.jpg",
+        schedule_id=65
+    )
 
     db.session.add(activity1)
     db.session.add(activity2)
@@ -1365,6 +1418,12 @@ def seed_activities():
     db.session.add(activity149)
     db.session.add(activity150)
     db.session.add(activity151)
+    db.session.add(activity152)
+    db.session.add(activity153)
+    db.session.add(activity154)
+    db.session.add(activity155)
+    db.session.add(activity156)
+    db.session.add(activity157)
 
     db.session.commit()
 

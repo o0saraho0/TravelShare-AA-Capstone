@@ -251,6 +251,18 @@ def seed_schedules():
         day="Day 2",
         itinerary_id=20
     )
+    schedule63 = Schedule(
+        day="Day 1",
+        itinerary_id=21
+    )
+    schedule64 = Schedule(
+        day="Day 2",
+        itinerary_id=21
+    )
+    schedule65 = Schedule(
+        day="Day 3",
+        itinerary_id=21
+    )
 
     db.session.add(schedule1)
     db.session.add(schedule2)
@@ -314,6 +326,9 @@ def seed_schedules():
     db.session.add(schedule60)
     db.session.add(schedule61)
     db.session.add(schedule62)
+    db.session.add(schedule63)
+    db.session.add(schedule64)
+    db.session.add(schedule65)
     db.session.commit()
 
 
