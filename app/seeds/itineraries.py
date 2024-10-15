@@ -163,6 +163,14 @@ def seed_itineraries():
         traveler_id=3,
         category_id=1,
     )
+    itinerary21 = Itinerary(
+        title="Blend of Tradition and Modernity, Tokyo",
+        duration=3,
+        description="Experience the dynamic fusion of the old and new in Tokyo. Over three days, explore the city's famous districts, ancient temples, futuristic landmarks, and culinary delights. Discover the peaceful gardens, vibrant neighborhoods, and rich cultural heritage of one of the world's most exciting metropolises.",
+        preview_image_url="/images/Tokyo3_01.jpg",
+        traveler_id=1,
+        category_id=1,
+    )
 
     db.session.add(itinerary1)
     db.session.add(itinerary2)
@@ -184,6 +192,7 @@ def seed_itineraries():
     db.session.add(itinerary18)
     db.session.add(itinerary19)
     db.session.add(itinerary20)
+    db.session.add(itinerary21)
     db.session.commit()
 
 

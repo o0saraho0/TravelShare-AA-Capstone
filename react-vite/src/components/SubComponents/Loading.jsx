@@ -2,20 +2,6 @@ import "./SubComponents.css";
 import { PacmanLoader } from "react-spinners";
 
 function Loading() {
-  // return (
-  // <main>
-  //     <div className="lds-roller center-in-main">
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //         <div></div>
-  //     </div>
-  // </main>
-  // )
 
   return (
     <main>
