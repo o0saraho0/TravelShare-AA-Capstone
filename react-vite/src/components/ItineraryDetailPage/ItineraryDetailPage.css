@@ -27,12 +27,12 @@
   text-align: center;
   width: fit-content;
   padding: 0px 5px 10px 30px;
-  margin-right: 20px;
+  margin-right: 25px;
   opacity: 0.9;
 }
 
 .itinerary-content .body {
-  margin: 10px 30px 50px 30px;
+  margin: -10px 30px 50px 30px;
 }
 
 .schedule-item h2 {
@@ -105,6 +105,13 @@
   cursor: pointer;
   font-size: 35px;
   color: #55ad9b;
+}
+
+.detail-page-button {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+
 }
 
 .detail-page-button button {

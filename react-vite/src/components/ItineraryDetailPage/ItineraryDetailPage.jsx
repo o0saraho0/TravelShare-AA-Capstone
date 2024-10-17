@@ -19,6 +19,7 @@ import ConfirmDeleteModal from "../SubComponents/ConfirmDeleteModal";
 import { FaLocationArrow } from "react-icons/fa6";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
+import { FaShareAlt } from "react-icons/fa";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Map from "../SubComponents/Map";
 import Loading from "../SubComponents/Loading";
@@ -68,6 +69,21 @@ function ItineraryDetail() {
   const isItineraryInCollection = collections?.some(
     (collection) => collection.itinerary_id === parseInt(itineraryId)
   );
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: itinerary.title,
+          text: "Check out this amazing itinerary!",
+          url: window.location.href,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      alert("Your browser does not support the Web Share API.");
+    }
+  };
 
   const handleCollectClick = async (itineraryId) => {
     if (user) {
@@ -135,35 +151,21 @@ function ItineraryDetail() {
           <h1>{itinerary.title}</h1>
         </div>
         <div className="body">
-          <div className="inline">
-            <Link to={`/itineraries/traveler/${itinerary.traveler.id}`}>
-              <div className="user-profile">
-                <img
-                  className="profile-image"
-                  src={itinerary.traveler.profile_url}
-                  alt={itinerary.traveler_id}
-                />
-                <span>{itinerary.traveler.username}</span>
-              </div>
-            </Link>
+          <div className="detail-page-button">
             {user ? (
               user?.id == itinerary.traveler?.id ? (
                 <div
-                  className="detail-page-button"
                   onClick={() => navigate(`/itineraries/${itinerary.id}/edit`)}
                 >
                   <button>Edit itinerary</button>
                 </div>
               ) : !isItineraryInCollection ? (
-                <div
-                  className="detail-page-button"
-                  onClick={() => handleCollectClick(itinerary.id)}
-                >
+                <div onClick={() => handleCollectClick(itinerary.id)}>
                   <button>Add to collection</button>
                 </div>
               ) : null
             ) : (
-              <div className="detail-page-button">
+              <div>
                 <button>
                   <OpenModalMenuItem
                     itemText="Add to collection"
@@ -174,10 +176,28 @@ function ItineraryDetail() {
                 </button>
               </div>
             )}
+            <div>
+              <button onClick={handleShare}>
+                <FaShareAlt /> Share
+              </button>
+            </div>
           </div>
-          <div className="time">
-            <p>{itinerary.updated_at}</p>
-          </div>
+          <Link to={`/itineraries/traveler/${itinerary.traveler.id}`}>
+            <div className="user-profile">
+              <img
+                className="profile-image"
+                src={itinerary.traveler.profile_url}
+                alt={itinerary.traveler_id}
+              />
+              <span>{itinerary.traveler.username}</span>
+            </div>
+            <div>
+              <div className="time">
+                <p>{itinerary.updated_at}</p>
+              </div>
+            </div>
+          </Link>
+
           <div className="description">
             <p>{itinerary.description}</p>
           </div>

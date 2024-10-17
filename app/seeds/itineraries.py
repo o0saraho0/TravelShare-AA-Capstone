@@ -171,6 +171,7 @@ def seed_itineraries():
         traveler_id=1,
         category_id=1,
     )
+    
 
     db.session.add(itinerary1)
     db.session.add(itinerary2)
