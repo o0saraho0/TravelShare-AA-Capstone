@@ -15,7 +15,7 @@ def seed_activities():
         place="Impression West Lake Show",
         longitude=120.138635,
         latitude=30.256339,
-        description="Watch this spectacular evening show on the lake, featuring lights, music, and dance.",
+        description="In the evening, witness the mesmerizing Impression West Lake Show, a stunning performance set on the water itself. Directed by the famed Zhang Yimou, this spectacle blends lights, music, and dance with the natural backdrop of West Lake, creating an unforgettable experience that brings ancient Hangzhou folklore to life.",
         place_image_url="/images/Hangzhou1_02.webp",
         schedule_id=1
     )
@@ -23,7 +23,7 @@ def seed_activities():
         place="Lingyin Temple",
         longitude=120.0896,
         latitude=30.2458,
-        description="Visit this ancient Buddhist temple, one of the largest and wealthiest in China. Explore the Feilai Feng grottoes nearby.",
+        description="Begin your day with a visit to Lingyin Temple, one of the most significant and wealthiest Buddhist temples in China. Marvel at its majestic halls, ornate statues, and serene surroundings. Just outside the temple, explore the Feilai Feng grottoes, home to hundreds of Buddha carvings dating back to the Song and Yuan dynasties.",
         place_image_url="/images/Hangzhou2_01.jpg",
         schedule_id=2
     )
@@ -31,7 +31,7 @@ def seed_activities():
         place="Longjing Tea Plantations",
         longitude=120.0975,
         latitude=30.2298,
-        description="Head to the Longjing Tea Plantations, where you can tour the fields, learn about tea production, and taste fresh Longjing (Dragon Well) tea.",
+        description="In the afternoon, head to the Longjing Tea Plantations, nestled in the rolling hills just outside the city. Walk through the verdant tea fields, meet local farmers, and learn about the art of growing and producing Longjing (Dragon Well) tea, one of China's most famous green teas. Don’t miss the opportunity to sample the fresh brew while soaking in the tranquil rural atmosphere.",
         place_image_url="/images/Hangzhou2_02.jpg",
         schedule_id=2
     )
@@ -39,7 +39,7 @@ def seed_activities():
         place="Nine Creeks and Eighteen Gullies",
         longitude=120.1073,
         latitude=30.2235,
-        description="Hike through this beautiful scenic area, known for its lush greenery, babbling brooks, and serene environment.",
+        description="Begin your day with a peaceful hike through Nine Creeks and Eighteen Gullies, a scenic trail renowned for its secluded charm. This idyllic setting is filled with gentle streams, bamboo groves, and lush foliage. The gurgling water and bird songs provide the perfect soundtrack for a rejuvenating nature escape.",
         place_image_url="/images/Hangzhou3_01.webp",
         schedule_id=3
     )
@@ -47,7 +47,7 @@ def seed_activities():
         place="Huagang (Flower Harbor) Park",
         longitude=120.1298,
         latitude=30.2296,
-        description="Visit this picturesque park at the southwest end of West Lake, known for its colorful flowers and koi fish ponds.",
+        description="Afterward, visit Huagang Park, located at the southwest corner of West Lake. Stroll among vibrant flower beds and picturesque koi ponds, where hundreds of colorful fish swim beneath the surface. The tranquil ambiance of the park is perfect for relaxing after your morning hike.",
         place_image_url="/images/Hangzhou3_02.jpg",
         schedule_id=3
     )
@@ -55,7 +55,7 @@ def seed_activities():
         place="Xixi National Wetland Park",
         longitude=120.0848,
         latitude=30.2656,
-        description="Visit the park for an evening boat ride through the wetlands, enjoying the natural beauty and tranquility.",
+        description="End the day with a peaceful evening boat ride through Xixi National Wetland Park, a vast network of rivers, ponds, and wetlands. Glide along the water while surrounded by the natural beauty of this preserved ecosystem. Keep an eye out for birds and other wildlife as you soak in the quiet charm of the wetlands.",
         place_image_url="/images/Hangzhou3_03.jpg",
         schedule_id=3
     )
@@ -63,7 +63,7 @@ def seed_activities():
         place="China National Silk Museum",
         longitude=120.1622,
         latitude=30.2268,
-        description="Explore the largest silk museum in the world, where you can learn about the history of silk in China and see beautiful silk garments.",
+        description="Spend the morning exploring the China National Silk Museum, the largest silk museum in the world. Learn about the fascinating history of silk production in China and see intricately woven garments that span thousands of years. The museum provides insight into how silk became one of China’s most prized exports.",
         place_image_url="/images/Hangzhou4_01.jpg",
         schedule_id=4
     )
@@ -71,7 +71,7 @@ def seed_activities():
         place="Hangzhou Botanical Garden",
         longitude=120.1265,
         latitude=30.2671,
-        description="Wander through the lush gardens and see a variety of plant species.",
+        description="In the afternoon, enjoy a leisurely walk through the Hangzhou Botanical Garden, a sprawling landscape filled with diverse plant species. The garden features themed sections showcasing bamboo forests, flower gardens, and rare plants, making it a paradise for nature lovers.",
         place_image_url="/images/Hangzhou4_02.webp",
         schedule_id=4
     )
@@ -79,7 +79,7 @@ def seed_activities():
         place="Night Market",
         longitude=120.1822,
         latitude=30.2675,
-        description="Explore one of Hangzhou's night markets for shopping and street food.",
+        description="Conclude your Hangzhou experience by diving into the bustling energy of one of Hangzhou's night markets. Explore the vibrant streets filled with local vendors offering everything from handmade trinkets and clothing to a wide array of street food. Sample local delicacies such as scallion pancakes, stinky tofu, and sweet lotus root, while soaking up the lively atmosphere.",
         place_image_url="/images/Hangzhou4_03.png",
         schedule_id=4
     )
@@ -103,7 +103,7 @@ def seed_activities():
         place="Impression West Lake Show",
         longitude=120.1419,
         latitude=30.2545,
-        description="Watch this spectacular evening show on the lake, featuring lights, music, and dance.",
+        description="Watch the mesmerizing Impression West Lake Show, a spectacular evening performance set on the lake. Directed by Zhang Yimou, it combines lights, music, and dance with West Lake as the stage, creating a dreamlike experience. The show highlights Hangzhou's rich folklore and offers a captivating blend of culture and natural beauty.",
         place_image_url="/images/Hangzhou1_02.webp",
         schedule_id=6
     )
@@ -599,7 +599,7 @@ def seed_activities():
         place="Duquesne Incline",
         longitude=-80.0125,
         latitude=40.4314,
-        description="Ride the historic incline for panoramic views of the Pittsburgh skyline.",
+        description="Ride the historic Duquesne Incline, a charming cable car that has been operating since the 1800s, to the top of Mount Washington. As you ascend, enjoy breathtaking panoramic views of the Pittsburgh skyline and the three rivers that define the city’s geography. This iconic viewpoint offers the perfect introduction to Pittsburgh's beauty.",
         place_image_url="/images/Pittsburgh1_01.webp",
         schedule_id=36
     )
@@ -607,7 +607,7 @@ def seed_activities():
         place="Mt. Washington Overlook",
         longitude=-80.0110,
         latitude=40.4284,
-        description="A scenic overlook offering stunning views of downtown Pittsburgh and its surrounding rivers.",
+        description="After reaching the top, take some time to explore the Mt. Washington Overlook, one of the most scenic spots in Pittsburgh. From here, you can capture stunning photos of the city's skyline, its bridges, and the confluence of the Allegheny, Monongahela, and Ohio rivers. The overlook provides a sweeping view of Pittsburgh, especially enchanting at sunset.",
         place_image_url="/images/Pittsburgh1_02.jpg",
         schedule_id=36
     )
@@ -615,7 +615,7 @@ def seed_activities():
         place="First Watch",
         longitude=-79.9939,
         latitude=40.4375,
-        description="A popular brunch spot known for its delicious breakfast and lunch options.",
+        description="Start your day with a delicious brunch at First Watch, a local favorite known for its fresh, healthy breakfast and lunch options. From avocado toast to fluffy pancakes, this spot offers a variety of flavorful dishes in a casual, welcoming setting—perfect for fueling up before a day of exploring.",
         place_image_url="/images/Pittsburgh2_01.jpeg",
         schedule_id=37
     )
@@ -623,7 +623,7 @@ def seed_activities():
         place="Cathedral of Learning",
         longitude=-79.9532,
         latitude=40.4442,
-        description="Visit the iconic Cathedral of Learning at the University of Pittsburgh, known for its impressive architecture.",
+        description="Visit the Cathedral of Learning, a towering Gothic Revival building at the University of Pittsburgh. This architectural marvel stands 42 stories tall, making it the tallest educational building in the Western Hemisphere. Inside, explore the Nationality Rooms, each designed to reflect the culture and history of a different country.",
         place_image_url="/images/Pittsburgh2_02.webp",
         schedule_id=37
     )
@@ -631,7 +631,7 @@ def seed_activities():
         place="Carnegie Museum of Art",
         longitude=-79.9508,
         latitude=40.4431,
-        description="Visit this renowned museum to explore a wide array of art collections, from classic to contemporary.",
+        description="Spend the afternoon at the Carnegie Museum of Art, one of the most prestigious art institutions in the U.S. The museum’s impressive collection spans from classical masterpieces to modern and contemporary works. Wander through exhibits that feature everything from Renaissance art to avant-garde installations.",
         place_image_url="/images/Pittsburgh2_03.avif",
         schedule_id=37
     )
@@ -639,7 +639,7 @@ def seed_activities():
         place="Aladin Show",
         longitude=-79.9961,
         latitude=40.4406,
-        description="End your day with a captivating performance at Aladin, with tickets reserved for 6:30 PM.",
+        description="In the evening, enjoy the enchanting Aladin Show, a theatrical performance that brings the magic of Arabian nights to life. With your tickets reserved for 6:30 PM, sit back and be captivated by the vibrant costumes, dazzling sets, and mesmerizing performances.",
         place_image_url="/images/Pittsburgh2_04.webp",
         schedule_id=37
     )
@@ -647,7 +647,7 @@ def seed_activities():
         place="Fallingwater",
         longitude=-79.4685,
         latitude=39.9066,
-        description="Tour Frank Lloyd Wright’s famous architectural masterpiece.",
+        description="Take a day trip to tour Fallingwater, the renowned architectural masterpiece designed by Frank Lloyd Wright. Nestled in the woods over a waterfall, this iconic house blends seamlessly with its natural surroundings. Explore the innovative design and learn about Wright’s vision as you wander through this stunning retreat.",
         place_image_url="/images/Pittsburgh3_01.jpg",
         schedule_id=38
     )
@@ -655,7 +655,7 @@ def seed_activities():
         place="Flight 93 National Memorial",
         longitude=-78.8986,
         latitude=40.0520,
-        description="Visit the 9/11 memorial dedicated to the heroes of Flight 93, located about 1 hour from Fallingwater.",
+        description="Continue your journey with a visit to the Flight 93 National Memorial, located about an hour from Fallingwater. This powerful memorial honors the passengers and crew of Flight 93, who heroically fought back during the 9/11 attacks. Walk along the serene grounds and visit the Wall of Names to pay tribute to these brave individuals.",
         place_image_url="/images/Pittsburgh3_02.jpg",
         schedule_id=38
     )
@@ -663,7 +663,7 @@ def seed_activities():
         place="Botanic Garden",
         longitude=-80.0186,
         latitude=40.4414,
-        description="Stroll through beautiful gardens at the Botanic Garden. Open from 9:30 a.m. to 5 p.m.",
+        description="Begin your morning with a peaceful stroll through the Pittsburgh Botanic Garden, a lush oasis filled with a variety of plant species and themed gardens. Open from 9:30 AM to 5 PM, the garden offers scenic walking paths, tranquil ponds, and blooming flowers, making it the perfect spot for nature lovers to unwind.",
         place_image_url="/images/Pittsburgh4_01.jpg",
         schedule_id=39
     )
@@ -671,7 +671,7 @@ def seed_activities():
         place="Carnegie Mellon University",
         longitude=-79.9435,
         latitude=40.4435,
-        description="Explore the beautiful campus of Carnegie Mellon University, renowned for its cutting-edge research and prestigious academic programs. Stroll through the scenic walkways, admire the modern architecture, and visit key landmarks like the Gates Center for Computer Science.",
+        description="End your visit with a tour of Carnegie Mellon University, a world-renowned institution known for its pioneering research and academic excellence. As you explore the campus, admire its modern architecture, lush green spaces, and notable landmarks like the Gates Center for Computer Science, a hub for cutting-edge innovation and technology.",
         place_image_url="/images/Pittsburgh4_02.jpg",
         schedule_id=39
     )
@@ -767,7 +767,7 @@ def seed_activities():
         place="Central Park",
         longitude=-73.9654,
         latitude=40.7829,
-        description="Relax and explore the vast green spaces of Central Park. Rent a bike, enjoy a picnic, or visit the Central Park Zoo.",
+        description="Begin your day in the heart of Manhattan at Central Park, a sprawling green oasis amidst the bustling city. Rent a bike to explore the park's many paths or take a leisurely stroll through its iconic landscapes. Find a peaceful spot for a picnic by the Sheep Meadow or visit the Central Park Zoo to see exotic animals like red pandas and snow leopards. Whether you’re looking for relaxation or adventure, Central Park offers something for everyone.",
         place_image_url="/images/NY1_01.webp",
         schedule_id=44
     )
@@ -775,7 +775,7 @@ def seed_activities():
         place="Times Square",
         longitude=-73.9851,
         latitude=40.7580,
-        description="Experience the dazzling lights and bustling energy of Times Square. Visit the numerous shops, theaters, and iconic landmarks.",
+        description="Experience the electric energy of Times Square, one of the most famous intersections in the world. Marvel at the towering digital billboards, shop at flagship stores, or grab a bite at one of the many restaurants. Times Square is also home to several renowned theaters, so keep an eye out for last-minute Broadway tickets or simply enjoy the bustling atmosphere of this iconic landmark.",
         place_image_url="/images/NY1_02.jpg",
         schedule_id=44
     )
@@ -783,7 +783,7 @@ def seed_activities():
         place="Top of the Rock Observation Deck",
         longitude=-73.9787,
         latitude=40.7590,
-        description="Visit the Top of the Rock Observation Deck at Rockefeller Center for stunning panoramic views of New York City, including the Empire State Building.",
+        description="Head to the Top of the Rock Observation Deck at Rockefeller Center for breathtaking panoramic views of New York City. From here, you can gaze out over the city skyline, including iconic landmarks like the Empire State Building, Central Park, and Chrysler Building. The views are especially stunning at sunset, as the city lights begin to twinkle.",
         place_image_url="/images/NY1_03.jpg",
         schedule_id=44
     )
@@ -791,7 +791,7 @@ def seed_activities():
         place="Statue of Liberty",
         longitude=-74.0445,
         latitude=40.6892,
-        description="Take a ferry to Liberty Island and visit the iconic Statue of Liberty. Learn about its history and significance at the museum on the island.",
+        description="Start your day with a ferry ride to Liberty Island to visit the iconic Statue of Liberty, a symbol of freedom and democracy. Walk around the base of the statue, explore the museum to learn about its history and construction, and enjoy spectacular views of Manhattan from the island.",
         place_image_url="/images/NY2_01.jpg",
         schedule_id=45
     )
@@ -799,7 +799,7 @@ def seed_activities():
         place="Ellis Island",
         longitude=-74.0423,
         latitude=40.6995,
-        description="Explore Ellis Island, once the busiest immigrant inspection station in the United States, and learn about its role in America's immigration history.",
+        description="Explore Ellis Island, once the busiest immigrant inspection station in the United States, and learn about its role in America's immigration history. Explore the Ellis Island Immigration Museum, where exhibits detail the immigrant experience and the island's role in shaping America's cultural heritage. Don’t miss the Wall of Honor, where you can search for family names of those who passed through the island.",
         place_image_url="/images/NY2_02.jpg",
         schedule_id=45
     )
@@ -807,7 +807,7 @@ def seed_activities():
         place="Broadway Show",
         longitude=-73.9862,
         latitude=40.7590,
-        description="End your day with a Broadway show. Choose from a wide range of performances, from classic musicals to contemporary dramas.",
+        description="End your day with the excitement of a Broadway show, the pinnacle of New York City’s performing arts scene. Whether you prefer a timeless musical, a classic drama, or a cutting-edge contemporary play, there’s a show for everyone. Be swept away by the dazzling performances and world-class production in one of the many historic theaters in the Broadway District.",
         place_image_url="/images/NY2_03.jpeg",
         schedule_id=45
     )
@@ -959,7 +959,7 @@ def seed_activities():
         place="Duval Street",
         longitude=-81.8029,
         latitude=24.5552,
-        description="Stroll along Duval Street, Key West's main thoroughfare, known for its lively atmosphere, shops, and historic bars.",
+        description="Stroll along Duval Street, the heart of the island's vibrant social scene. This lively street is lined with unique shops, charming cafes, and historic bars like Sloppy Joe’s, where Ernest Hemingway was a regular.",
         place_image_url="/images/KeyWest1_01.jpg",
         schedule_id=52
     )
@@ -967,7 +967,7 @@ def seed_activities():
         place="Hemingway Home and Museum",
         longitude=-81.8016,
         latitude=24.5515,
-        description="Visit the former home of author Ernest Hemingway, now a museum showcasing his life and work. Don't miss the famous six-toed cats that reside here.",
+        description="Visit the former residence of legendary author Ernest Hemingway. Now a museum, the home is filled with memorabilia from Hemingway’s life and career, offering a glimpse into his time in Key West. Don’t forget to say hello to the famous six-toed cats that roam the grounds, descendants of Hemingway’s beloved pets.",
         place_image_url="/images/KeyWest1_02.jpeg",
         schedule_id=52
     )
@@ -975,7 +975,7 @@ def seed_activities():
         place="Southernmost Point Buoy",
         longitude=-81.8035,
         latitude=24.5465,
-        description="Take a photo at the Southernmost Point Buoy, a popular landmark marking the southernmost tip of the continental United States.",
+        description="No trip to Key West is complete without a visit to the Southernmost Point Buoy, a popular landmark marking the southernmost tip of the continental United States. Snap a photo at this iconic spot and enjoy the stunning ocean views just steps away.",
         place_image_url="/images/KeyWest1_03.jpg",
         schedule_id=52
     )
@@ -983,7 +983,7 @@ def seed_activities():
         place="Key West Butterfly & Nature Conservatory",
         longitude=-81.8005,
         latitude=24.5473,
-        description="Walk among hundreds of free-flying butterflies and exotic birds in this beautiful conservatory. It's a serene and colorful experience.",
+        description="Walk among hundreds of free-flying butterflies and exotic birds in this beautiful conservatory. The lush, tropical environment creates a serene escape, making it a perfect way to begin your day in paradise.",
         place_image_url="/images/KeyWest2_01.webp",
         schedule_id=53
     )
@@ -999,7 +999,7 @@ def seed_activities():
         place="Fort Zachary Taylor Historic State Park",
         longitude=-81.8092,
         latitude=24.5484,
-        description="Explore Fort Zachary Taylor, a historic Civil War-era fort, and enjoy the park's beautiful beach, which is perfect for swimming and snorkeling.",
+        description="End your day at Fort Zachary Taylor Historic State Park, where you can explore a well-preserved Civil War-era fort and relax on one of Key West's best beaches. The park offers great opportunities for swimming, snorkeling, and picnicking, with beautiful views of the Gulf of Mexico.",
         place_image_url="/images/KeyWest2_03.jpg",
         schedule_id=53
     )
