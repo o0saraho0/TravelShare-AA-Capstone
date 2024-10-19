@@ -49,6 +49,7 @@ def edit_itinerary(itineraryId):
         if itinerary:
             original_duration = itinerary.duration
             itinerary.title = form.data["title"]
+            itinerary.country = form.data["country"]
             itinerary.duration = form.data["duration"]
             itinerary.description = form.data["description"]
             itinerary.preview_image_url = form.data["preview_image_url"]
@@ -94,6 +95,7 @@ def create_itinerary():
     if form.validate_on_submit():
         newItinerary = Itinerary(
             title=form.title.data,
+            country=form.country.data,
             duration=form.duration.data,
             description=form.description.data,
             preview_image_url=form.preview_image_url.data,

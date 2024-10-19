@@ -9,6 +9,7 @@ class Itinerary(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
+    country = db.Column(db.String)
     duration = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text)
     preview_image_url = db.Column(db.Text, nullable=False)
@@ -33,6 +34,7 @@ class Itinerary(db.Model):
         return {
             "id": self.id,
             "title": self.title,
+            "country": self.country,
             "duration": self.duration,
             "description": self.description,
             "preview_image_url": self.preview_image_url,
