@@ -11,6 +11,8 @@ function ItineraryForm({ itinerary, formType }) {
   const user = useSelector((state) => state.session.user);
 
   const [title, setTitle] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [duration, setDuration] = useState(0);
   const [description, setDescription] = useState("");
   const [preview_image_url, setPreviewImage] = useState(null);
@@ -23,6 +25,7 @@ function ItineraryForm({ itinerary, formType }) {
   useEffect(() => {
     if (itinerary) {
       setTitle(itinerary.title || "");
+      setSelectedCountry(itinerary.country || "");
       setDuration(itinerary.duration || 0);
       setDescription(itinerary.description || "");
       setPreviewImage(itinerary.preview_image_url || null);
@@ -31,6 +34,25 @@ function ItineraryForm({ itinerary, formType }) {
       setOriginalDuration(itinerary.duration || 0);
     }
   }, [itinerary]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch("https://restcountries.com/v3.1/all");
+        const data = await response.json();
+        const countryNames = data.map((country) => country.name.common);
+        setCountries(countryNames);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+  const handleCountryChange = (e) => {
+    setSelectedCountry(e.target.value);
+  };
 
   const validateForm = () => {
     const errorObj = {};
@@ -47,6 +69,7 @@ function ItineraryForm({ itinerary, formType }) {
     if (description.length < 10)
       errorObj.description =
         "Description must be at least 10 characters long. Please provide more details on your itinerary.";
+    if (!selectedCountry) errorObj.selectedCountry = "Country is required.";
     if (!category_id) errorObj.category_id = "Category is required.";
 
     if (formType === "Create New Itinerary" && !preview_image_url) {
@@ -109,6 +132,7 @@ function ItineraryForm({ itinerary, formType }) {
 
     const itineraryData = {
       title,
+      country: selectedCountry,
       duration,
       description,
       preview_image_url: imageUrl,
@@ -157,6 +181,23 @@ function ItineraryForm({ itinerary, formType }) {
             onChange={(e) => setTitle(e.target.value)}
           />
           {errors.title && <p className="error">{errors.title}</p>}
+        </div>
+
+        <div>
+          <label>
+            <h3>Country</h3>
+          </label>
+          <select value={selectedCountry} onChange={handleCountryChange}>
+            <option value="">Select a Country</option>
+            {countries.sort().map((country) => (
+              <option key={country} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
+          {errors.selectedCountry && (
+            <p className="error">{errors.selectedCountry}</p>
+          )}
         </div>
 
         <div>
