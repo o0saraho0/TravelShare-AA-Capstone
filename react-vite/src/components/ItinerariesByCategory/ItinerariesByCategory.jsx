@@ -5,6 +5,7 @@ import { thunkAllItineraries } from "../../redux/itinerary";
 import Loading from "../SubComponents/Loading";
 import { FaSearch } from "react-icons/fa";
 import { FaCalendarDays } from "react-icons/fa6";
+import { FaMapSigns } from "react-icons/fa";
 import "./ItinerariesByCategory.css";
 
 function ItinerariesByCategory() {
@@ -19,6 +20,8 @@ function ItinerariesByCategory() {
   const [searchInput, setSearchInput] = useState("");
   const [filteredItineraries, setFilteredItineraries] = useState(itineraries);
   const [durationFilter, setDurationFilter] = useState("");
+  const [countryFilter, setCountryFilter] = useState("");
+  const [countries, setCountries] = useState([]); // State for unique countries
 
   const itinerariesByCategory = itineraries.filter((itinerary) => {
     return itinerary.category_id === Number(categoryId);
@@ -29,6 +32,13 @@ function ItinerariesByCategory() {
       dispatch(thunkAllItineraries());
     }
   }, [dispatch, itinerariesObj]);
+
+  useEffect(() => {
+    const uniqueCountries = new Set(
+      itinerariesByCategory.map((itinerary) => itinerary.country)
+    );
+    setCountries(Array.from(uniqueCountries));
+  }, [itinerariesByCategory]);
 
   const applyFilters = () => {
     let filtered = itinerariesByCategory;
@@ -41,6 +51,13 @@ function ItinerariesByCategory() {
           itinerary.description
             .toLowerCase()
             .includes(searchInput.toLowerCase())
+      );
+    }
+
+    // Apply country filter
+    if (countryFilter) {
+      filtered = filtered.filter(
+        (itinerary) => itinerary.country === countryFilter
       );
     }
 
@@ -68,11 +85,16 @@ function ItinerariesByCategory() {
   // Search and filter function triggered when search input or duration changes
   useEffect(() => {
     applyFilters();
-  }, [searchInput, durationFilter, itinerariesByCategory]);
+  }, [searchInput, durationFilter, countryFilter, itinerariesByCategory]);
 
   // Duration filter handler
   const handleDurationFilterChange = (e) => {
     setDurationFilter(e.target.value);
+  };
+
+  // Country filter handler
+  const handleCountryFilterChange = (e) => {
+    setCountryFilter(e.target.value);
   };
 
   // Search input handler
@@ -111,21 +133,41 @@ function ItinerariesByCategory() {
             />
           </div>
 
-          <div className="filter">
-            <label className="search-icon">
-              <FaCalendarDays />
-            </label>
+          <div className="filter-bar">
+            <div className="filter">
+              <label className="search-icon">
+                <FaMapSigns />
+              </label>
 
-            <select
-              onChange={handleDurationFilterChange}
-              value={durationFilter}
-            >
-              <option value="">All Durations</option>
-              <option value="1-2">1-2 Days</option>
-              <option value="3-5">3-5 Days</option>
-              <option value="6-9">6-9 Days</option>
-              <option value="10+">10+ Days</option>
-            </select>
+              <select
+                onChange={handleCountryFilterChange}
+                value={countryFilter}
+              >
+                <option value="">All Countries</option>
+                {countries.sort().map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="filter">
+              <label className="search-icon">
+                <FaCalendarDays />
+              </label>
+
+              <select
+                onChange={handleDurationFilterChange}
+                value={durationFilter}
+              >
+                <option value="">All Durations</option>
+                <option value="1-2">1-2 Days</option>
+                <option value="3-5">3-5 Days</option>
+                <option value="6-9">6-9 Days</option>
+                <option value="10+">10+ Days</option>
+              </select>
+            </div>
           </div>
         </div>
 

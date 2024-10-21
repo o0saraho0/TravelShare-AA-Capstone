@@ -70,6 +70,11 @@ export const thunkAllItineraries = () => async (dispatch) => {
   const data = await response.json();
   if (response.ok) {
     dispatch(allItineraries(data));
+
+    const countriesSet = new Set(data.map((itinerary) => itinerary.country));
+    const countries = Array.from(countriesSet);
+    dispatch({ type: "SET_COUNTRIES", payload: countries });
+
     return data;
   }
   return data;
@@ -128,6 +133,7 @@ export const thunkEditItinerary =
 
 const initialState = {
   itineraryById: {},
+  countries: [],
 };
 
 function itineraryReducer(state = initialState, action) {
@@ -138,6 +144,9 @@ function itineraryReducer(state = initialState, action) {
         newState[itinerary.id] = itinerary;
       });
       return { ...state, allItineraries: newState };
+    }
+    case "SET_COUNTRIES": {
+      return { ...state, countries: action.payload };
     }
     case ITINERARY_BY_ID: {
       let newState = { ...state.itineraryById };
