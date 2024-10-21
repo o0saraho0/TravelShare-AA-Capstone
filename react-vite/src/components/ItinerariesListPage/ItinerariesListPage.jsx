@@ -5,6 +5,7 @@ import { thunkAllItineraries } from "../../redux/itinerary";
 import Loading from "../SubComponents/Loading";
 import { FaSearch } from "react-icons/fa";
 import { FaCalendarDays } from "react-icons/fa6";
+import { FaMapSigns } from "react-icons/fa";
 import "./ItinerariesListPage.css";
 
 function ItinerariesList() {
@@ -16,9 +17,12 @@ function ItinerariesList() {
     () => (itinerariesObj ? Object.values(itinerariesObj) : []),
     [itinerariesObj]
   );
+  const countries = useSelector((state) => state.itineraries.countries);
+
   const [searchInput, setSearchInput] = useState("");
   const [filteredItineraries, setFilteredItineraries] = useState(itineraries);
   const [durationFilter, setDurationFilter] = useState("");
+  const [countryFilter, setCountryFilter] = useState("");
   const [itemsToShow, setItemsToShow] = useState(9);
 
   useEffect(() => {
@@ -59,6 +63,14 @@ function ItinerariesList() {
         }
       });
     }
+
+    // Apply country filter
+    if (countryFilter) {
+      filtered = filtered.filter(
+        (itinerary) => itinerary.country === countryFilter
+      );
+    }
+
     setFilteredItineraries(filtered);
     setItemsToShow(9);
   };
@@ -66,11 +78,16 @@ function ItinerariesList() {
   // Search and filter function triggered when search input or duration changes
   useEffect(() => {
     applyFilters();
-  }, [searchInput, durationFilter, itineraries]);
+  }, [searchInput, durationFilter, countryFilter, itineraries]);
 
   // Duration filter handler
   const handleDurationFilterChange = (e) => {
     setDurationFilter(e.target.value);
+  };
+
+  // Country filter handler
+  const handleCountryFilterChange = (e) => {
+    setCountryFilter(e.target.value);
   };
 
   // Search input handler
@@ -103,21 +120,41 @@ function ItinerariesList() {
             />
           </div>
 
-          <div className="filter">
-            <label className="search-icon">
-              <FaCalendarDays />
-            </label>
+          <div className="filter-bar">
+            <div className="filter">
+              <label className="search-icon">
+                <FaMapSigns />
+              </label>
 
-            <select
-              onChange={handleDurationFilterChange}
-              value={durationFilter}
-            >
-              <option value="">All Durations</option>
-              <option value="1-2">1-2 Days</option>
-              <option value="3-5">3-5 Days</option>
-              <option value="6-9">6-9 Days</option>
-              <option value="10+">10+ Days</option>
-            </select>
+              <select
+                onChange={handleCountryFilterChange}
+                value={countryFilter}
+              >
+                <option value="">All Countries</option>
+                {countries.sort().map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="filter">
+              <label className="search-icon">
+                <FaCalendarDays />
+              </label>
+
+              <select
+                onChange={handleDurationFilterChange}
+                value={durationFilter}
+              >
+                <option value="">All Durations</option>
+                <option value="1-2">1-2 Days</option>
+                <option value="3-5">3-5 Days</option>
+                <option value="6-9">6-9 Days</option>
+                <option value="10+">10+ Days</option>
+              </select>
+            </div>
           </div>
         </div>
 
