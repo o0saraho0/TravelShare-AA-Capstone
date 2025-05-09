@@ -8,6 +8,7 @@ import {
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteModal from "../SubComponents/ConfirmDeleteModal";
 import Loading from "../SubComponents/Loading";
+import AIChat from "../AIChat/AIChat";
 import "./ItinerariesManage.css";
 
 function ItinerariesManage() {
@@ -136,6 +137,7 @@ function ItinerariesManage() {
           </div>
         )}
       </div>
+      <AIChat />
     </main>
   );
 }

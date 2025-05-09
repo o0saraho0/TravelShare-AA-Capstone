@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaWandMagicSparkles } from "react-icons/fa6";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import "./AIChat.css";
 
 function AIChat() {
@@ -74,6 +75,18 @@ function AIChat() {
     <div className="aichat-container">
       {isVisible && (
         <div className="aichat-wrapper">
+          <div
+            className="aichat-close"
+            onClick={() => {
+              setIsVisible(false);
+              setChatHistory([]);
+              setSelectedCountry(null);
+              setQuery("");
+            }}
+          >
+            <IoIosCloseCircleOutline />
+          </div>
+
           <div className="aichat-window">
             <div className="aichat-bubble bot-message">
               <p>Got a destination in mind? I can help you plan the trip!</p>

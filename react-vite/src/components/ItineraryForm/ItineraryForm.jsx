@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkNewItinerary, thunkEditItinerary } from "../../redux/itinerary";
 import { thunkUploadImage, thunkEditImage } from "../../redux/image";
+import AIChat from "../AIChat/AIChat";
 import "./ItineraryForm.css";
 
 function ItineraryForm({ itinerary, formType }) {
@@ -293,6 +294,7 @@ function ItineraryForm({ itinerary, formType }) {
           </button>
         </div>
       </form>
+      <AIChat />
     </main>
   );
 }
