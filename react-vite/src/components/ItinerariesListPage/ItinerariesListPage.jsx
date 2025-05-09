@@ -7,6 +7,7 @@ import { FaSearch } from "react-icons/fa";
 import { FaCalendarDays } from "react-icons/fa6";
 import { FaMapSigns } from "react-icons/fa";
 import "./ItinerariesListPage.css";
+import AIChat from "../AIChat/AIChat";
 
 function ItinerariesList() {
   const dispatch = useDispatch();
@@ -205,6 +206,7 @@ function ItinerariesList() {
           </div>
         )}
       </div>
+      <AIChat />
     </main>
   );
 }

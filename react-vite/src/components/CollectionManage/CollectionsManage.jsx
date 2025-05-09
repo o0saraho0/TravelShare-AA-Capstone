@@ -8,6 +8,7 @@ import {
 import { useModal } from "../../context/Modal";
 import ConfirmDeleteModal from "../SubComponents/ConfirmDeleteModal";
 import Loading from "../SubComponents/Loading";
+import AIChat from "../AIChat/AIChat";
 import "./CollectionsManage.css";
 
 function CollectionsManage() {
@@ -117,6 +118,7 @@ function CollectionsManage() {
           </div>
         )}
       </div>
+      <AIChat />
     </main>
   );
 }

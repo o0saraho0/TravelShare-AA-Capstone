@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { thunkAllItineraries } from "../../redux/itinerary";
 import Loading from "../SubComponents/Loading";
+import AIChat from "../AIChat/AIChat";
 import { FaSearch } from "react-icons/fa";
 import { FaCalendarDays } from "react-icons/fa6";
 import { FaMapSigns } from "react-icons/fa";
@@ -212,6 +213,7 @@ function ItinerariesByCategory() {
           )}
         </div>
       </div>
+      <AIChat />
     </main>
   );
 }

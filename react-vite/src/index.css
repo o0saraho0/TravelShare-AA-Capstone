@@ -1,4 +1,3 @@
-/* TODO: Add sitewide styles */
 /* colors: #F1F8E8 - yellow, #D8EFD3, #95D2B3, #55AD9B, #C0C78C, #A6B37D, #FEFAE0, #B99470 - brown */
 
 * {
@@ -218,6 +217,22 @@ form label {
 
 .button-center {
   margin: 50px auto;
+}
+
+#green-button {
+  padding: 5px;
+  width: 125px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  background-color: #95d2b3;
+  cursor: pointer;
+}
+
+#green-button:hover {
+  background-color: #55ad9b;
 }
 
 #greener-button {
