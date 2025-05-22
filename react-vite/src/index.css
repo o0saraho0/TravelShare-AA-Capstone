@@ -235,6 +235,23 @@ form label {
   background-color: #55ad9b;
 }
 
+#green-button-full-width {
+  padding: 5px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  background-color: #95d2b3;
+  cursor: pointer;
+}
+
+#green-button-full-width:hover {
+  background-color: #55ad9b;
+}
+
 #greener-button {
   padding: 10px 15px;
   width: 250px;
