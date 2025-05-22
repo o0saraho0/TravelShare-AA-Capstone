@@ -29,12 +29,75 @@ function AIChat() {
     if (!query) return;
     setLoading(true);
 
+    const lowerQuery = query.toLowerCase();
+
+    // Match country
+    const matchedCountry = Object.keys(destinationMap).find((country) =>
+      lowerQuery.includes(country.toLowerCase())
+    );
+
+    // Match city
+    let matchedCity = null;
+    for (const country of Object.keys(destinationMap)) {
+      matchedCity = destinationMap[country].find((city) =>
+        lowerQuery.includes(city.toLowerCase())
+      );
+      if (matchedCity) {
+        break;
+      }
+    }
+
+    // Either city or country match found
+    if (matchedCity || matchedCountry) {
+      const cities = matchedCity
+        ? [matchedCity]
+        : destinationMap[matchedCountry];
+      const matchedItineraries = itineraries.filter((itinerary) =>
+        cities.some(
+          (city) =>
+            itinerary.title.toLowerCase().includes(city.toLowerCase()) ||
+            itinerary.description.toLowerCase().includes(city.toLowerCase())
+        )
+      );
+
+      const topMatches = matchedItineraries.slice(0, 3).map((itinerary) => (
+        <Link to={`/itineraries/${itinerary.id}`} key={itinerary.id}>
+          <div className="chat_recommendation_preview bot-message">
+            <img src={itinerary.preview_image_url} alt={itinerary.title} />
+            <div className="chat_recommendation_desc">
+              <h3>{itinerary.title}</h3>
+              <div>Duration: {itinerary.duration} days</div>
+            </div>
+          </div>
+        </Link>
+      ));
+
+      setChatHistory((prev) => [
+        ...prev,
+        { type: "user", content: query },
+        {
+          type: "bot",
+          content:
+            topMatches.length > 0
+              ? topMatches
+              : `No recommendations found for ${
+                  matchedCity || matchedCountry
+                }.`,
+        },
+      ]);
+
+      setQuery("");
+      setLoading(false);
+      return;
+    }
+
+    // No match? Use AI
     const res = await fetch("/api/ai/recommendations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query: query }),
+      body: JSON.stringify({ query }),
     });
 
     const data = await res.json();
@@ -62,13 +125,17 @@ function AIChat() {
     "United States": [
       "Boston",
       "New York",
+      "Pittsburgh",
+      "New Orleans",
       "Utah",
-      "Los Angeles",
-      "San Francisco",
+      "California",
+      "Key West",
       "Hawaii",
     ],
+    Canada: ["Toronto"],
     Mexico: ["Tulum", "Cancun"],
-    China: ["Hangzhou", "Shanghai"],
+    China: ["Hangzhou", "Shanghai", "Shenzhen"],
+    Japan: ["Tokyo"],
   };
 
   return (
@@ -112,7 +179,7 @@ function AIChat() {
               ))}
             </div>
             {chatHistory.map((message, index) => (
-              <div>
+              <div key={index}>
                 <div
                   key={index}
                   className={`aichat-bubble ${
@@ -144,7 +211,10 @@ function AIChat() {
 
                             const result = cityItineraries.length
                               ? cityItineraries.slice(0, 3).map((itinerary) => (
-                                  <Link to={`/itineraries/${itinerary.id}`}>
+                                  <Link
+                                    to={`/itineraries/${itinerary.id}`}
+                                    key={itinerary.id}
+                                  >
                                     <div className="chat_recommendation_preview bot-message">
                                       <img
                                         src={itinerary.preview_image_url}
