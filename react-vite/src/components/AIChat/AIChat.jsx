@@ -226,7 +226,7 @@ function AIChat() {
                                         </div>
                                       </div>
                                     </Link>
-                                    <button
+                                    {/* <button
                                       id="green-button-full-width"
                                       onClick={async () => {
                                         const res = await fetch(
@@ -254,7 +254,7 @@ function AIChat() {
                                       }}
                                     >
                                       Schedule of This Itinerary
-                                    </button>
+                                    </button> */}
                                   </div>
                                 ))
                               : "No recommendations found for this city.";
