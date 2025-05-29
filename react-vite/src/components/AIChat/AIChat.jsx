@@ -211,23 +211,51 @@ function AIChat() {
 
                             const result = cityItineraries.length
                               ? cityItineraries.slice(0, 3).map((itinerary) => (
-                                  <Link
-                                    to={`/itineraries/${itinerary.id}`}
-                                    key={itinerary.id}
-                                  >
-                                    <div className="chat_recommendation_preview bot-message">
-                                      <img
-                                        src={itinerary.preview_image_url}
-                                        alt={itinerary.title}
-                                      />
-                                      <div className="chat_recommendation_desc">
-                                        <h3>{itinerary.title}</h3>
-                                        <div>
-                                          Duration: {itinerary.duration} days
+                                  <div key={itinerary.id}>
+                                    <Link to={`/itineraries/${itinerary.id}`}>
+                                      <div className="chat_recommendation_preview bot-message">
+                                        <img
+                                          src={itinerary.preview_image_url}
+                                          alt={itinerary.title}
+                                        />
+                                        <div className="chat_recommendation_desc">
+                                          <h3>{itinerary.title}</h3>
+                                          <div>
+                                            Duration: {itinerary.duration} days
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  </Link>
+                                    </Link>
+                                    <button
+                                      id="green-button-full-width"
+                                      onClick={async () => {
+                                        const res = await fetch(
+                                          "/api/ai/schedule",
+                                          {
+                                            method: "POST",
+                                            headers: {
+                                              "Content-Type":
+                                                "application/json",
+                                            },
+                                            body: JSON.stringify({
+                                              title: itinerary.title,
+                                            }),
+                                          }
+                                        );
+
+                                        const data = await res.json();
+                                        const schedule =
+                                          data.schedule || "No schedule found.";
+
+                                        setChatHistory((prev) => [
+                                          ...prev,
+                                          { type: "bot", content: schedule },
+                                        ]);
+                                      }}
+                                    >
+                                      Schedule of This Itinerary
+                                    </button>
+                                  </div>
                                 ))
                               : "No recommendations found for this city.";
 
