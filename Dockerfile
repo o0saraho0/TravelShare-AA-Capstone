@@ -17,6 +17,9 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
 
+COPY faiss_index /var/www/faiss_index
+COPY faiss_index_activities /var/www/faiss_index_activities
+
 COPY . .
 
 RUN flask db upgrade
